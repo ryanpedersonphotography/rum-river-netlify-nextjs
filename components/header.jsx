@@ -5,6 +5,7 @@ import githubLogo from 'public/images/github-mark-white.svg';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
+    { linkText: 'Style Audit', href: '/style-audit' },
     { linkText: 'Revalidation', href: '/revalidation' },
     { linkText: 'Image CDN', href: '/image-cdn' },
     { linkText: 'Edge Function', href: '/edge' },

@@ -1,6 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @import 'tailwindcss';
+
+/* ============================================================
+   GLOBAL TOKENS – FOUNDATION
+   Single source of truth for design system
+   ============================================================ */
+
+/* Design Tokens - Single Source of Truth */
+:root {
+  /* Color Roles (Light Theme) */
+  --bg: #FBF8F4;              /* page background */
+  --fg: #2C2416;              /* default text */
+  --surface: #FBF8F4;         /* cards, modals, sections */
+  --on-surface: #2C2416;      /* text on surface */
+  --brand: #9D6B7B;           /* dusty rose primary */
+  --on-brand: #FFFCF8;        /* text on brand */
+  --brand-alt: #6B4E3D;       /* walnut secondary */
+  --on-brand-alt: #FFFCF8;    /* text on brand-alt */
+  --accent: #E4C896;          /* champagne gold */
+  --on-accent: #2C2416;       /* text on accent */
+  --muted: #A08A85;           /* muted sections */
+  --on-muted: #FFFCF8;        /* text on muted */
+  --border: #A08A85;          /* borders, hairlines */
+  --focus-ring: rgba(157, 107, 123, 0.35); /* focus outlines */
+
+  /* Utility Colors */
+  --success: #4ade80;
+  --error: #f87171;
+  --warning: #E4C896;
+
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-script: 'Dancing Script', cursive;
+
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --text-2xl: 1.5rem;   /* 24px */
+  --text-3xl: 1.75rem;  /* 28px */
+  --text-4xl: 2rem;     /* 32px */
+  --text-5xl: 2.5rem;   /* 40px */
+  --text-6xl: 3rem;     /* 48px */
+  --text-hero: clamp(3rem, 8vw, 5.5rem);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Spacing Scale (4px grid) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-7: 1.75rem;   /* 28px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 8px 20px rgba(0,0,0,0.15);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
+
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-base: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-elegant: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Layout */
+  --container: 1120px;
+
+  /* Motion */
+  --motion-scale: 1;
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  --bg: #0F1419;
+  --fg: #E7EDF3;
+
+  --surface: #12171D;
+  --surface-alt: #0F1419;
+  --on-surface: #E7EDF3;
+
+  --brand: #9D6B7B;     /* keep or darken slightly if contrast fails */
+  --on-brand: #FFFFFF;
+
+  --brand-alt: #6B4E3D;
+  --on-brand-alt: #FFFFFF;
+
+  --accent: #E4C896;
+  --on-accent: #0F1419;
+
+  --muted: #1A1F27;
+  --on-muted: #D6DCE3;
+
+  --border: #2B3038;
+  --focus-ring: rgba(212,165,116,0.35); /* champagne-ish ring still visible on dark */
+}
+
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+}
 
 @theme {
     --background-image-noise: linear-gradient(
@@ -9,11 +137,10 @@
             color-mix(in oklab, var(--color-neutral-950) 100%, transparent)
         ),
         url('/images/noise.png');
-    --color-primary: #2bdcd2;
-    --color-primary-content: #171717;
-    --color-secondary: #016968;
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+    --color-primary: var(--brand);
+    --color-primary-content: var(--on-brand);
+    --color-secondary: var(--brand-alt);
+    --font-sans: var(--font-body);
 }
 
 @layer base {
@@ -59,24 +186,51 @@
     }
 
     .btn {
-        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer bg-primary text-primary-content;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        /* component-scoped tokens */
+        --btn-bg: var(--brand);
+        --btn-fg: var(--on-brand);
+        --btn-py: var(--space-3);
+        --btn-px: var(--space-6);
+        --btn-radius: var(--r-full);
+
+        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer border-none;
+        background: var(--btn-bg);
+        color: var(--btn-fg);
+        padding: var(--btn-py) var(--btn-px);
+        border-radius: var(--btn-radius);
+        font-size: var(--text-sm);
 
         &:hover {
-            @apply bg-primary/85;
+            opacity: 0.9;
         }
 
         &:disabled {
-            @apply cursor-default text-neutral-400 bg-neutral-700;
+            @apply cursor-default opacity-50;
         }
     }
 
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
+    .btn-secondary {
+        --btn-bg: transparent;
+        --btn-fg: var(--brand);
+        box-shadow: inset 0 0 0 1px var(--border);
+    }
+
+    .btn-link {
+        --btn-bg: transparent;
+        --btn-fg: var(--brand);
+        text-decoration: underline;
+        box-shadow: none;
+    }
+
+    .btn-sm { 
+        --btn-py: var(--space-2); 
+        --btn-px: var(--space-5); 
+    }
+    
+    .btn-lg { 
+        --btn-py: var(--space-4); 
+        --btn-px: var(--space-7); 
+        font-size: var(--text-lg);
     }
 
     .input {
