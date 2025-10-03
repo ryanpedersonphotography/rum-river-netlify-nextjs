@@ -74,6 +74,7 @@
   --r-full: 9999px;
 
   /* Shadows */
+  --shadow-none: none;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
   --shadow-md: 0 8px 20px rgba(0,0,0,0.15);
   --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
@@ -87,8 +88,24 @@
   /* Layout */
   --container: 1120px;
 
+  /* Section tokens */
+  --section-py-sm: var(--space-8);
+  --section-py-md: var(--space-10);
+  --section-py-lg: var(--space-12);
+
   /* Motion */
   --motion-scale: 1;
+
+  /* Input Component Tokens */
+  --input-bg: var(--surface);
+  --input-fg: var(--fg);
+  --input-border: var(--border);
+  --input-placeholder: var(--muted);
+  --input-focus-ring: var(--focus-ring);
+  --input-radius: var(--r-md);
+  --input-padding-y: var(--space-3);
+  --input-padding-x: var(--space-4);
+  --input-font-size: var(--text-sm);
 }
 
 /* Dark Theme */
@@ -186,33 +203,52 @@ body {
     }
 
     .btn {
-        /* component-scoped tokens */
         --btn-bg: var(--brand);
         --btn-fg: var(--on-brand);
         --btn-py: var(--space-3);
         --btn-px: var(--space-6);
         --btn-radius: var(--r-full);
+        --btn-shadow: none;
+        --btn-font: var(--font-body);
 
-        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer border-none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        font-family: var(--btn-font);
+        font-size: var(--text-sm);
+        font-weight: var(--weight-semibold);
+        border-radius: var(--btn-radius);
         background: var(--btn-bg);
         color: var(--btn-fg);
         padding: var(--btn-py) var(--btn-px);
-        border-radius: var(--btn-radius);
-        font-size: var(--text-sm);
-
-        &:hover {
-            opacity: 0.9;
-        }
-
-        &:disabled {
-            @apply cursor-default opacity-50;
-        }
+        box-shadow: var(--btn-shadow);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition-fast);
+        text-decoration: none;
+        text-align: center;
     }
 
-    .btn-secondary {
+    .btn:hover:not(:disabled) { opacity: 0.9; }
+    .btn:disabled { cursor: default; opacity: 0.5; }
+
+    .btn-sm {
+        --btn-py: var(--space-2);
+        --btn-px: var(--space-5);
+        font-size: var(--text-sm);
+    }
+
+    .btn-lg {
+        --btn-py: var(--space-4);
+        --btn-px: var(--space-7);
+        font-size: var(--text-lg);
+    }
+
+    .btn-outline {
         --btn-bg: transparent;
         --btn-fg: var(--brand);
-        box-shadow: inset 0 0 0 1px var(--border);
+        --btn-shadow: inset 0 0 0 1px var(--brand);
     }
 
     .btn-link {
@@ -222,20 +258,132 @@ body {
         box-shadow: none;
     }
 
-    .btn-sm { 
-        --btn-py: var(--space-2); 
-        --btn-px: var(--space-5); 
-    }
-    
-    .btn-lg { 
-        --btn-py: var(--space-4); 
-        --btn-px: var(--space-7); 
-        font-size: var(--text-lg);
+    .input {
+        background: var(--input-bg);
+        color: var(--input-fg);
+        border: 1px solid var(--input-border);
+        border-radius: var(--input-radius);
+        padding: var(--input-padding-y) var(--input-padding-x);
+        font-size: var(--input-font-size);
+        font-family: var(--font-body);
+        width: 100%;
+        transition: var(--transition-fast);
     }
 
-    .input {
-        @apply px-4 py-3 text-sm border rounded-sm border-neutral-300 text-neutral-900 focus:border-primary focus:outline-3 focus:outline-primary/30;
+    .input::placeholder {
+        color: var(--input-placeholder);
+        opacity: 0.7;
     }
+
+    .input:focus {
+        outline: 2px solid var(--input-focus-ring);
+        outline-offset: 2px;
+        border-color: var(--input-focus-ring);
+    }
+
+    .input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .input-sm {
+        --input-padding-y: var(--space-2);
+        --input-padding-x: var(--space-3);
+        --input-font-size: var(--text-xs);
+    }
+
+    .input-lg {
+        --input-padding-y: var(--space-4);
+        --input-padding-x: var(--space-5);
+        --input-font-size: var(--text-base);
+    }
+
+    /* Typography Primitives */
+    .typo-heading {
+        font-family: var(--font-display);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        margin: 0 0 var(--space-4);
+        color: inherit; /* let Card tone control text color */
+    }
+
+    .typo-text {
+        font-family: var(--font-body);
+        line-height: 1.6;
+        margin: 0 0 var(--space-3);
+        color: inherit; /* let Card tone control text color */
+    }
+
+    /* Sizes map to your token scale */
+    .h-hero { font-size: var(--text-hero); }
+    .h-1    { font-size: var(--text-6xl); }
+    .h-2    { font-size: var(--text-5xl); }
+    .h-3    { font-size: var(--text-4xl); }
+    .h-4    { font-size: var(--text-3xl); }
+    .h-5    { font-size: var(--text-2xl); }
+    .h-6    { font-size: var(--text-xl); }
+
+    .t-xs   { font-size: var(--text-xs); }
+    .t-sm   { font-size: var(--text-sm); }
+    .t-base { font-size: var(--text-base); }
+    .t-lg   { font-size: var(--text-lg); }
+    .t-xl   { font-size: var(--text-xl); }
+
+    /* Weights */
+    .w-regular  { font-weight: var(--weight-regular); }
+    .w-medium   { font-weight: var(--weight-medium); }
+    .w-semibold { font-weight: var(--weight-semibold); }
+    .w-bold     { font-weight: var(--weight-bold); }
+
+    /* Align helpers */
+    .ta-left  { text-align: left; }
+    .ta-center{ text-align: center; }
+    .ta-right { text-align: right; }
+
+    /* Optional tone swap for emphasis (uses your role tokens) */
+    .tone-on-surface { color: var(--on-surface); }
+    .tone-brand      { color: var(--brand); }
+    .tone-on-brand   { color: var(--on-brand); }
+
+    /* SURFACE & CARD PRIMITIVES */
+    .surface {
+        background: var(--surface);
+        color: var(--on-surface);
+    }
+
+    /* Base: shape only */
+    .card {
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-6);
+      transition: var(--transition-fast);
+    }
+
+    /* Tones own color/contrast (explicit neutral) */
+    .card--neutral { background: var(--surface);  color: var(--on-surface);  border: 1px solid var(--border); }
+    .card--brand   { background: var(--brand);    color: var(--on-brand);    border: 1px solid transparent; }
+    .card--muted   { background: var(--muted);    color: var(--on-muted);    border: 1px solid transparent; }
+    .card--accent  { background: var(--accent);   color: var(--on-accent);   border: 1px solid transparent; }
+
+    /* elevation */
+    .card--e0 { box-shadow: none; }
+    .card--e1 { box-shadow: var(--shadow-sm); }
+    .card--e2 { box-shadow: var(--shadow-md); }
+    .card--e3 { box-shadow: var(--shadow-lg); }
+
+    /* radius */
+    .card--r-sm { border-radius: var(--r-sm); }
+    .card--r-md { border-radius: var(--r-md); }
+    .card--r-lg { border-radius: var(--r-lg); }
+
+    /* padding scale */
+    .card--p-sm { padding: var(--space-4); }
+    .card--p-md { padding: var(--space-6); }
+    .card--p-lg { padding: var(--space-8); }
+
+    /* interactive affordance */
+    .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .card--interactive:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 
     .diff {
         direction: ltr;
@@ -307,5 +455,43 @@ body {
             left: 0;
             pointer-events: none;
         }
+    }
+
+    /* ===== Section (layout wrapper) ===== */
+
+    .section {
+      /* size (defaults to md unless overridden by a size class) */
+      padding-block: var(--section-py, var(--section-py-md));
+
+      /* tone (defaults to surface) */
+      background: var(--section-bg, var(--surface));
+      color: var(--section-fg, var(--on-surface));
+    }
+
+    .section .section__inner {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--space-5);
+      text-align: var(--section-align, left);
+    }
+
+    /* size variants */
+    .section--sm { --section-py: var(--section-py-sm); }
+    .section--md { --section-py: var(--section-py-md); }
+    .section--lg { --section-py: var(--section-py-lg); }
+
+    /* tone variants map to role tokens */
+    .section--brand  { --section-bg: var(--brand);  --section-fg: var(--on-brand); }
+    .section--muted  { --section-bg: var(--muted);  --section-fg: var(--on-muted); }
+    .section--accent { --section-bg: var(--accent); --section-fg: var(--on-accent); }
+    /* surface is default; class optional, but you can add this for explicitness: */
+    .section--surface { --section-bg: var(--surface); --section-fg: var(--on-surface); }
+
+    /* alignment */
+    .section--center { --section-align: center; }
+
+    /* optional: media tweak (reduce vertical rhythm on small screens) */
+    @media (max-width: 640px) {
+      .section { padding-block: var(--section-py-sm); }
     }
 }

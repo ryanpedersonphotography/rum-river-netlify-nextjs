@@ -166,3 +166,152 @@
 ```css
 --container: 1120px;
 ```
+
+## Section Tokens
+
+- `--section-py-sm` — small section vertical padding (mobile / compact)
+- `--section-py-md` — medium section vertical padding (default)
+- `--section-py-lg` — large section vertical padding (spacious sections)
+
+### Section Role Variants
+- `section--surface` — background = `--surface`, text = `--on-surface` (default)
+- `section--brand` — background = `--brand`, text = `--on-brand`
+- `section--muted` — background = `--muted`, text = `--on-muted`
+- `section--accent` — background = `--accent`, text = `--on-accent`
+
+### Alignment
+- `section--center` — centers text and content
+- Default = left aligned
+
+---
+
+## Component Tokens: Button
+
+- `--btn-bg` / `--btn-fg` — background + text color
+- `--btn-radius` — border radius
+- `--btn-px` / `--btn-py` — horizontal/vertical padding
+- `--btn-shadow` — optional shadow
+- `--btn-font` — font family
+- `--btn-size-sm|md|lg` — text sizes and padding variants
+
+### Usage
+- **Variants**
+  - Solid: `--btn-bg` = role tone, `--btn-fg` = `on-tone`
+  - Outline: transparent background, `box-shadow: inset 0 0 0 1px tone`
+  - Link: transparent background, text underlined
+- **Sizes**
+  - Small: `--btn-py: var(--space-2)`, `--btn-px: var(--space-5)`, font = `--text-sm`
+  - Medium: default (`--space-3`, `--space-6`, font = `--text-sm`)
+  - Large: `--btn-py: var(--space-4)`, `--btn-px: var(--space-7)`, font = `--text-lg`
+
+---
+
+## Component Tokens: Input (Form Controls)
+
+- `--input-bg` / `--input-fg` — background and text
+- `--input-border` — default border color
+- `--input-placeholder` — muted text for placeholder
+- `--input-focus-ring` — focus outline
+- `--input-radius` — border radius
+- `--input-padding-y` / `--input-padding-x` — vertical / horizontal spacing
+- `--input-font-size` — base font size
+
+### Usage
+- Inputs always use `--input-bg` and `--input-fg`.
+- Focus states use `--input-focus-ring` for accessibility.
+- Sizes (`sm`, `md`, `lg`) map to spacing scale (`--space-2`, `--space-3`, `--space-4`).
+- Never hardcode `#ccc` or `1px solid`; always reference `--input-border`.
+
+---
+
+## Component Tokens: Typography
+
+Typography primitives use existing role and type tokens—no additional tokens needed.
+
+### Usage
+- **Headings**: Use `var(--font-display)` with semantic sizes (`--text-hero` through `--text-xl`)
+- **Body text**: Use `var(--font-body)` with appropriate line height
+- **Weights**: Map to `--weight-regular|medium|semibold|bold` 
+- **Colors**: Use role tokens (`--fg`, `--brand`, `--on-surface`) never hex
+- **Spacing**: Margins use spacing scale (`--space-3`, `--space-4`)
+
+### Heading Levels
+- Hero: `--text-hero` (responsive clamp)
+- H1: `--text-6xl` (48px)
+- H2: `--text-5xl` (40px) 
+- H3: `--text-4xl` (32px)
+- H4: `--text-3xl` (28px)
+- H5: `--text-2xl` (24px)
+- H6: `--text-xl` (20px)
+
+### Text Sizes
+- Extra Small: `--text-xs` (12px)
+- Small: `--text-sm` (14px)
+- Base: `--text-base` (16px)
+- Large: `--text-lg` (18px)
+- Extra Large: `--text-xl` (20px)
+
+---
+
+## Component Tokens: Card / Surface
+
+### Role Tokens
+- `--surface` / `--on-surface` — default card background & text
+- `--brand` / `--on-brand` — card with brand emphasis
+- `--muted` / `--on-muted` — subdued / neutral panels
+- `--accent` / `--on-accent` — highlight cards (gold, special callouts)
+
+### Elevation
+- `--shadow-sm` — flat / inline cards
+- `--shadow-md` — default raised card
+- `--shadow-lg` — modal / overlay level
+
+### Radii
+- `--r-sm` — small radius for tight lists
+- `--r-md` — standard cards, sections
+- `--r-lg` — featured panels
+- `--r-full` — pills, circle cards only
+
+### Padding Scale
+- `--space-4` — compact
+- `--space-6` — default card padding
+- `--space-8` — generous padding for featured blocks
+
+---
+
+## Usage Rules
+1. **Default** card: surface + border + shadow-md + radius-md.
+2. **Tone variants**: `brand`, `muted`, `accent` replace background/text tokens.
+3. Use **elevation props** instead of ad-hoc box-shadows.
+4. For consistency, keep card padding limited to `sm|md|lg` scale only.
+5. Apply `interactive` only when a card is clickable (adds hover raise).
+
+---
+
+## Section (Layout Wrapper)
+
+### Purpose
+Consistent vertical rhythm + centered content. Wrap page chunks:
+`<Section><Card>…</Card></Section>`.
+
+### Tokens
+- Spacing:
+  - `--section-py-sm` (default `--space-8`)
+  - `--section-py-md` (default `--space-10`)
+  - `--section-py-lg` (default `--space-12`)
+- Container:
+  - `--container` (max width)
+  - Side padding uses `--space-5`
+- Tone → role tokens:
+  - `surface` → `--surface` / `--on-surface`
+  - `brand`   → `--brand` / `--on-brand`
+  - `muted`   → `--muted` / `--on-muted`
+  - `accent`  → `--accent` / `--on-accent`
+- Align:
+  - `left | center` (text-align only)
+
+### Rules
+1. Default vertical padding = **md** (mobile can collapse to **sm** if desired).
+2. Content is centered to `--container` with horizontal padding `--space-5`.
+3. Tone controls background/text; neutral/default is `surface`.
+4. Use **lg** padding only for hero/CTA sections.

@@ -1,6 +1,10 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Section from 'components/layout/Section';
+import Card from 'components/primitives/Card';
+import Heading from 'components/primitives/Heading';
+import Text from 'components/primitives/Text';
 
 /** Utility: pull CSS vars from :root by prefix list */
 function useCSSVars(prefixes = []) {
@@ -19,7 +23,7 @@ function useCSSVars(prefixes = []) {
   return vars;
 }
 
-const Section = ({ title, children }) => (
+const AuditSection = ({ title, children }) => (
   <section style={{ margin: '32px 0' }}>
     <h2 style={{ margin: '0 0 12px', fontSize: '20px' }}>{title}</h2>
     <div>{children}</div>
@@ -53,23 +57,43 @@ const Box = ({ label, style }) => (
 
 export default function StyleAudit() {
   const [isDark, setIsDark] = useState(false);
+  const originalNoiseRef = useRef(null);
 
   useEffect(() => {
-    // Check initial theme
     const root = document.documentElement;
-    setIsDark(root.getAttribute('data-theme') === 'dark');
+    // remember original noise var (whatever your globals.css sets)
+    const styles = getComputedStyle(root);
+    originalNoiseRef.current =
+      styles.getPropertyValue('--background-image-noise')?.trim() || 'none';
+
+    // init theme based on current attribute
+    const dark = root.getAttribute('data-theme') === 'dark';
+    setIsDark(dark);
+
+    // ensure light mode starts with no overlay
+    if (!dark) {
+      root.style.setProperty('--background-image-noise', 'none');
+    }
   }, []);
 
   const toggleTheme = () => {
     const root = document.documentElement;
-    const newTheme = isDark ? null : 'dark';
-    
-    if (newTheme) {
-      root.setAttribute('data-theme', newTheme);
+    const nextDark = !isDark;
+
+    if (nextDark) {
+      // dark: restore the overlay/noise
+      root.setAttribute('data-theme', 'dark');
+      root.style.setProperty(
+        '--background-image-noise',
+        originalNoiseRef.current || 'none'
+      );
     } else {
+      // light: remove overlay/noise
       root.removeAttribute('data-theme');
+      root.style.setProperty('--background-image-noise', 'none');
     }
-    setIsDark(!isDark);
+
+    setIsDark(nextDark);
   };
 
   // Adjust these prefixes to match your token names
@@ -102,7 +126,7 @@ export default function StyleAudit() {
   const shadowKeys = useMemo(() => Object.keys(vars).filter(k => k.startsWith('--shadow-')).sort(), [vars]);
 
   return (
-    <main style={{ maxWidth: 1120, margin:'0 auto', padding:'24px' }}>
+    <Section size="md" tone="surface">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
           <h1 style={{ margin:'0 0 8px', fontFamily: 'var(--font-display)', fontSize: 'var(--text-4xl)' }}>
@@ -134,16 +158,16 @@ export default function StyleAudit() {
       </div>
 
       {/* Colors */}
-      <Section title="Colors (Roles)">
+      <AuditSection title="Colors (Roles)">
         {colorKeys.length === 0 ? <em>No role color tokens found.</em> :
           colorKeys.map(k => (
             <Swatch key={k} name={k} value={vars[k]} />
           ))
         }
-      </Section>
+      </AuditSection>
 
       {/* Spacing */}
-      <Section title="Spacing Scale">
+      <AuditSection title="Spacing Scale">
         <div style={{ display:'grid', gap:12 }}>
           {spacingKeys.map(k => (
             <div key={k} style={{ display:'grid', gridTemplateColumns:'100px 1fr', gap:12, alignItems:'center' }}>
@@ -160,10 +184,10 @@ export default function StyleAudit() {
             </div>
           ))}
         </div>
-      </Section>
+      </AuditSection>
 
       {/* Typography */}
-      <Section title="Typography">
+      <AuditSection title="Typography">
         <div style={{ display:'grid', gap:16 }}>
           <div>
             <h3 style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 600 }}>Font Families</h3>
@@ -213,10 +237,10 @@ export default function StyleAudit() {
             </div>
           </div>
         </div>
-      </Section>
+      </AuditSection>
 
       {/* Radii & Shadows */}
-      <Section title="Radii & Shadows">
+      <AuditSection title="Radii & Shadows">
         <div style={{ marginBottom: 16 }}>
           <h3 style={{ margin: '0 0 12px', fontSize: '16px', fontWeight: 600, color: 'var(--fg)' }}>Border Radius</h3>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(180px,1fr))', gap:16 }}>
@@ -242,10 +266,10 @@ export default function StyleAudit() {
             ))}
           </div>
         </div>
-      </Section>
+      </AuditSection>
 
       {/* Component Examples */}
-      <Section title="Component Examples (Current System)">
+      <AuditSection title="Component Examples (Current System)">
         <div style={{ display:'grid', gap:24 }}>
           
           {/* Buttons using current classes */}
@@ -286,28 +310,10 @@ export default function StyleAudit() {
                 </p>
               </div>
 
-              <div style={{ 
-                background: 'var(--brand)', 
-                padding: 'var(--space-6)', 
-                borderRadius: 'var(--r-md)', 
-                boxShadow: 'var(--shadow-md)'
-              }}>
-                <h4 style={{ 
-                  margin: '0 0 8px', 
-                  fontFamily: 'var(--font-display)', 
-                  fontSize: 'var(--text-xl)',
-                  color: 'var(--on-brand)'
-                }}>
-                  Brand Card
-                </h4>
-                <p style={{ 
-                  margin: 0, 
-                  color: 'var(--on-brand)', 
-                  fontSize: 'var(--text-sm)' 
-                }}>
-                  This card demonstrates the brand color with proper contrast text.
-                </p>
-              </div>
+              <Card tone="brand" elevation={2} radius="md" padding="md">
+                <Heading level={4} noMargin>Brand Card</Heading>
+                <Text>This card demonstrates the brand color with proper contrast text.</Text>
+              </Card>
             </div>
           </div>
 
@@ -352,10 +358,10 @@ export default function StyleAudit() {
             </div>
           </div>
         </div>
-      </Section>
+      </AuditSection>
 
       {/* Token Summary */}
-      <Section title="Token Summary">
+      <AuditSection title="Token Summary">
         <div style={{ 
           background: 'var(--surface)', 
           padding: 'var(--space-6)', 
@@ -373,7 +379,7 @@ export default function StyleAudit() {
             <div>Shadows: {shadowKeys.length}</div>
           </div>
         </div>
-      </Section>
-    </main>
+      </AuditSection>
+    </Section>
   );
 }
