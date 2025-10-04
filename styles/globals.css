@@ -660,18 +660,28 @@ body {
     }
 
     /* Size modifiers (set the variable, not padding directly) */
+    /* Section rhythm — drives SectionHeader spacing */
     .section--size-sm {
       --sec-py: var(--section-py-sm);
+      --section-gap: var(--space-6);
+      --title-gap: var(--space-3);
+      --title-mb: var(--space-6);
       padding-top: var(--sec-py) !important;
       padding-bottom: var(--sec-py) !important;
     }
     .section--size-md {
       --sec-py: var(--section-py-md);
+      --section-gap: var(--space-8);
+      --title-gap: var(--space-3);
+      --title-mb: var(--space-8);
       padding-top: var(--sec-py) !important;
       padding-bottom: var(--sec-py) !important;
     }
     .section--size-lg {
       --sec-py: var(--section-py-lg);
+      --section-gap: var(--space-10);
+      --title-gap: var(--space-4);
+      --title-mb: var(--space-10);
       padding-top: var(--sec-py) !important;
       padding-bottom: var(--sec-py) !important;
     }
@@ -681,6 +691,16 @@ body {
     .section--align-left .section__container   { text-align: left; }
     .section--align-center .section__inner,
     .section--align-center .section__container { text-align: center; }
+
+    /* SectionHeader layout — no ad-hoc margins anywhere else */
+    .section__header {
+      display: grid;
+      gap: var(--title-gap) !important;              /* spacing between accent/title/description */
+      margin: 0 0 var(--title-mb) 0 !important;      /* spacing below the header block */
+    }
+    .section--align-left .section__header   { text-align: left; }
+    .section--align-center .section__header { text-align: center; }
+    .section--align-right .section__header  { text-align: right; }
 
     /* Variant = default: transparent (already base) */
     .section--variant-default {}

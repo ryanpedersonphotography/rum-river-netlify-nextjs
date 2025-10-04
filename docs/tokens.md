@@ -308,6 +308,16 @@ Reusable gradient tokens for consistent visual treatments across sections.
 - `--section-py-md` — medium section vertical padding (default)
 - `--section-py-lg` — large section vertical padding (spacious sections)
 
+### Section Rhythm System (NEW)
+
+**Section size drives ALL header spacing automatically:**
+
+- **sm sections**: `--title-gap: var(--space-3)`, `--title-mb: var(--space-6)`, `--section-gap: var(--space-6)`
+- **md sections**: `--title-gap: var(--space-3)`, `--title-mb: var(--space-8)`, `--section-gap: var(--space-8)`
+- **lg sections**: `--title-gap: var(--space-4)`, `--title-mb: var(--space-10)`, `--section-gap: var(--space-10)`
+
+**Usage Rule**: Never add manual margins around SectionHeader. The parent Section size controls all spacing via these tokens.
+
 ### Section Role Variants
 - `section--surface` — background = `--surface`, text = `--on-surface` (default)
 - `section--brand` — background = `--brand`, text = `--on-brand`

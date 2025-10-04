@@ -1,7 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
 import clsx from 'clsx';
-import Stack from 'components/primitives/Stack';
 import Heading from 'components/primitives/Heading';
 import Text from 'components/primitives/Text';
 import useResolvedTokens from 'components/dev/useResolvedTokens';
@@ -17,7 +16,10 @@ import DebugPanel from 'components/dev/DebugPanel';
  *  - debug: boolean
  *  - className, style, ...rest
  *
- * Uses primitives: Stack, Heading, Text
+ * Spacing controlled by parent Section size via CSS custom properties:
+ *   --title-gap: spacing between accent/title/description
+ *   --title-mb: spacing below header block
+ *
  * All token-driven, no hardcoded values
  */
 export default function SectionHeader({
@@ -32,26 +34,24 @@ export default function SectionHeader({
 }) {
   const ref = useRef(null);
 
-  const tokenVars = ['--font-script', '--accent', '--text-xl', '--text-lg'];
-  const cssProps = ['font-family', 'color', 'font-size', 'text-align'];
+  const tokenVars = ['--font-script', '--accent', '--text-xl', '--text-lg', '--title-gap', '--title-mb'];
+  const cssProps = ['font-family', 'color', 'font-size', 'text-align', 'gap', 'margin-bottom'];
   const data = useResolvedTokens({ tokenVars, cssProps, scope: ref.current, enabled: debug });
 
   return (
     <>
       {debug && <DebugPanel data={data} />}
-      <Stack
+      <div
         ref={ref}
-        direction="vertical"
-        gap="md"
-        align={align === 'center' ? 'center' : 'stretch'}
-        className={clsx('section-header', className)}
+        className={clsx('section__header', className)}
+        data-align={align}
         style={style}
         {...rest}
       >
         {accent && (
           <Text
-            size="xl"
             noMargin
+            size="xl"
             align={align}
             style={{
               fontFamily: 'var(--font-script)',
@@ -62,12 +62,13 @@ export default function SectionHeader({
           </Text>
         )}
 
-        <Heading level={2} noMargin align={align}>
+        <Heading noMargin level={2} align={align}>
           {title}
         </Heading>
 
         {description && (
           <Text
+            noMargin
             size="lg"
             align={align}
             style={{ opacity: 'var(--opacity-soft)' }}
@@ -75,7 +76,7 @@ export default function SectionHeader({
             {description}
           </Text>
         )}
-      </Stack>
+      </div>
     </>
   );
 }
