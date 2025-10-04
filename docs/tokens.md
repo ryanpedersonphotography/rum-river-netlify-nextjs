@@ -568,20 +568,13 @@ Full-bleed horizontal band with consistent vertical rhythm and a centered conten
 
 **See `/layout-patterns` demo page for live examples of all 8 patterns.**
 
-### Pattern 1: Full-Width Background (Hero/CTA)
+### Pattern 1: Full-Width Centered
 ```jsx
-<Section size="lg" tone="brand" align="center">
-  <Stack direction="vertical" gap="lg" align="center">
-    <Heading level={1} size="hero">Hero Title</Heading>
-    <Text size="xl">Subtitle description</Text>
-    <Stack direction="horizontal" gap="md">
-      <Button size="lg">Primary CTA</Button>
-      <Button size="lg" variant="outline">Secondary</Button>
-    </Stack>
-  </Stack>
+<Section size="lg" tone="brand" align="center" noContainer>
+  <Button size="lg" tone="neutral">Primary CTA</Button>
 </Section>
 ```
-**Use case**: Heroes, CTAs, feature bands - full-width background with centered constrained content.
+**Use case**: Simple centered content with full-width background. The `noContainer` prop removes the container wrapper, allowing `text-align: center` to directly center inline/inline-flex elements like buttons. Perfect for minimal hero sections or standalone CTAs.
 
 ### Pattern 2: Full-Width Content (Edge-to-Edge)
 ```jsx

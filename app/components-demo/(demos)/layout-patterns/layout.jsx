@@ -1,9 +1,14 @@
 export default function LayoutPatternsLayout({ children }) {
     return (
         <div style={{
-            margin: '0 -1.5rem',
-            width: 'calc(100% + 3rem)'
-        }} className="sm:-mx-12 sm:w-[calc(100%+6rem)]">
+            position: 'relative',
+            left: '50%',
+            right: '50%',
+            marginLeft: '-50vw',
+            marginRight: '-50vw',
+            width: '100vw',
+            marginTop: 'calc(-1 * var(--space-8))'
+        }}>
             {children}
         </div>
     );

@@ -652,8 +652,8 @@ body {
     }
 
     /* Align modifiers */
-    .section--align-left   { text-align: left; }
-    .section--align-center { text-align: center; }
+    .section--align-left .section__container   { text-align: left; }
+    .section--align-center .section__container { text-align: center; }
 
     /* Variant = default: transparent (already base) */
     .section--variant-default {}
@@ -783,7 +783,10 @@ body {
     }
 
     /* Direction */
-    .stack--vertical { flex-direction: column; }
+    .stack--vertical {
+      flex-direction: column;
+      width: 100% !important; /* Override Tailwind reset - vertical stacks need full-width for Section centering */
+    }
     .stack--horizontal { flex-direction: row; }
 
     /* Gap variants */

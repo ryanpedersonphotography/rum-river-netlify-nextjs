@@ -39,21 +39,9 @@ export default function LayoutPatterns() {
         </Stack>
       </Section>
 
-      {/* Pattern 1: Full-Width Background, Constrained Content (DEFAULT) */}
-      <Section size="lg" tone="brand" align="center" debug={debug}>
-        <Stack direction="vertical" gap="lg" align="center">
-          <Heading level={2} debug={debug}>Pattern 1: Full-Width Background</Heading>
-          <Text size="lg" debug={debug}>
-            Section provides full-width background color, content is centered with max-width.
-          </Text>
-          <Text debug={debug} style={{ opacity: 0.9 }}>
-            <strong>Use case:</strong> Hero sections, feature bands, CTAs
-          </Text>
-          <Stack direction="horizontal" gap="md">
-            <Button size="lg" tone="neutral" debug={debug}>Primary CTA</Button>
-            <Button size="lg" tone="neutral" variant="outline" debug={debug}>Secondary</Button>
-          </Stack>
-        </Stack>
+      {/* Pattern 1: Full-Width Centered */}
+      <Section size="lg" tone="brand" align="center" noContainer debug={debug}>
+        <Button size="lg" tone="neutral" debug={debug}>Primary CTA</Button>
       </Section>
 
       {/* Pattern 2: Full-Width Content (noContainer) */}
