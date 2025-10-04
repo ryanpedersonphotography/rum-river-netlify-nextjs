@@ -1,19 +1,34 @@
+'use client';
+import { useState } from 'react';
 import Button from 'components/primitives/Button';
 
-export const metadata = {
-  title: 'Button Demo'
-};
-
 export default function ButtonDemo() {
+  const [debug, setDebug] = useState(false);
+
   return (
     <main style={{ maxWidth: 1120, margin: '0 auto', padding: '24px' }}>
-      <h1 style={{ 
-        fontFamily: 'var(--font-display)', 
-        fontSize: 'var(--text-4xl)', 
-        marginBottom: 'var(--space-8)' 
-      }}>
-        Button Component Demo
-      </h1>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'var(--space-8)' }}>
+        <h1 style={{ 
+          fontFamily: 'var(--font-display)', 
+          fontSize: 'var(--text-4xl)', 
+          margin: 0
+        }}>
+          Button Component Demo
+        </h1>
+        <button
+          onClick={() => setDebug(d => !d)}
+          style={{
+            padding: 'var(--space-2) var(--space-4)',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-sm)',
+            cursor: 'pointer',
+            fontSize: 'var(--text-sm)'
+          }}
+        >
+          {debug ? '🔧 Debug ON' : '🔧 Debug OFF'}
+        </button>
+      </div>
 
       <section style={{ marginBottom: 'var(--space-8)' }}>
         <h2 style={{ 
@@ -24,11 +39,11 @@ export default function ButtonDemo() {
           Tones (Solid Variant)
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Button>Primary (Brand)</Button>
-          <Button tone="brandAlt">Walnut</Button>
-          <Button tone="accent">Champagne</Button>
-          <Button tone="muted">Muted</Button>
-          <Button tone="neutral">Neutral</Button>
+          <Button debug={debug}>Primary (Brand)</Button>
+          <Button tone="brandAlt" debug={debug}>Walnut</Button>
+          <Button tone="accent" debug={debug}>Champagne</Button>
+          <Button tone="muted" debug={debug}>Muted</Button>
+          <Button tone="neutral" debug={debug}>Neutral</Button>
         </div>
       </section>
 
@@ -41,9 +56,9 @@ export default function ButtonDemo() {
           Variants
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Button>Solid</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="link">Link</Button>
+          <Button debug={debug}>Solid</Button>
+          <Button variant="outline" debug={debug}>Outline</Button>
+          <Button variant="link" debug={debug}>Link</Button>
         </div>
       </section>
 
@@ -56,9 +71,9 @@ export default function ButtonDemo() {
           Sizes
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'center', flexWrap: 'wrap' }}>
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
+          <Button size="sm" debug={debug}>Small</Button>
+          <Button size="md" debug={debug}>Medium</Button>
+          <Button size="lg" debug={debug}>Large</Button>
         </div>
       </section>
 
@@ -71,10 +86,10 @@ export default function ButtonDemo() {
           Outline Variants
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Button variant="outline">Outline Brand</Button>
-          <Button tone="accent" variant="outline">Outline Accent</Button>
-          <Button tone="muted" variant="outline">Outline Muted</Button>
-          <Button tone="neutral" variant="outline">Outline Neutral</Button>
+          <Button variant="outline" debug={debug}>Outline Brand</Button>
+          <Button tone="accent" variant="outline" debug={debug}>Outline Accent</Button>
+          <Button tone="muted" variant="outline" debug={debug}>Outline Muted</Button>
+          <Button tone="neutral" variant="outline" debug={debug}>Outline Neutral</Button>
         </div>
       </section>
 
@@ -87,10 +102,10 @@ export default function ButtonDemo() {
           Link Variants
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Button variant="link">Link Brand</Button>
-          <Button tone="accent" variant="link">Link Accent</Button>
-          <Button tone="muted" variant="link">Muted Link</Button>
-          <Button tone="neutral" variant="link">Neutral Link</Button>
+          <Button variant="link" debug={debug}>Link Brand</Button>
+          <Button tone="accent" variant="link" debug={debug}>Link Accent</Button>
+          <Button tone="muted" variant="link" debug={debug}>Muted Link</Button>
+          <Button tone="neutral" variant="link" debug={debug}>Neutral Link</Button>
         </div>
       </section>
 
@@ -104,16 +119,16 @@ export default function ButtonDemo() {
         </h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-            <Button disabled>Disabled</Button>
-            <Button variant="outline" disabled>Disabled Outline</Button>
-            <Button variant="link" disabled>Disabled Link</Button>
+            <Button disabled debug={debug}>Disabled</Button>
+            <Button variant="outline" disabled debug={debug}>Disabled Outline</Button>
+            <Button variant="link" disabled debug={debug}>Disabled Link</Button>
           </div>
           <div>
-            <Button block>Full Width Block Button</Button>
+            <Button block debug={debug}>Full Width Block Button</Button>
           </div>
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-            <Button as="a" href="#demo">Anchor Button</Button>
-            <Button as="a" href="#demo" variant="outline">Anchor Outline</Button>
+            <Button as="a" href="#demo" debug={debug}>Anchor Button</Button>
+            <Button as="a" href="#demo" variant="outline" debug={debug}>Anchor Outline</Button>
           </div>
         </div>
       </section>
@@ -127,9 +142,9 @@ export default function ButtonDemo() {
           Mixed Combinations
         </h2>
         <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Button tone="accent" size="lg">Large Accent</Button>
-          <Button tone="brandAlt" variant="outline" size="sm">Small Walnut Outline</Button>
-          <Button tone="muted" variant="link" size="lg">Large Muted Link</Button>
+          <Button tone="accent" size="lg" debug={debug}>Large Accent</Button>
+          <Button tone="brandAlt" variant="outline" size="sm" debug={debug}>Small Walnut Outline</Button>
+          <Button tone="muted" variant="link" size="lg" debug={debug}>Large Muted Link</Button>
         </div>
       </section>
 

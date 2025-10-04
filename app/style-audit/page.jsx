@@ -57,6 +57,7 @@ const Box = ({ label, style }) => (
 
 export default function StyleAudit() {
   const [isDark, setIsDark] = useState(false);
+  const [debug, setDebug] = useState(false);
   const originalNoiseRef = useRef(null);
 
   useEffect(() => {
@@ -136,25 +137,40 @@ export default function StyleAudit() {
             This page reads your current CSS variables and renders the real styles. Print to PDF for a snapshot.
           </p>
         </div>
-        <button 
-          onClick={toggleTheme}
-          style={{
-            padding: 'var(--space-3) var(--space-4)',
-            background: 'var(--brand)',
-            color: 'var(--on-brand)',
-            border: 'none',
-            borderRadius: 'var(--r-md)',
-            cursor: 'pointer',
-            fontFamily: 'var(--font-body)',
-            fontSize: 'var(--text-sm)',
-            fontWeight: 'var(--weight-medium)',
-            transition: 'var(--transition-fast)'
-          }}
-          onMouseOver={(e) => e.target.style.opacity = '0.9'}
-          onMouseOut={(e) => e.target.style.opacity = '1'}
-        >
-          {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
-        </button>
+        <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+          <button
+            onClick={() => setDebug(d => !d)}
+            style={{
+              padding: 'var(--space-2) var(--space-4)',
+              background: 'var(--surface)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--r-sm)',
+              cursor: 'pointer',
+              fontSize: 'var(--text-sm)'
+            }}
+          >
+            {debug ? '🔧 Debug ON' : '🔧 Debug OFF'}
+          </button>
+          <button 
+            onClick={toggleTheme}
+            style={{
+              padding: 'var(--space-3) var(--space-4)',
+              background: 'var(--brand)',
+              color: 'var(--on-brand)',
+              border: 'none',
+              borderRadius: 'var(--r-md)',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--text-sm)',
+              fontWeight: 'var(--weight-medium)',
+              transition: 'var(--transition-fast)'
+            }}
+            onMouseOver={(e) => e.target.style.opacity = '0.9'}
+            onMouseOut={(e) => e.target.style.opacity = '1'}
+          >
+            {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
+          </button>
+        </div>
       </div>
 
       {/* Colors */}
@@ -310,9 +326,9 @@ export default function StyleAudit() {
                 </p>
               </div>
 
-              <Card tone="brand" elevation={2} radius="md" padding="md">
-                <Heading level={4} noMargin>Brand Card</Heading>
-                <Text>This card demonstrates the brand color with proper contrast text.</Text>
+              <Card tone="brand" elevation={2} radius="md" padding="md" debug={debug}>
+                <Heading level={4} noMargin debug={debug}>Brand Card</Heading>
+                <Text debug={debug}>This card demonstrates the brand color with proper contrast text.</Text>
               </Card>
             </div>
           </div>

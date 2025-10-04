@@ -1,19 +1,34 @@
+'use client';
+import { useState } from 'react';
 import Input from 'components/primitives/Input';
 
-export const metadata = {
-  title: 'Input Demo'
-};
-
 export default function InputDemo() {
+  const [debug, setDebug] = useState(false);
+
   return (
     <main style={{ maxWidth: 1120, margin: '0 auto', padding: '24px' }}>
-      <h1 style={{ 
-        fontFamily: 'var(--font-display)', 
-        fontSize: 'var(--text-4xl)', 
-        marginBottom: 'var(--space-8)' 
-      }}>
-        Input Component Demo
-      </h1>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'var(--space-8)' }}>
+        <h1 style={{ 
+          fontFamily: 'var(--font-display)', 
+          fontSize: 'var(--text-4xl)', 
+          margin: 0
+        }}>
+          Input Component Demo
+        </h1>
+        <button
+          onClick={() => setDebug(d => !d)}
+          style={{
+            padding: 'var(--space-2) var(--space-4)',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-sm)',
+            cursor: 'pointer',
+            fontSize: 'var(--text-sm)'
+          }}
+        >
+          {debug ? '🔧 Debug ON' : '🔧 Debug OFF'}
+        </button>
+      </div>
 
       <section style={{ marginBottom: 'var(--space-8)' }}>
         <h2 style={{ 
@@ -24,13 +39,13 @@ export default function InputDemo() {
           Input Types
         </h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)', maxWidth: '400px' }}>
-          <Input type="text" placeholder="Text input" />
-          <Input type="email" placeholder="Email input" />
-          <Input type="password" placeholder="Password input" />
-          <Input type="number" placeholder="Number input" />
-          <Input type="search" placeholder="Search input" />
-          <Input type="url" placeholder="URL input" />
-          <Input type="tel" placeholder="Phone input" />
+          <Input debug={debug} type="text" placeholder="Text input" />
+          <Input debug={debug} type="email" placeholder="Email input" />
+          <Input debug={debug} type="password" placeholder="Password input" />
+          <Input debug={debug} type="number" placeholder="Number input" />
+          <Input debug={debug} type="search" placeholder="Search input" />
+          <Input debug={debug} type="url" placeholder="URL input" />
+          <Input debug={debug} type="tel" placeholder="Phone input" />
         </div>
       </section>
 
@@ -43,9 +58,9 @@ export default function InputDemo() {
           Sizes
         </h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)', maxWidth: '400px' }}>
-          <Input size="sm" placeholder="Small input" />
-          <Input size="md" placeholder="Medium input (default)" />
-          <Input size="lg" placeholder="Large input" />
+          <Input debug={debug} size="sm" placeholder="Small input" />
+          <Input debug={debug} size="md" placeholder="Medium input (default)" />
+          <Input debug={debug} size="lg" placeholder="Large input" />
         </div>
       </section>
 
@@ -58,10 +73,10 @@ export default function InputDemo() {
           States
         </h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)', maxWidth: '400px' }}>
-          <Input placeholder="Default state" />
-          <Input placeholder="Focused state (click to focus)" />
-          <Input disabled placeholder="Disabled input" />
-          <Input defaultValue="Input with value" />
+          <Input debug={debug} placeholder="Default state" />
+          <Input debug={debug} placeholder="Focused state (click to focus)" />
+          <Input debug={debug} disabled placeholder="Disabled input" />
+          <Input debug={debug} defaultValue="Input with value" />
         </div>
       </section>
 
@@ -83,7 +98,7 @@ export default function InputDemo() {
             }}>
               Full Name
             </label>
-            <Input type="text" placeholder="Enter your full name" />
+            <Input debug={debug} type="text" placeholder="Enter your full name" />
           </div>
           
           <div>
@@ -95,7 +110,7 @@ export default function InputDemo() {
             }}>
               Email Address
             </label>
-            <Input type="email" placeholder="Enter your email" />
+            <Input debug={debug} type="email" placeholder="Enter your email" />
           </div>
           
           <div>
@@ -107,7 +122,7 @@ export default function InputDemo() {
             }}>
               Phone Number
             </label>
-            <Input type="tel" placeholder="(555) 123-4567" />
+            <Input debug={debug} type="tel" placeholder="(555) 123-4567" />
           </div>
           
           <div>
@@ -138,11 +153,11 @@ export default function InputDemo() {
           Specialized Inputs
         </h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)', maxWidth: '400px' }}>
-          <Input type="date" />
-          <Input type="time" />
-          <Input type="datetime-local" />
-          <Input type="color" defaultValue="#9D6B7B" />
-          <Input type="range" min="0" max="100" defaultValue="50" />
+          <Input debug={debug} type="date" />
+          <Input debug={debug} type="time" />
+          <Input debug={debug} type="datetime-local" />
+          <Input debug={debug} type="color" defaultValue="#9D6B7B" />
+          <Input debug={debug} type="range" min="0" max="100" defaultValue="50" />
         </div>
       </section>
 
@@ -163,16 +178,16 @@ export default function InputDemo() {
           fontFamily: 'monospace'
         }}>
           <div style={{ marginBottom: 'var(--space-3)' }}>
-            <code>{`<Input type="text" placeholder="Default input" />`}</code>
+            <code>{`<Input debug={debug} type="text" placeholder="Default input" />`}</code>
           </div>
           <div style={{ marginBottom: 'var(--space-3)' }}>
-            <code>{`<Input type="email" size="lg" placeholder="Large email input" />`}</code>
+            <code>{`<Input debug={debug} type="email" size="lg" placeholder="Large email input" />`}</code>
           </div>
           <div style={{ marginBottom: 'var(--space-3)' }}>
-            <code>{`<Input type="password" size="sm" placeholder="Small password" />`}</code>
+            <code>{`<Input debug={debug} type="password" size="sm" placeholder="Small password" />`}</code>
           </div>
           <div style={{ marginBottom: 'var(--space-3)' }}>
-            <code>{`<Input disabled placeholder="Disabled input" />`}</code>
+            <code>{`<Input debug={debug} disabled placeholder="Disabled input" />`}</code>
           </div>
           <div>
             <code>{`<textarea className="input" rows={4} placeholder="Textarea" />`}</code>
