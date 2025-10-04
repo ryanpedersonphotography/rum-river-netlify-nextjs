@@ -109,7 +109,7 @@ export default function HomePage() {
           background: 'var(--gradient-blocks)'
         }}
       >
-        <Container size="lg">
+        <div style={{ maxWidth: 'var(--container-lg)', margin: '0 auto', padding: '0 var(--space-5)' }}>
           <SectionHeader
             align="center"
             accent="Your Perfect Venue"
@@ -117,7 +117,7 @@ export default function HomePage() {
             description="Discover what makes our venue the perfect setting for your unforgettable celebration"
           />
 
-          <Stack direction="vertical" gap="xl" style={{ marginTop: 'var(--space-12)' }}>
+          <div style={{ marginTop: 'var(--space-12)' }}>
             {/* Block 01 */}
             <MediaBlock layout="image-right" gap="xl" tone="brand" number="01">
               <MediaBlock.Content>
@@ -173,8 +173,8 @@ export default function HomePage() {
                 />
               </MediaBlock.Media>
             </MediaBlock>
-          </Stack>
-        </Container>
+          </div>
+        </div>
       </Section>
     </>
   );
