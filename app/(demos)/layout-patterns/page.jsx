@@ -13,7 +13,7 @@ export default function LayoutPatterns() {
   const [debug, setDebug] = useState(false);
 
   return (
-    <div>
+    <>
       {/* Header - Constrained */}
       <Section size="md" tone="surface">
         <Stack direction="vertical" gap="md">
@@ -219,6 +219,36 @@ export default function LayoutPatterns() {
         </Container>
       </div>
 
+      {/* Pattern 8: Fixed-Width Constrained (Blog/Docs) */}
+      <Section size="lg" tone="surface" debug={debug}>
+        <Container size="md" center debug={debug}>
+          <Stack direction="vertical" gap="lg">
+            <Heading level={2} debug={debug}>Pattern 8: Fixed-Width Constrained</Heading>
+            <Text size="lg" debug={debug}>
+              For readable content like blog posts or documentation, use a narrower Container
+              inside a full-width Section background. This creates optimal reading line length.
+            </Text>
+            <Card tone="muted" padding="lg" debug={debug}>
+              <Stack direction="vertical" gap="md">
+                <Heading level={4} debug={debug}>Example Article Content</Heading>
+                <Text debug={debug}>
+                  This is a simulated blog post or documentation article. Notice how the line length
+                  is constrained to improve readability. Research shows that 60-80 characters per
+                  line is optimal for reading comprehension.
+                </Text>
+                <Text debug={debug}>
+                  The Section provides the full-width background (surface tone), while the Container
+                  with size="md" (768px) keeps the content narrow and centered.
+                </Text>
+              </Stack>
+            </Card>
+            <Text debug={debug} style={{ opacity: 0.7 }}>
+              <strong>Code:</strong> <code>&lt;Section&gt;&lt;Container size="md"&gt;...&lt;/Container&gt;&lt;/Section&gt;</code>
+            </Text>
+          </Stack>
+        </Container>
+      </Section>
+
       {/* Pattern Comparison Table */}
       <Section size="lg" tone="surface" debug={debug}>
         <Heading level={2} debug={debug}>Pattern Quick Reference</Heading>
@@ -270,10 +300,15 @@ export default function LayoutPatterns() {
                 <td style={{ padding: 'var(--space-3)' }}><code>&lt;Section&gt;&lt;Container size="sm"&gt;</code></td>
                 <td style={{ padding: 'var(--space-3)' }}>Reading content, centered CTAs</td>
               </tr>
-              <tr>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
                 <td style={{ padding: 'var(--space-3)' }}>Full-viewport</td>
                 <td style={{ padding: 'var(--space-3)' }}><code>&lt;div minHeight="100vh"&gt;</code></td>
                 <td style={{ padding: 'var(--space-3)' }}>Splash screens, landing pages</td>
+              </tr>
+              <tr>
+                <td style={{ padding: 'var(--space-3)' }}>Fixed-width (blog/docs)</td>
+                <td style={{ padding: 'var(--space-3)' }}><code>&lt;Section&gt;&lt;Container size="md"&gt;</code></td>
+                <td style={{ padding: 'var(--space-3)' }}>Articles, documentation, readable content</td>
               </tr>
             </tbody>
           </table>
@@ -308,6 +343,6 @@ export default function LayoutPatterns() {
           </Card>
         </Grid>
       </Section>
-    </div>
+    </>
   );
 }

@@ -461,7 +461,9 @@ Full-bleed horizontal band with consistent vertical rhythm and a centered conten
 
 ## Layout Composition Patterns
 
-### Hero Section
+**See `/layout-patterns` demo page for live examples of all 8 patterns.**
+
+### Pattern 1: Full-Width Background (Hero/CTA)
 ```jsx
 <Section size="lg" tone="brand" align="center">
   <Stack direction="vertical" gap="lg" align="center">
@@ -474,6 +476,90 @@ Full-bleed horizontal band with consistent vertical rhythm and a centered conten
   </Stack>
 </Section>
 ```
+**Use case**: Heroes, CTAs, feature bands - full-width background with centered constrained content.
+
+### Pattern 2: Full-Width Content (Edge-to-Edge)
+```jsx
+<Section noContainer tone="brand">
+  <Grid columns="auto-fit" minItemWidth="300px" gap="none">
+    {/* Full-width grid items */}
+  </Grid>
+</Section>
+```
+**Use case**: Edge-to-edge grids, full-width images, galleries.
+
+### Pattern 3: Constrained Content Only
+```jsx
+<Container size="lg" padding="lg">
+  <Stack direction="vertical" gap="md">
+    <Heading level={2}>Page Title</Heading>
+    <Text>Content...</Text>
+  </Stack>
+</Container>
+```
+**Use case**: Blog posts, documentation - page background shows through.
+
+### Pattern 4: Asymmetric/Sidebar Layouts
+```jsx
+<Section size="md">
+  <Grid columns={3} gap="lg">
+    <div style={{gridColumn: 'span 2'}}>
+      <Heading level={2}>Main Content</Heading>
+    </div>
+    <Card tone="muted">
+      <Heading level={4}>Sidebar</Heading>
+    </Card>
+  </Grid>
+</Section>
+```
+**Use case**: Dashboards, product pages, content + sidebar.
+
+### Pattern 5: Alternating Backgrounds
+```jsx
+<Section tone="brand">...</Section>
+<Section tone="surface">...</Section>
+<Section tone="accent">...</Section>
+```
+**Use case**: Visual rhythm, variety, separating content sections.
+
+### Pattern 6: Progressive Constraint
+```jsx
+<Section size="lg" tone="surface">
+  <Container size="md" center>
+    <Heading level={2}>Narrow Content</Heading>
+    <Text>Optimal reading width...</Text>
+  </Container>
+</Section>
+```
+**Use case**: Reading content, long-form articles, centered CTAs.
+
+### Pattern 7: Full-Viewport Hero
+```jsx
+<div style={{
+  minHeight: '60vh',
+  display: 'flex',
+  alignItems: 'center',
+  background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-alt) 100%)'
+}}>
+  <Container size="lg">
+    <Heading level={1} size="hero">Full-Viewport Title</Heading>
+  </Container>
+</div>
+```
+**Use case**: Splash screens, landing page heroes, dramatic intros.
+
+### Pattern 8: Fixed-Width Constrained (Blog/Docs)
+```jsx
+<Section size="lg" tone="surface">
+  <Container size="md" center>
+    <Stack direction="vertical" gap="lg">
+      <Heading level={2}>Article Title</Heading>
+      <Text>Optimized line length for readability (60-80 chars)...</Text>
+    </Stack>
+  </Container>
+</Section>
+```
+**Use case**: Blog posts, documentation, readable content with optimal line length.
 
 ### Feature Grid
 ```jsx
