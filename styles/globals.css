@@ -236,13 +236,15 @@ body {
     .btn-sm {
         --btn-py: var(--space-2);
         --btn-px: var(--space-5);
-        font-size: var(--text-sm);
+        padding: var(--btn-py) var(--btn-px) !important;
+        font-size: var(--text-sm) !important;
     }
 
     .btn-lg {
         --btn-py: var(--space-4);
         --btn-px: var(--space-7);
-        font-size: var(--text-lg);
+        padding: var(--btn-py) var(--btn-px) !important;
+        font-size: var(--text-lg) !important;
     }
 
     .btn-outline {
@@ -264,7 +266,7 @@ body {
         border: 1px solid var(--input-border);
         border-radius: var(--input-radius);
         padding: var(--input-padding-y) var(--input-padding-x) !important;
-        font-size: var(--input-font-size);
+        font-size: var(--input-font-size) !important;
         font-family: var(--font-body);
         width: 100%;
         transition: var(--transition-fast);
@@ -290,12 +292,16 @@ body {
         --input-padding-y: var(--space-2);
         --input-padding-x: var(--space-3);
         --input-font-size: var(--text-xs);
+        padding: var(--input-padding-y) var(--input-padding-x) !important;
+        font-size: var(--input-font-size) !important;
     }
 
     .input-lg {
-        --input-padding-y: var(--space-4);
-        --input-padding-x: var(--space-5);
-        --input-font-size: var(--text-base);
+        --input-padding-y: var(--space-5);
+        --input-padding-x: var(--space-6);
+        --input-font-size: var(--text-lg);
+        padding: var(--input-padding-y) var(--input-padding-x) !important;
+        font-size: var(--input-font-size) !important;
     }
 
     /* Typography Primitives */
