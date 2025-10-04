@@ -106,6 +106,13 @@
   --input-padding-y: var(--space-3);
   --input-padding-x: var(--space-4);
   --input-font-size: var(--text-sm);
+
+  /* Container Tokens */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container: var(--container-lg); /* default */
 }
 
 /* Dark Theme */
@@ -579,4 +586,131 @@ body {
       max-width: none;
       padding-inline: 0;
     }
+
+    /* =====================================================
+       Link Primitive
+       ===================================================== */
+    .link {
+      color: var(--brand);
+      text-decoration-color: var(--brand);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .link:hover {
+      opacity: 0.8;
+    }
+
+    /* Tone variants */
+    .link--tone-brand { color: var(--brand); text-decoration-color: var(--brand); }
+    .link--tone-accent { color: var(--accent); text-decoration-color: var(--accent); }
+    .link--tone-muted { color: var(--muted); text-decoration-color: var(--muted); }
+    .link--tone-neutral { color: var(--on-surface); text-decoration-color: var(--border); }
+    .link--tone-inherit { color: inherit; text-decoration-color: currentColor; }
+
+    /* Underline variants */
+    .link--underline-always { text-decoration: underline; }
+    .link--underline-hover { text-decoration: none; }
+    .link--underline-hover:hover { text-decoration: underline; }
+    .link--underline-none { text-decoration: none; }
+
+    /* =====================================================
+       Container Primitive
+       ===================================================== */
+    .container {
+      width: 100%;
+    }
+
+    .container--center {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    /* Size variants */
+    .container--size-sm { max-width: var(--container-sm) !important; }
+    .container--size-md { max-width: var(--container-md) !important; }
+    .container--size-lg { max-width: var(--container-lg) !important; }
+    .container--size-xl { max-width: var(--container-xl) !important; }
+    .container--size-full { max-width: none !important; }
+
+    /* Padding variants */
+    .container--padding-sm { padding-left: var(--space-4) !important; padding-right: var(--space-4) !important; }
+    .container--padding-md { padding-left: var(--space-6) !important; padding-right: var(--space-6) !important; }
+    .container--padding-lg { padding-left: var(--space-8) !important; padding-right: var(--space-8) !important; }
+
+    /* =====================================================
+       Stack Primitive (Flexbox)
+       ===================================================== */
+    .stack {
+      display: flex;
+    }
+
+    /* Direction */
+    .stack--vertical { flex-direction: column; }
+    .stack--horizontal { flex-direction: row; }
+
+    /* Gap variants */
+    .stack--gap-xs { gap: var(--space-2) !important; }
+    .stack--gap-sm { gap: var(--space-3) !important; }
+    .stack--gap-md { gap: var(--space-4) !important; }
+    .stack--gap-lg { gap: var(--space-6) !important; }
+    .stack--gap-xl { gap: var(--space-8) !important; }
+
+    /* Align items */
+    .stack--align-start { align-items: flex-start; }
+    .stack--align-center { align-items: center; }
+    .stack--align-end { align-items: flex-end; }
+    .stack--align-stretch { align-items: stretch; }
+    .stack--align-baseline { align-items: baseline; }
+
+    /* Justify content */
+    .stack--justify-start { justify-content: flex-start; }
+    .stack--justify-center { justify-content: center; }
+    .stack--justify-end { justify-content: flex-end; }
+    .stack--justify-between { justify-content: space-between; }
+    .stack--justify-around { justify-content: space-around; }
+    .stack--justify-evenly { justify-content: space-evenly; }
+
+    /* Wrap */
+    .stack--wrap { flex-wrap: wrap; }
+
+    /* =====================================================
+       Grid Primitive
+       ===================================================== */
+    .grid {
+      display: grid;
+    }
+
+    /* Gap variants */
+    .grid--gap-xs { gap: var(--space-2) !important; }
+    .grid--gap-sm { gap: var(--space-3) !important; }
+    .grid--gap-md { gap: var(--space-4) !important; }
+    .grid--gap-lg { gap: var(--space-6) !important; }
+    .grid--gap-xl { gap: var(--space-8) !important; }
+
+    /* Column variants */
+    .grid--cols-1 { grid-template-columns: repeat(1, 1fr); }
+    .grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Auto-responsive grids */
+    .grid--auto-fit {
+      grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-item-width, 250px), 1fr));
+    }
+    .grid--auto-fill {
+      grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-item-width, 250px), 1fr));
+    }
+
+    /* Align items */
+    .grid--align-start { align-items: start; }
+    .grid--align-center { align-items: center; }
+    .grid--align-end { align-items: end; }
+    .grid--align-stretch { align-items: stretch; }
+
+    /* Justify items */
+    .grid--justify-start { justify-items: start; }
+    .grid--justify-center { justify-items: center; }
+    .grid--justify-end { justify-items: end; }
+    .grid--justify-stretch { justify-items: stretch; }
 }

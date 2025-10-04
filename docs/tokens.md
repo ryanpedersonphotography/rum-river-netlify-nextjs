@@ -165,6 +165,10 @@
 ### Layout
 ```css
 --container: 1120px;
+--container-sm: 640px;
+--container-md: 768px;
+--container-lg: 1024px;
+--container-xl: 1280px;
 ```
 
 ## Section Tokens
@@ -327,3 +331,214 @@ Full-bleed horizontal band with consistent vertical rhythm and a centered conten
 2. Content lives in `.section__container` (centers to `--container` with side gutters).
 3. Use align modifiers for typography alignment (don't inline-style text-align).
 4. Section sets only band visuals and vertical rhythm; put cards/forms inside.
+
+---
+
+## Layout Primitives
+
+### Link / Anchor Component
+
+**Purpose**: Token-driven hyperlinks with consistent styling and Next.js integration.
+
+**Props**:
+- `tone`: `brand` | `accent` | `muted` | `neutral` | `inherit`
+- `underline`: `always` | `hover` | `none`
+- `external`: boolean (opens in new tab)
+
+**Token Usage**:
+- Color mapped to role tokens (`--brand`, `--accent`, etc.)
+- Uses `--transition-fast` for hover states
+- No hardcoded colors or text decorations
+
+**Usage Rules**:
+1. Always use Link component, never raw `<a>` tags in components
+2. Default `tone="brand"` and `underline="hover"` for body links
+3. Set `external={true}` for external URLs (or auto-detected from `http`)
+4. Use `tone="inherit"` when link should match parent text color
+
+---
+
+### Container Component
+
+**Purpose**: Max-width content wrapper with optional padding and centering.
+
+**Props**:
+- `size`: `sm` (640px) | `md` (768px) | `lg` (1024px) | `xl` (1280px) | `full`
+- `padding`: `none` | `sm` (16px) | `md` (24px) | `lg` (32px)
+- `center`: boolean (applies `margin: auto`)
+
+**Token Usage**:
+- `--container-sm`, `--container-md`, `--container-lg`, `--container-xl`
+- Padding uses `--space-4`, `--space-6`, `--space-8`
+- All sizing uses `!important` to override Tailwind reset
+
+**Usage Rules**:
+1. Use Container instead of inline `max-width` styles
+2. Default is `size="md"` with `padding="md"` and `center={true}`
+3. Set `padding="none"` when nesting inside Section (which has container)
+4. Use `size="full"` for edge-to-edge layouts
+
+---
+
+### Stack Component (Flexbox)
+
+**Purpose**: Vertical or horizontal stacking with token-driven gaps.
+
+**Props**:
+- `direction`: `vertical` | `horizontal`
+- `gap`: `xs` (8px) | `sm` (12px) | `md` (16px) | `lg` (24px) | `xl` (32px)
+- `align`: `start` | `center` | `end` | `stretch` | `baseline`
+- `justify`: `start` | `center` | `end` | `between` | `around` | `evenly`
+- `wrap`: boolean
+
+**Token Usage**:
+- Gap mapped to spacing scale: `--space-2` through `--space-8`
+- All gaps use `!important` to override Tailwind
+
+**Usage Rules**:
+1. Use Stack for lists, button groups, form fields (instead of ad-hoc flexbox)
+2. Default `direction="vertical"` and `gap="md"`
+3. Always specify gap size (don't rely on component margins)
+4. Use `wrap={true}` for responsive button groups
+
+**Common Patterns**:
+```jsx
+// Vertical form fields
+<Stack direction="vertical" gap="md">
+  <Input />
+  <Input />
+  <Button />
+</Stack>
+
+// Horizontal button group
+<Stack direction="horizontal" gap="sm" justify="center">
+  <Button>Primary</Button>
+  <Button variant="outline">Secondary</Button>
+</Stack>
+```
+
+---
+
+### Grid Component
+
+**Purpose**: CSS Grid layouts with responsive auto-fit patterns.
+
+**Props**:
+- `columns`: number (1-4) | `auto-fit` | `auto-fill`
+- `gap`: `xs` (8px) | `sm` (12px) | `md` (16px) | `lg` (24px) | `xl` (32px)
+- `minItemWidth`: string (default `"250px"`) - for auto-responsive grids
+- `align`: `start` | `center` | `end` | `stretch`
+- `justify`: `start` | `center` | `end` | `stretch`
+
+**Token Usage**:
+- Gap mapped to spacing scale: `--space-2` through `--space-8`
+- All gaps use `!important` to override Tailwind
+- Uses CSS custom property `--grid-min-item-width` for responsive grids
+
+**Usage Rules**:
+1. Use Grid for card layouts, feature grids, galleries
+2. Prefer `columns="auto-fit"` for responsive layouts (no media queries needed)
+3. Set `minItemWidth` based on content needs (cards usually `"250px"` minimum)
+4. Fixed column counts (1-4) are for controlled layouts only
+
+**Common Patterns**:
+```jsx
+// Responsive 3-column grid (auto-wraps)
+<Grid columns="auto-fit" minItemWidth="300px" gap="lg">
+  <Card>Feature 1</Card>
+  <Card>Feature 2</Card>
+  <Card>Feature 3</Card>
+</Grid>
+
+// Fixed 2-column layout
+<Grid columns={2} gap="md">
+  <Card>Left</Card>
+  <Card>Right</Card>
+</Grid>
+```
+
+---
+
+## Layout Composition Patterns
+
+### Hero Section
+```jsx
+<Section size="lg" tone="brand" align="center">
+  <Stack direction="vertical" gap="lg" align="center">
+    <Heading level={1} size="hero">Hero Title</Heading>
+    <Text size="xl">Subtitle description</Text>
+    <Stack direction="horizontal" gap="md">
+      <Button size="lg">Primary CTA</Button>
+      <Button size="lg" variant="outline">Secondary</Button>
+    </Stack>
+  </Stack>
+</Section>
+```
+
+### Feature Grid
+```jsx
+<Section size="md">
+  <Container size="lg" padding="none">
+    <Stack direction="vertical" gap="xl">
+      <Heading level={2} align="center">Features</Heading>
+      <Grid columns="auto-fit" minItemWidth="280px" gap="lg">
+        <Card tone="brand">
+          <Heading level={4}>Feature 1</Heading>
+          <Text>Description...</Text>
+        </Card>
+        {/* More cards... */}
+      </Grid>
+    </Stack>
+  </Container>
+</Section>
+```
+
+### Content with Sidebar
+```jsx
+<Section size="md">
+  <Container size="lg">
+    <Grid columns={3} gap="lg">
+      <div style={{gridColumn: 'span 2'}}>
+        <Stack direction="vertical" gap="md">
+          <Heading level={2}>Main Content</Heading>
+          <Text>Body content...</Text>
+        </Stack>
+      </div>
+      <Card tone="muted">
+        <Heading level={4}>Sidebar</Heading>
+        <Stack direction="vertical" gap="sm">
+          <Link href="#">Link 1</Link>
+          <Link href="#">Link 2</Link>
+        </Stack>
+      </Card>
+    </Grid>
+  </Container>
+</Section>
+```
+
+---
+
+## Implementation Notes
+
+### Important Declarations
+All layout primitives use `!important` on spacing properties (gap, padding, margin) to override Tailwind v4's universal reset. This ensures token-driven spacing always applies correctly.
+
+**Why `!important` is necessary:**
+- Tailwind v4 uses `* { padding: 0; margin: 0; }` which resets all elements
+- Without `!important`, CSS custom properties like `padding: var(--space-4)` get overridden
+- This is a defensive measure to ensure design system tokens win the cascade
+
+**Where we use it:**
+- `gap` on Stack and Grid components
+- `padding` on Container component
+- `max-width` on Container size variants
+- `margin` on Container centering
+
+### Token-Driven Everything
+Never use hardcoded values in layout components:
+- ❌ `gap: 20px`
+- ✅ `gap: var(--space-5)`
+- ❌ `padding: 1.5rem`
+- ✅ `padding: var(--space-6)`
+
+All spacing, sizing, and colors must reference the token system.
