@@ -1,0 +1,22 @@
+@layer components {
+  .link {
+    color: var(--brand);
+    text-decoration-color: var(--brand);
+    transition: var(--transition-fast);
+    cursor: pointer;
+  }
+  .link:hover { opacity: 0.8; }
+  .link:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--r-sm); }
+  .link:active { opacity: 0.6; }
+
+  .link--tone-brand { color: var(--brand); text-decoration-color: var(--brand); }
+  .link--tone-accent { color: var(--accent); text-decoration-color: var(--accent); }
+  .link--tone-muted { color: var(--muted); text-decoration-color: var(--muted); }
+  .link--tone-neutral { color: var(--on-surface); text-decoration-color: var(--border); }
+  .link--tone-inherit { color: inherit; text-decoration-color: currentColor; }
+
+  .link--underline-always { text-decoration: underline; }
+  .link--underline-hover { text-decoration: none; }
+  .link--underline-hover:hover { text-decoration: underline; }
+  .link--underline-none { text-decoration: none; }
+}

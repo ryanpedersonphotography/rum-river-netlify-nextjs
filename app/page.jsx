@@ -9,7 +9,7 @@ import Button from 'components/primitives/Button';
 import Section from 'components/layout/Section';
 import SectionHeader from 'components/primitives/SectionHeader';
 import MediaBlock from 'components/primitives/MediaBlock';
-import ScheduleTourForm from 'components/forms/ScheduleTourForm';
+import ScheduleTourForm from 'components/sections/ScheduleTourForm';
 
 export default function HomePage() {
   return (
@@ -184,8 +184,46 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Schedule Tour Form */}
-      <ScheduleTourForm />
+      {/* Schedule Tour Form - Section Component */}
+      <ScheduleTourForm
+        formName="home-schedule-tour"
+        tone="brand"
+        background="gradient-blocks"
+        header={{
+          accent: 'Schedule Your Tour',
+          title: 'Start Planning Your Perfect Day',
+          description: "We'd love to show you around our beautiful venue and discuss your wedding vision.",
+          align: 'center',
+        }}
+        fields={[
+          { type:'text', name:'name', label:'Your Name *', required:true, full:true, autoComplete:'name', placeholder:'Jane Doe' },
+          { type:'email', name:'email', label:'Email Address *', required:true, autoComplete:'email', placeholder:'you@example.com' },
+          { type:'tel', name:'phone', label:'Phone Number *', required:true, autoComplete:'tel', placeholder:'(555) 123-4567' },
+          { type:'date', name:'proposedEventDate', label:'Proposed Event Date' },
+          { type:'date', name:'preferredTourDate', label:'Preferred Tour Date *', required:true },
+          {
+            type:'select',
+            name:'preferredTourTime',
+            label:'Preferred Tour Time',
+            options:['10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM']
+          },
+          {
+            type:'select',
+            name:'guestCount',
+            label:'Estimated Guest Count',
+            options:['50-100','100-150','150-200','200+']
+          },
+          {
+            type:'textarea',
+            name:'message',
+            label:'Additional Information or Questions',
+            placeholder:'Tell us about your event plans or any specific questions...',
+            full:true,
+            rows:6
+          },
+        ]}
+        submitText="Schedule Tour"
+      />
     </>
   );
 }

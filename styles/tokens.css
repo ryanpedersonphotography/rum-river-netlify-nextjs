@@ -1,0 +1,190 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* ===============================
+   TOKENS – SINGLE SOURCE OF TRUTH
+   =============================== */
+:root {
+  /* brand swatches */
+  --swatch-warm-walnut: #6B4E3D;
+  --swatch-champagne-gold: #E4C896;
+  --swatch-dusty-rose: #9D6B7B;
+  --swatch-cream-pearl: #FFFCF8;
+  --swatch-blush-pink: #F4E4E1;
+  --swatch-sage-green: #7A8B7F;
+  --swatch-text-dark: #2C2416;
+
+  /* roles */
+  --bg: var(--swatch-cream-pearl);
+  --fg: var(--swatch-warm-walnut);
+  --brand: var(--swatch-warm-walnut);
+  --on-brand: var(--swatch-cream-pearl);
+  --accent: var(--swatch-champagne-gold);
+  --on-accent: var(--swatch-warm-walnut);
+  --brand-alt: var(--swatch-dusty-rose);
+  --on-brand-alt: #FFFFFF;
+  --surface: var(--swatch-cream-pearl);
+  --on-surface: var(--swatch-warm-walnut);
+  --muted: var(--swatch-blush-pink);
+  --on-muted: var(--swatch-warm-walnut);
+  --sage: var(--swatch-sage-green);
+  --on-sage: var(--swatch-cream-pearl);
+  --text-strong: var(--swatch-text-dark);
+
+  /* borders & focus */
+  --border: rgba(107, 78, 61, 0.2);
+  --focus-ring: rgba(228, 200, 150, 0.4);
+
+  /* utility colors */
+  --success: #2D7A3E;
+  --error: #B91C1C;
+  --warning: #92400E;
+
+  /* gradients */
+  --gradient-hero: linear-gradient(135deg, rgba(107,78,61,0.9) 0%, rgba(58,74,60,0.8) 100%);
+  --gradient-cta:  linear-gradient(135deg, #4A3426 0%, #6B4E3D 100%);
+  --gradient-warm: linear-gradient(180deg, var(--swatch-cream-pearl) 0%, var(--swatch-blush-pink) 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(44,36,22,0.7) 0%, rgba(44,36,22,0.5) 100%);
+  --gradient-blocks: linear-gradient(135deg, #4A3426 0%, #3A4A3C 100%);
+
+  /* type */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-script: 'Dancing Script', cursive;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2rem;
+  --text-5xl: 2.5rem;
+  --text-6xl: 3rem;
+  --text-hero: clamp(3rem, 8vw, 5.5rem);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* radii */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-full: 9999px;
+
+  /* shadows */
+  --shadow-none: none;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 8px 20px rgba(0,0,0,0.15);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
+
+  /* transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-base: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-elegant: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* layout & sections */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container: var(--container-lg);
+
+  --section-py-sm: var(--space-8);
+  --section-py-md: var(--space-12);
+  --section-py-lg: var(--space-16);
+
+  /* misc */
+  --motion-scale: 1;
+  --blur-sm: 8px;
+  --blur-md: 20px;
+  --blur-lg: 40px;
+  --opacity-muted: 0.8;
+  --opacity-soft: 0.95;
+  --opacity-ghost: 0.98;
+  --scroll-threshold: 100px;
+  --nav-dropdown-offset: 10px;
+
+  /* navigation */
+  --nav-bg-transparent: transparent;
+  --nav-bg-scrolled: rgba(255, 252, 248, 0.98);
+
+  /* input/form tokens */
+  --input-bg: var(--surface);
+  --input-fg: var(--fg);
+  --input-border: var(--border);
+  --input-placeholder: var(--muted);
+  --input-focus-ring: var(--focus-ring);
+  --input-radius: var(--r-md);
+  --input-padding-y: var(--space-3);
+  --input-padding-x: var(--space-4);
+  --input-font-size: var(--text-sm);
+
+  --form-gap-sm: var(--space-4);
+  --form-gap-md: var(--space-6);
+  --form-gap-lg: var(--space-8);
+  --form-pad: var(--space-6);
+  --form-radius: var(--r-lg);
+  --form-shadow: var(--shadow-lg);
+
+  --control-pad-y: var(--space-3);
+  --control-pad-x: var(--space-4);
+  --control-radius: var(--r-md);
+
+  --label-size: var(--text-xs);
+  --hint-size: var(--text-sm);
+  --control-size: var(--text-base);
+
+  --media-h-lg: 500px;
+}
+
+/* dark theme */
+:root[data-theme="dark"] {
+  --bg: #0F1419;
+  --fg: #E7EDF3;
+  --surface: #12171D;
+  --surface-alt: #0F1419;
+  --on-surface: #E7EDF3;
+  --brand: #9D6B7B;
+  --on-brand: #FFFFFF;
+  --brand-alt: #6B4E3D;
+  --on-brand-alt: #FFFFFF;
+  --accent: #E4C896;
+  --on-accent: #0F1419;
+  --muted: #1A1F27;
+  --on-muted: #D6DCE3;
+  --border: #2B3038;
+  --focus-ring: rgba(212,165,116,0.35);
+}
+
+/* tailwind v4 theme bridge → tokens */
+@theme {
+  --background-image-noise: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-neutral-950) 0%, transparent),
+      color-mix(in oklab, var(--color-neutral-950) 100%, transparent)
+    ), url('/images/noise.png');
+  --color-primary: var(--brand);
+  --color-primary-content: var(--on-brand);
+  --color-secondary: var(--brand-alt);
+  --font-sans: var(--font-body);
+}

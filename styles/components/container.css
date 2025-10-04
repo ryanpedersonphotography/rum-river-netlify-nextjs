@@ -1,0 +1,12 @@
+@layer components {
+  .container { width: 100%; }
+  .container--center { margin-left:auto !important; margin-right:auto !important; }
+  .container--size-sm { max-width: var(--container-sm) !important; }
+  .container--size-md { max-width: var(--container-md) !important; }
+  .container--size-lg { max-width: var(--container-lg) !important; }
+  .container--size-xl { max-width: var(--container-xl) !important; }
+  .container--size-full { max-width: none !important; }
+  .container--padding-sm { padding-inline: var(--space-4) !important; }
+  .container--padding-md { padding-inline: var(--space-6) !important; }
+  .container--padding-lg { padding-inline: var(--space-8) !important; }
+}

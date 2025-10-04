@@ -19,13 +19,14 @@ import DebugPanel from 'components/dev/DebugPanel';
  * Uses spacing tokens from globals.css:
  *   --space-2 through --space-8
  */
-export default function Grid({
+export default function Grid({  
   as: Tag = 'div',
   columns = 'auto-fit',
   gap = 'md',
   minItemWidth = '250px',
   align = 'stretch',
   justify = 'stretch',
+  justifyItems = 'stretch', 
   debug = false,
   className,
   style,

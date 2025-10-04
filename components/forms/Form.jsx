@@ -12,6 +12,8 @@ import Card from 'components/primitives/Card';
  *  - gap: 'sm' | 'md' | 'lg' (default 'md')
  *  - tone: 'surface' | 'brand' | 'muted' | 'accent' (default 'surface')
  *  - asCard: wrap in Card primitive (default true)
+ *  - card: alias for asCard
+ *  - submitRender: optional function ({ submitting }) => ReactNode
  *  - className, ...rest
  *
  * Uses tokens: --form-gap-*, --form-pad, --form-radius, --form-shadow
@@ -29,11 +31,29 @@ export default function Form({
   gap = 'md',
   tone = 'surface',
   asCard = true,
+  card,
+  submitRender,
   className,
   children,
   ...rest
 }) {
+  // Support both 'card' and 'asCard' props
+  const useCard = card !== undefined ? card : asCard;
   const gridCls = `form-grid form-grid--cols-${grid}`;
+
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleSubmit = async (e) => {
+    if (action) {
+      // Let default form submission handle redirect
+      return;
+    }
+    // If no action (custom handling), prevent default
+    e.preventDefault();
+    setSubmitting(true);
+    // Custom submission logic would go here
+    // For now, we rely on Netlify's default handling
+  };
 
   const wrap = (
     <form
@@ -42,6 +62,7 @@ export default function Form({
       data-netlify="true"
       netlify-honeypot="bot-field"
       action={action}
+      onSubmit={handleSubmit}
       style={{ '--form-gap': `var(--form-gap-${gap})` }}
       {...rest}
     >
@@ -52,10 +73,11 @@ export default function Form({
         </label>
       </p>
       {children}
+      {submitRender && submitRender({ submitting })}
     </form>
   );
 
-  return asCard ? (
+  return useCard ? (
     <Card tone={tone} elevation={2} radius="lg" padding="lg">
       {wrap}
     </Card>

@@ -1,0 +1,38 @@
+@layer components {
+  .typo-heading {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-4) !important;
+    color: inherit;
+  }
+  .typo-text {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0 0 var(--space-3) !important;
+    color: inherit;
+  }
+
+  .h-hero { font-size: var(--text-hero); }
+  .h-1 { font-size: var(--text-6xl); }
+  .h-2 { font-size: var(--text-5xl); }
+  .h-3 { font-size: var(--text-4xl); }
+  .h-4 { font-size: var(--text-3xl); }
+  .h-5 { font-size: var(--text-2xl); }
+  .h-6 { font-size: var(--text-xl); }
+
+  .t-xs { font-size: var(--text-xs); }
+  .t-sm { font-size: var(--text-sm); }
+  .t-base { font-size: var(--text-base); }
+  .t-lg { font-size: var(--text-lg); }
+  .t-xl { font-size: var(--text-xl); }
+
+  .w-regular  { font-weight: var(--weight-regular); }
+  .w-medium   { font-weight: var(--weight-medium); }
+  .w-semibold { font-weight: var(--weight-semibold); }
+  .w-bold     { font-weight: var(--weight-bold); }
+
+  .tone-on-surface { color: var(--on-surface); }
+  .tone-brand      { color: var(--brand); }
+  .tone-on-brand   { color: var(--on-brand); }
+}

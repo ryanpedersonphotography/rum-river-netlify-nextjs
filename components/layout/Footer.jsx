@@ -27,7 +27,15 @@ export default function Footer() {
       align="center"
     >
       <Container size="lg">
-          <Grid columns="auto-fit" minItemWidth="250px" gap="xl" justify="center">
+        <Grid
+          columns="auto-fit"
+          minItemWidth="250px"
+          gap="xl"
+          justify="center"
+          justifyItems="center"   // ⬅ per-cell centering
+          align="start"           // ⬅ keep headings tight to the top
+          className="grid--content-center"
+>
           {/* Brand Column */}
           <Stack direction="vertical" gap="sm" align="center">
             <Heading level={3} size="lg" noMargin align="center">
@@ -39,7 +47,7 @@ export default function Footer() {
           </Stack>
 
           {/* Visit Us Column */}
-          <Stack direction="vertical" gap="sm" align="center">
+          <Stack as="address" direction="vertical" gap="sm" align="center" style={{ fontStyle: 'normal' }}>
             <Heading level={4} size="md" noMargin align="center">
               Visit Us
             </Heading>
@@ -57,7 +65,7 @@ export default function Footer() {
           </Stack>
 
           {/* Follow Along Column */}
-          <Stack direction="vertical" gap="sm" align="center">
+          <Stack as="nav" aria-label="Social links" direction="vertical" gap="sm" align="center">
             <Heading level={4} size="md" noMargin align="center">
               Follow Along
             </Heading>
@@ -98,6 +106,7 @@ export default function Footer() {
           <Text size="sm" align="center" noMargin style={{ opacity: 'var(--opacity-soft)' }}>
             © 2025 Rum River Barn. All rights reserved. | Designed with love in Minnesota
           </Text>
+          <Spacer size="lg" />
         </div>
       </Container>
     </Section>

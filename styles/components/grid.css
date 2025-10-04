@@ -1,0 +1,37 @@
+@layer components {
+  .grid { display: grid; }
+
+  /* gaps */
+  .grid--gap-xs { gap: var(--space-2) !important; }
+  .grid--gap-sm { gap: var(--space-3) !important; }
+  .grid--gap-md { gap: var(--space-4) !important; }
+  .grid--gap-lg { gap: var(--space-6) !important; }
+  .grid--gap-xl { gap: var(--space-8) !important; }
+
+  /* columns */
+  .grid--cols-1 { grid-template-columns: repeat(1, 1fr) !important; }
+  .grid--cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid--cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+  .grid--cols-4 { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* auto grid */
+  .grid--auto-fit  { grid-template-columns: repeat(auto-fit,  minmax(var(--grid-min-item-width, 250px), 1fr)) !important; }
+  .grid--auto-fill { grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-item-width, 250px), 1fr)) !important; }
+
+  /* per-cell alignment (the ones you needed for Footer) */
+  .grid--align-start   { align-items: start   !important; }
+  .grid--align-center  { align-items: center  !important; }
+  .grid--align-end     { align-items: end     !important; }
+  .grid--align-stretch { align-items: stretch !important; }
+
+  .grid--justify-start   { justify-items: start   !important; }
+  .grid--justify-center  { justify-items: center  !important; }
+  .grid--justify-end     { justify-items: end     !important; }
+  .grid--justify-stretch { justify-items: stretch !important; }
+
+  /* track justification (optional) */
+  .grid--content-start   { justify-content: start   !important; }
+  .grid--content-center  { justify-content: center  !important; }
+  .grid--content-end     { justify-content: end     !important; }
+  .grid--content-between { justify-content: space-between !important; }
+}

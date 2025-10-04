@@ -62,7 +62,7 @@ export const Select = ({
     required={required}
     disabled={disabled}
     aria-invalid={invalid}
-    className={clsx('select', className)}
+    className={clsx('form-control', 'select', className)}
     {...rest}
   >
     {children}
@@ -101,7 +101,7 @@ export const Textarea = ({
     placeholder={placeholder}
     rows={rows}
     aria-invalid={invalid}
-    className={clsx('textarea', className)}
+    className={clsx('form-control', 'textarea', className)}
     {...rest}
   />
 );

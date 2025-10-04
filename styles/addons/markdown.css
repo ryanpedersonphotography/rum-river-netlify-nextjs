@@ -1,0 +1,6 @@
+@layer components {
+  .markdown > * { margin-block: var(--space-4); }
+  .markdown :where(h1,h2) { margin-top: var(--space-12); margin-bottom: var(--space-6); }
+  .markdown > :first-child { margin-top: 0; }
+  .markdown > :last-child { margin-bottom: 0; }
+}

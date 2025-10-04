@@ -447,6 +447,29 @@ Reusable gradient tokens for consistent visual treatments across sections.
 - Hint: `--hint-size` (var(--text-sm)), 70% opacity
 - Gap: `--space-2` between label/control/hint
 
+### Base Form Control Architecture
+
+All form inputs (Select, Textarea, and potentially Input) inherit from a shared `.form-control` base class:
+
+**CSS Class:** `.form-control`
+
+**Token-Driven Styling:**
+- **Sizing:** `width: 100%`
+- **Padding:** `var(--control-pad-y)` / `var(--control-pad-x)` (12px/16px)
+- **Border:** `1.5px solid color-mix(in oklab, var(--border) 55%, transparent)`
+- **Background:** `var(--surface)`
+- **Text:** `var(--fg)` at `var(--control-size)` (16px)
+- **Radius:** `var(--control-radius)` (8px)
+- **Font:** `var(--font-body)`, `line-height: 1.4`
+- **Transition:** `var(--transition-fast)`
+
+**States:**
+- **Placeholder:** `50% opacity fg color`
+- **Focus:** `--brand` border + `3px var(--focus-ring)` shadow
+- **Hover:** `--brand` border (when not disabled/focused)
+- **Disabled:** `50% opacity, var(--muted)` background, `not-allowed` cursor
+- **Error:** `aria-invalid="true"` → `--error` border + shadow (70%/30% opacity)
+
 ### `<Select>` - Dropdown Control
 
 **Props:**
@@ -455,10 +478,11 @@ Reusable gradient tokens for consistent visual treatments across sections.
 - `disabled` (boolean)
 - `aria-invalid` (boolean): error state styling
 
+**CSS Classes:** `.form-control .select`
+
 **Token Usage:**
-- Same as Input: `--control-pad-y/x`, `--control-radius`, `--control-size`
-- Border: `--border` at 55% opacity via color-mix
-- Focus: `--brand` border + `--focus-ring` shadow
+- Inherits all `.form-control` base styles
+- Additional: `cursor: pointer`
 
 ### `<Textarea>` - Multi-line Input
 
@@ -469,9 +493,11 @@ Reusable gradient tokens for consistent visual treatments across sections.
 - `disabled` (boolean)
 - `aria-invalid` (boolean)
 
+**CSS Classes:** `.form-control .textarea`
+
 **Token Usage:**
-- Identical to Input and Select for consistency
-- Line-height: 1.4 for readability
+- Inherits all `.form-control` base styles
+- Additional: `resize: vertical`
 
 ### Form Rhythm Tokens
 
@@ -525,6 +551,183 @@ Reusable gradient tokens for consistent visual treatments across sections.
   </div>
 </Form>
 ```
+
+---
+
+## Section Components
+
+### Purpose
+
+Section components are **configurable, reusable patterns** built from primitives. They sit between primitives and pages in the three-layer architecture:
+
+```
+Tokens (CSS Variables)
+  ↓
+Primitives (Button, Input, Form, Field, etc.)
+  ↓
+Section Components (ScheduleTourForm - configurable patterns)
+  ↓
+Pages (Compose with specific content)
+```
+
+**When to Create a Section Component:**
+
+Create a section component when:
+1. You need the same pattern in **≥2 places** with light variation
+2. You want to **centralize behavior** while keeping primitives pure
+3. The pattern has **configurable content** but consistent structure
+4. You want to avoid copy-paste code across multiple pages
+
+### `<ScheduleTourForm>` - Configurable Form Section
+
+A reusable form section for tour scheduling, contact forms, lead capture, and similar patterns.
+
+**Props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `formName` | `string` | `'schedule-tour'` | Netlify form name |
+| `redirectPath` | `string` | `'/thank-you'` | Post-submit redirect URL |
+| `tone` | `'brand'\|'surface'\|'accent'\|'muted'` | `'brand'` | Section color tone |
+| `size` | `'sm'\|'md'\|'lg'\|'xl'` | `'lg'` | Section padding size |
+| `header` | `ScheduleHeader` | See below | Header content object |
+| `background` | `string` | `'none'` | Background token name |
+| `fields` | `FieldConfig[]` | `[]` | Field configuration array |
+| `submitText` | `string` | `'Schedule Tour'` | Submit button text |
+| `submitRender` | `function` | Built-in | Custom submit renderer |
+
+**ScheduleHeader Object:**
+```typescript
+{
+  accent?: string;        // Script text above title
+  title: string;          // Main heading (required)
+  description?: string;   // Lead paragraph
+  align?: 'left'|'center'|'right';  // Header alignment
+}
+```
+
+**FieldConfig Schema:**
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `'text'\|'email'\|'tel'\|'date'\|'select'\|'textarea'` | No | Input type (default: `'text'`) |
+| `name` | `string` | **Yes** | Field name (form submission key) |
+| `label` | `string` | **Yes** | Field label text |
+| `required` | `boolean` | No | Mark field as required |
+| `full` | `boolean` | No | Span both columns in 2-col grid |
+| `placeholder` | `string` | No | Placeholder text |
+| `hint` | `string` | No | Help text shown below field |
+| `defaultValue` | `string` | No | Pre-fill value |
+| `autoComplete` | `string` | No | HTML autocomplete attribute |
+| `rows` | `number` | No | Textarea rows (default: `5`) |
+| `options` | `string[]` | No | Select dropdown options |
+
+**Usage Examples:**
+
+**Home Page (Full Tour Form):**
+```jsx
+<ScheduleTourForm
+  formName="home-schedule-tour"
+  tone="brand"
+  background="gradient-blocks"
+  header={{
+    accent: 'Schedule Your Tour',
+    title: 'Start Planning Your Perfect Day',
+    description: "We'd love to show you around our beautiful venue...",
+    align: 'center',
+  }}
+  fields={[
+    { type:'text', name:'name', label:'Your Name *', required:true, full:true },
+    { type:'email', name:'email', label:'Email Address *', required:true },
+    { type:'tel', name:'phone', label:'Phone Number *', required:true },
+    { type:'date', name:'proposedEventDate', label:'Proposed Event Date' },
+    { type:'date', name:'preferredTourDate', label:'Preferred Tour Date *', required:true },
+    {
+      type:'select',
+      name:'preferredTourTime',
+      label:'Preferred Tour Time',
+      options:['10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM']
+    },
+    {
+      type:'select',
+      name:'guestCount',
+      label:'Estimated Guest Count',
+      options:['50-100','100-150','150-200','200+']
+    },
+    {
+      type:'textarea',
+      name:'message',
+      label:'Additional Information or Questions',
+      placeholder:'Tell us about your event plans...',
+      full:true,
+      rows:6
+    },
+  ]}
+  submitText="Schedule Tour"
+/>
+```
+
+**Contact Page (Simple Contact Form):**
+```jsx
+<ScheduleTourForm
+  formName="contact-inquiry"
+  tone="surface"
+  header={{
+    accent: 'Get In Touch',
+    title: 'Send Us a Message',
+  }}
+  fields={[
+    { type:'text', name:'name', label:'Name *', required:true, full:true },
+    { type:'email', name:'email', label:'Email *', required:true },
+    { type:'tel', name:'phone', label:'Phone' },
+    {
+      type:'textarea',
+      name:'message',
+      label:'Message',
+      full:true,
+      hint:'We respond within 1-2 business days.'
+    },
+  ]}
+  submitText="Send Message"
+/>
+```
+
+**Gallery Page (Lead Capture):**
+```jsx
+<ScheduleTourForm
+  formName="gallery-download"
+  redirectPath="/gallery/download"
+  tone="neutral"
+  header={{
+    accent: 'Download Our Gallery',
+    title: 'Get the Full Photo Package',
+  }}
+  fields={[
+    { type:'text', name:'name', label:'Name *', required:true, full:true },
+    { type:'email', name:'email', label:'Email *', required:true },
+  ]}
+  submitText="Download Photos"
+/>
+```
+
+**Token Usage:**
+
+All styling uses design system tokens:
+- **Colors**: `--brand`, `--surface`, `--accent`, `--muted`, `--on-*`
+- **Spacing**: `--space-*` scale
+- **Backgrounds**: `--gradient-blocks`, `--gradient-hero`
+- **Typography**: `--font-*`, `--text-*`
+- **Form controls**: `--control-*` tokens (see Form Primitives section)
+
+**Architecture Benefits:**
+
+- ✅ **Primitives stay pure** - No business logic in Button, Input, Form, etc.
+- ✅ **Section components are configurable** - Props control content, not hardcoded
+- ✅ **Pages compose sections** - Minimal code, maximum reuse
+- ✅ **Token-driven throughout** - Zero hardcoded values
+- ✅ **Single source of truth** - All design decisions documented here
+- ✅ **DRY principle** - Define structure once, reuse with variants
+- ✅ **CMS-ready** - Field configs could come from a CMS
 
 ---
 

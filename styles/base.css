@@ -1,0 +1,49 @@
+/* Smooth scrolling with reduced-motion support */
+:root {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
+/* Base reset + body + basic elements */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Responsive media */
+img, picture, video, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Universal focus styles (components can override) */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Tailwind base layer extensions */
+@layer base {
+  h1 { @apply text-4xl font-bold tracking-tight sm:text-5xl; }
+  h2 { @apply text-2xl font-bold sm:text-3xl; }
+  h3 { @apply text-xl font-bold; }
+
+  a:not(.btn) { @apply underline transition hover:opacity-80; }
+
+  :not(pre) > code {
+    @apply px-1 py-0.5 font-mono rounded bg-neutral-900 text-yellow-200;
+    font-size: 0.9em;
+  }
+}

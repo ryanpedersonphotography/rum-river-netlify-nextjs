@@ -1,0 +1,70 @@
+@layer components {
+  .section {
+    --sec-bg: transparent;
+    --sec-fg: var(--fg);
+    --sec-py: var(--section-py-md);
+    background: var(--sec-bg);
+    color: var(--sec-fg);
+    padding-top: var(--sec-py) !important;
+    padding-bottom: var(--sec-py) !important;
+    width: 100% !important;
+  }
+  .section__inner { width: 100% !important; }
+  .section__container {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--space-5) !important;
+    width: 100% !important;
+  }
+
+  /* sizes feed SectionHeader via vars */
+  .section--size-sm { --sec-py: var(--section-py-sm); --section-gap: var(--space-6); --title-gap: var(--space-3); --title-mb: var(--space-6); padding-top: var(--sec-py) !important; padding-bottom: var(--sec-py) !important; }
+  .section--size-md { --sec-py: var(--section-py-md); --section-gap: var(--space-8); --title-gap: var(--space-4); --title-mb: var(--space-8); padding-top: var(--sec-py) !important; padding-bottom: var(--sec-py) !important; }
+  .section--size-lg { --sec-py: var(--section-py-lg); --section-gap: var(--space-10); --title-gap: var(--space-6); --title-mb: var(--space-12); padding-top: var(--sec-py) !important; padding-bottom: var(--sec-py) !important; }
+  .section--size-xl { --sec-py: var(--space-24);     --section-gap: var(--space-12); --title-gap: var(--space-6); --title-mb: var(--space-16); padding-top: var(--sec-py) !important; padding-bottom: var(--sec-py) !important; }
+
+  /* align */
+  .section--align-left  .section__inner,
+  .section--align-left  .section__container { text-align: left; }
+  .section--align-center .section__inner,
+  .section--align-center .section__container { text-align: center; }
+  .section--align-right .section__inner,
+  .section--align-right .section__container { text-align: right; }
+
+  /* header block */
+  .section__header {
+    display: grid;
+    gap: var(--title-gap) !important;
+    margin: 0 0 var(--title-mb) 0 !important;
+    max-width: 68ch;
+    width: 100%;
+  }
+  .section--align-center .section__header { text-align: center; margin-inline: auto; justify-items: center; }
+  .section--align-right .section__header { text-align: right; margin-left: auto; }
+  .section__header .typo-text { max-width: 62ch; }
+
+  .section__header h2 + .typo-text { margin-top: var(--space-4) !important; }
+  .section--size-lg .section__header h2 + .typo-text { margin-top: var(--space-6) !important; }
+  .section--size-xl .section__header h2 + .typo-text { margin-top: var(--space-8) !important; }
+
+  /* variants */
+  .section--variant-muted { --sec-bg: var(--muted); --sec-fg: var(--on-muted); }
+  .section--variant-solid.section--tone-neutral,
+  .section--variant-default.section--tone-neutral,
+  .section--variant-solid.section--tone-surface,
+  .section--variant-default.section--tone-surface { --sec-bg: var(--surface); --sec-fg: var(--on-surface); }
+  .section--variant-solid.section--tone-brand,
+  .section--variant-default.section--tone-brand { --sec-bg: var(--brand); --sec-fg: var(--on-brand); }
+  .section--variant-solid.section--tone-muted,
+  .section--variant-default.section--tone-muted { --sec-bg: var(--muted); --sec-fg: var(--on-muted); }
+  .section--variant-solid.section--tone-accent,
+  .section--variant-default.section--tone-accent { --sec-bg: var(--accent); --sec-fg: var(--on-accent); }
+
+  /* noContainer option */
+  .section--noContainer .section__container { max-width: none; padding-inline: 0 !important; }
+
+  /* Text alignment utilities within sections */
+  .ta-left   { text-align: left !important; }
+  .ta-center { text-align: center !important; }
+  .ta-right  { text-align: right !important; }
+}

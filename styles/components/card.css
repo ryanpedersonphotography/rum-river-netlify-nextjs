@@ -1,0 +1,57 @@
+@layer components {
+  .surface {
+    background: var(--surface);
+    color: var(--on-surface);
+  }
+
+  /* Base card (no padding - applied via slots) */
+  .card {
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+    --card-padding: var(--space-6);
+    overflow: hidden; /* prevent content from breaking border-radius */
+  }
+
+  /* Tone variants */
+  .card--neutral { background: var(--surface); color: var(--on-surface); border: 1px solid var(--border); }
+  .card--brand   { background: var(--brand);   color: var(--on-brand);   border: 1px solid transparent; }
+  .card--muted   { background: var(--muted);   color: var(--on-muted);   border: 1px solid transparent; }
+  .card--accent  { background: var(--accent);  color: var(--on-accent);  border: 1px solid transparent; }
+
+  /* Radius variants */
+  .card--r-sm { border-radius: var(--r-sm); }
+  .card--r-md { border-radius: var(--r-md); }
+  .card--r-lg { border-radius: var(--r-lg); }
+
+  /* Elevation variants */
+  .card--e0 { box-shadow: var(--shadow-none); }
+  .card--e1 { box-shadow: var(--shadow-sm); }
+  .card--e2 { box-shadow: var(--shadow-md); }
+  .card--e3 { box-shadow: var(--shadow-lg); }
+
+  /* Padding size variants (set variable only) */
+  .card--p-sm { --card-padding: var(--space-4); }
+  .card--p-md { --card-padding: var(--space-6); }
+  .card--p-lg { --card-padding: var(--space-8); }
+
+  /* Composition slots */
+  .card__header {
+    padding: var(--card-padding);
+    padding-bottom: 0;
+  }
+
+  .card__body {
+    padding: var(--card-padding);
+  }
+
+  .card__footer {
+    padding: var(--card-padding);
+    padding-top: 0;
+  }
+
+  /* Interactive affordance */
+  .card--interactive { cursor: pointer; }
+  .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .card--interactive:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+}

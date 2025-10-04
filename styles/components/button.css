@@ -1,0 +1,65 @@
+@layer components {
+  .btn {
+    --btn-bg: var(--brand);
+    --btn-fg: var(--on-brand);
+    --btn-py: var(--space-3);
+    --btn-px: var(--space-6);
+    --btn-radius: var(--r-full);
+    --btn-shadow: none;
+    --btn-font: var(--font-body);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--btn-font);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    border-radius: var(--btn-radius);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    padding: var(--btn-py) var(--btn-px) !important;
+    box-shadow: var(--btn-shadow);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .btn:hover:not(:disabled) { opacity: .9; transform: translateY(-1px); }
+  .btn:active:not(:disabled) { transform: translateY(0); }
+  .btn:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+  .btn:disabled { cursor: not-allowed; opacity: .5; }
+
+  /* Size variants */
+  .btn-sm { --btn-py: var(--space-2); --btn-px: var(--space-5); padding: var(--btn-py) var(--btn-px) !important; font-size: var(--text-sm) !important; }
+  .btn-lg { --btn-py: var(--space-4); --btn-px: var(--space-7); padding: var(--btn-py) var(--btn-px) !important; font-size: var(--text-lg) !important; }
+
+  /* Style variants */
+  .btn-outline { --btn-bg: transparent; --btn-fg: var(--brand); --btn-shadow: inset 0 0 0 1px var(--brand); }
+  .btn-link    { --btn-bg: transparent; --btn-fg: var(--brand); text-decoration: underline; box-shadow: none; }
+
+  /* Loading state */
+  .btn--loading { position: relative; color: transparent !important; pointer-events: none; }
+  .btn--loading::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    top: 50%; left: 50%;
+    margin-left: -8px; margin-top: -8px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: btn-spin .6s linear infinite;
+  }
+
+  @keyframes btn-spin { to { transform: rotate(360deg); } }
+
+  /* Hero scroll indicator bounce animation */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+}
