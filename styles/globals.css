@@ -1088,6 +1088,10 @@ body {
       width: 100%;
     }
 
+    .media-block + .media-block {
+      margin-top: var(--space-16) !important;
+    }
+
     /* Layout variants */
     .media-block--image-right {
       grid-template-columns: 1fr 1fr;
