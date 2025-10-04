@@ -372,6 +372,121 @@ Reusable gradient tokens for consistent visual treatments across sections.
 
 ---
 
+## Component Tokens: Form Primitives (Field, Select, Textarea, Form)
+
+**Purpose**: Token-driven form layout system with Netlify Forms integration.
+
+### `<Form>` - Layout + Netlify Integration
+
+**Props:**
+- `name` (string, required): Netlify form name
+- `action` (string, default `/thank-you`): redirect after submit
+- `grid` ('1' | '2' | '3', default '2'): columns
+- `gap` ('sm' | 'md' | 'lg', default 'md'): row/col spacing
+- `tone` ('surface' | 'brand' | 'muted' | 'accent', default 'surface')
+- `asCard` (boolean, default true): wrap in Card primitive
+
+**Token Usage:**
+- Gap: `--form-gap-sm` (var(--space-4)), `--form-gap-md` (var(--space-6)), `--form-gap-lg` (var(--space-8))
+- Padding: `--form-pad` (var(--space-6))
+- Radius: `--form-radius` (var(--r-lg))
+- Shadow: `--form-shadow` (var(--shadow-lg))
+
+### `<Field>` - Label + Control + Hint Wrapper
+
+**Props:**
+- `label` (string): visible label text
+- `name` (string, required): ties label to input
+- `hint` (string): help text below control
+- `required` (boolean): shows asterisk, sets aria-required
+- `full` (boolean): spans all columns in grid
+
+**Token Usage:**
+- Label: `--label-size` (var(--text-xs)), uppercase, 0.08em letter-spacing
+- Hint: `--hint-size` (var(--text-sm)), 70% opacity
+- Gap: `--space-2` between label/control/hint
+
+### `<Select>` - Dropdown Control
+
+**Props:**
+- `name` (string, required)
+- `required` (boolean)
+- `disabled` (boolean)
+- `aria-invalid` (boolean): error state styling
+
+**Token Usage:**
+- Same as Input: `--control-pad-y/x`, `--control-radius`, `--control-size`
+- Border: `--border` at 55% opacity via color-mix
+- Focus: `--brand` border + `--focus-ring` shadow
+
+### `<Textarea>` - Multi-line Input
+
+**Props:**
+- `name` (string, required)
+- `rows` (number, default 5)
+- `required` (boolean)
+- `disabled` (boolean)
+- `aria-invalid` (boolean)
+
+**Token Usage:**
+- Identical to Input and Select for consistency
+- Line-height: 1.4 for readability
+
+### Form Rhythm Tokens
+
+```css
+--form-gap-sm: var(--space-4);   /* 16px */
+--form-gap-md: var(--space-6);   /* 24px */
+--form-gap-lg: var(--space-8);   /* 32px */
+--form-pad: var(--space-6);      /* Card wrapper padding */
+--form-radius: var(--r-lg);      /* Card border radius */
+--form-shadow: var(--shadow-lg); /* Elevation */
+
+--control-pad-y: var(--space-3); /* 12px vertical */
+--control-pad-x: var(--space-4); /* 16px horizontal */
+--control-radius: var(--r-md);   /* 8px */
+
+--label-size: var(--text-xs);    /* 12px uppercase */
+--hint-size: var(--text-sm);     /* 14px help text */
+--control-size: var(--text-base); /* 16px input text */
+```
+
+### Accessibility
+
+- All controls support `aria-invalid` for error states (red border + shadow)
+- Labels tied to inputs via `htmlFor={name}`
+- Required fields show `*` with `aria-hidden="true"`
+- Focus states use `--focus-ring` (3px outline)
+- Disabled state: 50% opacity, `not-allowed` cursor
+
+### Usage Example
+
+```jsx
+<Form name="contact" grid="2" gap="md" tone="surface">
+  <Field label="Your Name" name="name" required full>
+    <Input name="name" required placeholder="Jane Doe" />
+  </Field>
+
+  <Field label="Email" name="email" required>
+    <Input type="email" name="email" required />
+  </Field>
+
+  <Field label="Phone" name="phone">
+    <Input type="tel" name="phone" />
+  </Field>
+
+  <Field label="Message" name="message" full>
+    <Textarea name="message" rows={6} />
+  </Field>
+
+  <div className="field field--full" style={{ display:'flex', justifyContent:'center' }}>
+    <Button type="submit" size="lg">Send Message</Button>
+  </div>
+</Form>
+```
+
+---
+
 ## Component Tokens: Typography
 
 Typography primitives use existing role and type tokens—no additional tokens needed.

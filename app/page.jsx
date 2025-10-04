@@ -7,6 +7,7 @@ import Button from 'components/primitives/Button';
 import Section from 'components/layout/Section';
 import SectionHeader from 'components/primitives/SectionHeader';
 import MediaBlock from 'components/primitives/MediaBlock';
+import ScheduleTourForm from 'components/forms/ScheduleTourForm';
 
 export default function HomePage() {
   return (
@@ -176,6 +177,9 @@ export default function HomePage() {
           </div>
         </Container>
       </Section>
+
+      {/* Schedule Tour Form */}
+      <ScheduleTourForm />
     </>
   );
 }
