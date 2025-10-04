@@ -705,6 +705,8 @@ body {
       display: grid;
       gap: var(--title-gap) !important;              /* spacing between accent/title/description */
       margin: 0 0 var(--title-mb) 0 !important;      /* spacing below the header block */
+      max-width: 68ch;                               /* readable width constraint */
+      width: 100%;
     }
     .section--align-left .section__header   { text-align: left; }
     .section--align-center .section__header {
@@ -717,6 +719,18 @@ body {
       text-align: right;
       margin-left: auto;
     }
+
+    /* Optional: keep description line-length comfortable */
+    .section__header .typo-text {
+      max-width: 62ch;
+    }
+
+    /* =====================================================
+       Text Alignment Utilities
+       ===================================================== */
+    .ta-left   { text-align: left !important; }
+    .ta-center { text-align: center !important; }
+    .ta-right  { text-align: right !important; }
 
     /* Add extra space between heading and description */
     .section__header h2 + .typo-text {
