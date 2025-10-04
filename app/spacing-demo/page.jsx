@@ -141,39 +141,42 @@ export default function SpacingDemo() {
           borderRadius: 'var(--r-md)',
           border: '1px solid var(--border)'
         }}>
-          <div style={{ 
-            marginBottom: 'var(--space-2)', 
-            padding: 'var(--space-3)', 
+          <div style={{
+            marginBottom: 'var(--space-4)',
+            padding: 'var(--space-3)',
             background: 'var(--brand)',
             color: 'var(--on-brand)',
-            borderRadius: 'var(--r-sm)'
+            borderRadius: 'var(--r-sm)',
+            border: '2px solid var(--on-brand)'
           }}>
             <Text debug={debug} noMargin>
-              margin-bottom: var(--space-2)
+              margin-bottom: 16px (--space-4)
             </Text>
           </div>
 
-          <div style={{ 
-            marginBottom: 'var(--space-4)', 
-            padding: 'var(--space-3)', 
+          <div style={{
+            marginBottom: 'var(--space-8)',
+            padding: 'var(--space-3)',
             background: 'var(--brand)',
             color: 'var(--on-brand)',
-            borderRadius: 'var(--r-sm)'
+            borderRadius: 'var(--r-sm)',
+            border: '2px solid var(--on-brand)'
           }}>
             <Text debug={debug} noMargin>
-              margin-bottom: var(--space-4)
+              margin-bottom: 32px (--space-8)
             </Text>
           </div>
 
-          <div style={{ 
-            marginBottom: 'var(--space-6)', 
-            padding: 'var(--space-3)', 
+          <div style={{
+            marginBottom: 'var(--space-12)',
+            padding: 'var(--space-3)',
             background: 'var(--brand)',
             color: 'var(--on-brand)',
-            borderRadius: 'var(--r-sm)'
+            borderRadius: 'var(--r-sm)',
+            border: '2px solid var(--on-brand)'
           }}>
             <Text debug={debug} noMargin>
-              margin-bottom: var(--space-6)
+              margin-bottom: 48px (--space-12)
             </Text>
           </div>
 
