@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
+import clsx from 'clsx';
 import useResolvedTokens from 'components/dev/useResolvedTokens';
 import DebugPanel from 'components/dev/DebugPanel';
 
@@ -12,6 +13,7 @@ const TONE_VARS = {
 };
 
 export default function Section({
+  as: Tag = 'section',
   tone = 'neutral',
   variant = 'default',
   size = 'md',
@@ -25,26 +27,29 @@ export default function Section({
 }) {
   const ref = useRef(null);
 
-  const classes = [
+  const classes = clsx(
     'section',
     `section--tone-${tone}`,
     `section--variant-${variant}`,
     `section--size-${size}`,
     `section--align-${align}`,
-    noContainer && 'section--noContainer',
     className
-  ].filter(Boolean).join(' ');
+  );
 
   const tokenVars = [...(TONE_VARS[tone] || TONE_VARS.neutral), '--container', '--space-5', '--section-py-sm','--section-py-md','--section-py-lg'];
   const cssProps  = ['background-color','color','padding-top','padding-bottom'];
   const data = useResolvedTokens({ tokenVars, cssProps, scope: ref.current, enabled: debug });
 
   return (
-    <section ref={ref} className={classes} style={style} {...rest}>
+    <Tag ref={ref} className={classes} style={style} {...rest}>
       {debug && <DebugPanel classes={classes} data={data} />}
-      <div className="section__container">
-        {children}
-      </div>
-    </section>
+      {noContainer ? (
+        <div className="section__inner">{children}</div>
+      ) : (
+        <div className="section__inner">
+          <div className="section__container">{children}</div>
+        </div>
+      )}
+    </Tag>
   );
 }

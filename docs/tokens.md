@@ -388,6 +388,81 @@ Typography primitives use existing role and type tokens—no additional tokens n
 
 ---
 
+## Component Tokens: MediaBlock (Content + Image Layout)
+
+**Purpose**: Alternating content/image blocks with optional numbering.
+
+### Props
+- `layout`: "image-right" | "image-left" (default "image-right")
+- `gap`: "sm" | "md" | "lg" | "xl" → maps to spacing tokens
+- `tone`: "surface" | "brand" | "muted" | "accent" (text color context)
+- `number`: optional string for numbered blocks (e.g., "01")
+
+### Slots
+- `<MediaBlock.Content>`: headings, text, buttons
+- `<MediaBlock.Media>`: `<img>`, video, etc.
+
+### Token Usage
+- Gap: `--space-4` (sm), `--space-6` (md), `--space-8` (lg), `--space-20` (xl)
+- Number: `--text-5xl`, `--weight-medium`, `--accent` or `--on-brand`
+- Media: `--r-lg` radius, `--shadow-lg` elevation
+- Responsive: stacks to 1 column under 768px
+
+### Usage
+```jsx
+<Section style={{ background: 'var(--gradient-blocks)' }}>
+  <SectionHeader
+    accent="Your Perfect Venue"
+    title="Why Choose Us"
+    description="Discover what makes us special"
+  />
+
+  <Stack direction="vertical" gap="xl">
+    <MediaBlock layout="image-right" gap="xl" tone="brand" number="01">
+      <MediaBlock.Content>
+        <Heading level={3}>Title</Heading>
+        <Text>Content...</Text>
+      </MediaBlock.Content>
+      <MediaBlock.Media>
+        <img src="..." />
+      </MediaBlock.Media>
+    </MediaBlock>
+
+    <MediaBlock layout="image-left" gap="xl" tone="brand" number="02">
+      ...
+    </MediaBlock>
+  </Stack>
+</Section>
+```
+
+---
+
+## Component Tokens: SectionHeader (Reusable Section Intro)
+
+**Purpose**: Centered section introduction with optional script accent.
+
+### Props
+- `accent`: optional script text above heading
+- `title`: main heading text (required)
+- `description`: optional lead paragraph
+- `align`: "left" | "center" | "right" (default "center")
+
+### Token Usage
+- Accent: `--font-script`, `--accent`, `--text-xl`
+- Title: Uses Heading primitive (token-driven)
+- Description: `--text-lg`, `--opacity-soft`
+
+### Usage
+```jsx
+<SectionHeader
+  accent="Your Perfect Venue"
+  title="Why Choose Rum River Barn"
+  description="Discover what makes our venue special"
+/>
+```
+
+---
+
 ## Component Tokens: Card / Surface
 
 ### Role Tokens
