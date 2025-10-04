@@ -7,6 +7,7 @@ import DebugPanel from 'components/dev/DebugPanel';
 /**
  * Container (token-driven)
  * Props:
+ *  - as: HTML element (default 'div')
  *  - size: 'sm' | 'md' | 'lg' | 'xl' | 'full'
  *  - padding: 'none' | 'sm' | 'md' | 'lg'
  *  - center: boolean (centers content with margin auto)
@@ -17,6 +18,7 @@ import DebugPanel from 'components/dev/DebugPanel';
  *   --container-sm, --container-md, --container-lg, --container-xl
  */
 export default function Container({
+  as: Tag = 'div',
   size = 'md',
   padding = 'md',
   center = true,
@@ -43,14 +45,14 @@ export default function Container({
   return (
     <>
       {debug && <DebugPanel classes={classes} data={data} />}
-      <div
+      <Tag
         ref={ref}
         className={classes}
         style={style}
         {...rest}
       >
         {children}
-      </div>
+      </Tag>
     </>
   );
 }

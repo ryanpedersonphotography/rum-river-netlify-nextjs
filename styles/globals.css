@@ -1113,6 +1113,25 @@ body {
     .grid--justify-stretch { justify-items: stretch; }
 
     /* =====================================================
+       Spacer Primitive (Intentional Whitespace)
+       ===================================================== */
+    /* Vertical spacing */
+    .spacer--y-xs { height: var(--space-2) !important; }
+    .spacer--y-sm { height: var(--space-3) !important; }
+    .spacer--y-md { height: var(--space-4) !important; }
+    .spacer--y-lg { height: var(--space-6) !important; }
+    .spacer--y-xl { height: var(--space-8) !important; }
+    .spacer--y-2xl { height: var(--space-12) !important; }
+
+    /* Horizontal spacing */
+    .spacer--x-xs { width: var(--space-2) !important; display: inline-block; }
+    .spacer--x-sm { width: var(--space-3) !important; display: inline-block; }
+    .spacer--x-md { width: var(--space-4) !important; display: inline-block; }
+    .spacer--x-lg { width: var(--space-6) !important; display: inline-block; }
+    .spacer--x-xl { width: var(--space-8) !important; display: inline-block; }
+    .spacer--x-2xl { height: var(--space-12) !important; display: inline-block; }
+
+    /* =====================================================
        Navigation Component (Wedding Venue)
        Transparent overlay that becomes solid on scroll
        ===================================================== */

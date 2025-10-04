@@ -7,6 +7,7 @@ import DebugPanel from 'components/dev/DebugPanel';
 /**
  * Stack (token-driven flexbox)
  * Props:
+ *  - as: HTML element (default 'div')
  *  - direction: 'vertical' | 'horizontal'
  *  - gap: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (maps to spacing tokens)
  *  - align: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
@@ -19,6 +20,7 @@ import DebugPanel from 'components/dev/DebugPanel';
  *   --space-1 through --space-12
  */
 export default function Stack({
+  as: Tag = 'div',
   direction = 'vertical',
   gap = 'md',
   align = 'stretch',
@@ -49,14 +51,14 @@ export default function Stack({
   return (
     <>
       {debug && <DebugPanel classes={classes} data={data} />}
-      <div
+      <Tag
         ref={ref}
         className={classes}
         style={style}
         {...rest}
       >
         {children}
-      </div>
+      </Tag>
     </>
   );
 }

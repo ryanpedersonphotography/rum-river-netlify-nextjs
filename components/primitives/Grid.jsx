@@ -7,6 +7,7 @@ import DebugPanel from 'components/dev/DebugPanel';
 /**
  * Grid (token-driven CSS grid)
  * Props:
+ *  - as: HTML element (default 'div')
  *  - columns: number | 'auto-fit' | 'auto-fill' | '1' | '2' | '3' | '4'
  *  - gap: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (maps to spacing tokens)
  *  - minItemWidth: string (e.g., '250px', '20rem') - for auto-responsive grids
@@ -19,6 +20,7 @@ import DebugPanel from 'components/dev/DebugPanel';
  *   --space-2 through --space-8
  */
 export default function Grid({
+  as: Tag = 'div',
   columns = 'auto-fit',
   gap = 'md',
   minItemWidth = '250px',
@@ -56,14 +58,14 @@ export default function Grid({
   return (
     <>
       {debug && <DebugPanel classes={classes} data={data} />}
-      <div
+      <Tag
         ref={ref}
         className={classes}
         style={gridStyle}
         {...rest}
       >
         {children}
-      </div>
+      </Tag>
     </>
   );
 }

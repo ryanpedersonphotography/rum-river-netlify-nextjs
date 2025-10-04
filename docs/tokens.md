@@ -372,6 +372,47 @@ Reusable gradient tokens for consistent visual treatments across sections.
 
 ---
 
+## Component Tokens: Spacer Primitive
+
+**Purpose**: Add intentional vertical or horizontal whitespace without wrapper divs or ad-hoc margins.
+
+### `<Spacer>` - Declarative Whitespace
+
+**Props:**
+- `size` ('xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl', default 'md'): spacing amount
+- `axis` ('y' | 'x', default 'y'): vertical or horizontal space
+
+**Token Usage:**
+```jsx
+<Section />
+<Spacer size="2xl" />  {/* 48px vertical space */}
+<Section />
+
+<Button>Left</Button>
+<Spacer size="md" axis="x" />  {/* 16px horizontal space */}
+<Button>Right</Button>
+```
+
+**CSS Classes:**
+- Vertical: `.spacer--y-xs` through `.spacer--y-2xl`
+- Horizontal: `.spacer--x-xs` through `.spacer--x-2xl`
+
+**Spacing Map:**
+- xs: `--space-2` (8px)
+- sm: `--space-3` (12px)
+- md: `--space-4` (16px)
+- lg: `--space-6` (24px)
+- xl: `--space-8` (32px)
+- 2xl: `--space-12` (48px)
+
+**Benefits:**
+- Eliminates ad-hoc `marginTop` inline styles
+- Semantic and explicit (vs hidden in parent/child margin)
+- Maintains token-driven architecture
+- `aria-hidden="true"` for screen reader cleanliness
+
+---
+
 ## Component Tokens: Form Primitives (Field, Select, Textarea, Form)
 
 **Purpose**: Token-driven form layout system with Netlify Forms integration.
