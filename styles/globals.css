@@ -1089,7 +1089,7 @@ body {
     }
 
     .media-block + .media-block {
-      margin-top: var(--space-16) !important;
+      margin-top: var(--space-24) !important;
     }
 
     /* Layout variants */
