@@ -74,10 +74,11 @@ Reusable gradient tokens for consistent visual treatments across sections.
 |-------|-------|--------|
 | `--gradient-hero` | Hero sections with image overlays | Walnut → Deep Forest (135deg) |
 | `--gradient-cta` | CTA/Contact sections | Deep Brown → Walnut (135deg) |
-| `--gradient-footer` | Footer backgrounds | Text Dark → Sage (vertical) |
 | `--gradient-warm` | VR tour, subtle transitions | Cream Pearl → Blush Pink (vertical) |
 | `--gradient-overlay` | Text readability over images | Dark semi-transparent overlay |
 | `--gradient-blocks` | Alternating content blocks | Deep Brown → Deep Forest (135deg) |
+
+**Note:** Footer uses solid `var(--text-dark)` background, not a gradient.
 
 ### Usage Examples
 

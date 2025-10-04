@@ -83,12 +83,6 @@
     #6B4E3D 100%                   /* warm-walnut */
   );
 
-  /* Footer Gradient (dark text → sage, vertical) */
-  --gradient-footer: linear-gradient(180deg,
-    var(--swatch-text-dark) 0%,    /* #2C2416 */
-    var(--swatch-sage-green) 100%  /* #7A8B7F */
-  );
-
   /* VR Tour Gradient (cream → blush, vertical) */
   --gradient-warm: linear-gradient(180deg,
     var(--swatch-cream-pearl) 0%,  /* #FFFCF8 */
