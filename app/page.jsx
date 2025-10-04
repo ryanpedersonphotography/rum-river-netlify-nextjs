@@ -178,7 +178,7 @@ export default function HomePage() {
               </MediaBlock.Media>
             </MediaBlock>
           </div>
-        </div>
+        </Container>
       </Section>
     </>
   );
