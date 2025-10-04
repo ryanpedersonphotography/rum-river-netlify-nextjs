@@ -8,33 +8,34 @@ import Button from 'components/primitives/Button';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section - TEMPORARILY HIDDEN FOR NAV DEVELOPMENT */}
-      {/* <div style={{
+      {/* Hero Section - Pattern 7: Full-Viewport Hero */}
+      <div style={{
         background: `var(--gradient-hero), url('/images/hero/bg-hero.jpg') center/cover`,
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        position: 'relative',
-        color: 'white'
+        position: 'relative'
       }}>
         <Container size="lg" padding="lg">
-          <Stack direction="vertical" gap="xl" style={{ maxWidth: '700px' }}>
+          <Stack direction="vertical" gap="xl" style={{ maxWidth: 'var(--container-md)' }}>
+            {/* Script Accent */}
             <Text
               as="p"
               size="xl"
+              noMargin
               style={{
                 fontFamily: 'var(--font-script)',
-                color: 'var(--accent)',
-                marginBottom: 0
+                color: 'var(--accent)'
               }}
-              noMargin
             >
               Where Dreams Begin
             </Text>
 
+            {/* Main Headline */}
             <Heading
               level={1}
               size="hero"
+              noMargin
               style={{
                 color: 'var(--on-brand)',
                 letterSpacing: '-0.02em',
@@ -44,28 +45,27 @@ export default function HomePage() {
               Rum River Wedding Barn
             </Heading>
 
+            {/* Lead Text */}
             <Text
               size="xl"
               style={{
                 color: 'var(--on-brand)',
-                opacity: 0.95,
-                lineHeight: 1.8,
-                marginBottom: 'var(--space-8)'
+                opacity: 'var(--opacity-soft)',
+                lineHeight: 1.8
               }}
             >
               Minnesota&apos;s premier rustic wedding venue where elegant celebrations meet natural beauty
             </Text>
 
-            <div>
+            {/* CTA Button */}
+            <Stack direction="horizontal" gap="md">
               <Button
                 as="a"
                 href="/contact"
-                tone="brand-alt"
                 size="lg"
                 style={{
                   background: 'white',
                   color: 'var(--brand)',
-                  borderColor: 'white',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   fontWeight: 'var(--weight-medium)'
@@ -73,36 +73,30 @@ export default function HomePage() {
               >
                 Come Check Out The Barn
               </Button>
-            </div>
+            </Stack>
           </Stack>
         </Container>
 
+        {/* Scroll Indicator */}
         <div style={{
           position: 'absolute',
-          bottom: '2rem',
+          bottom: 'var(--space-8)',
           left: '50%',
           transform: 'translateX(-50%)',
           textAlign: 'center',
           color: 'var(--on-brand)',
-          opacity: 0.8
+          opacity: 'var(--opacity-muted)'
         }}>
           <div style={{
-            fontSize: '1.5rem',
+            fontSize: 'var(--text-3xl)',
             animation: 'bounce 2s infinite'
           }}>
             ↓
           </div>
         </div>
-      </div> */}
-
-      {/* Temporary content to see navigation */}
-      <div style={{ paddingTop: '200px', minHeight: '200vh', background: 'var(--bg)' }}>
-        <Container size="lg" padding="lg">
-          <Heading level={1}>Navigation Test Page</Heading>
-          <Text>Scroll down to see the navigation transform from transparent to solid background.</Text>
-          <Text>Hero section is temporarily hidden for nav development.</Text>
-        </Container>
       </div>
+
+      {/* Add sections below hero here */}
     </>
   );
 }
