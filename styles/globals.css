@@ -892,8 +892,10 @@ body {
 
     .nav-content {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: var(--space-4);
       padding: var(--space-4) 0;
     }
 
