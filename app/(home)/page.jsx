@@ -1,4 +1,5 @@
 'use client';
+import Navigation from 'components/Navigation';
 import Container from 'components/primitives/Container';
 import Stack from 'components/primitives/Stack';
 import Heading from 'components/primitives/Heading';
@@ -8,6 +9,7 @@ import Button from 'components/primitives/Button';
 export default function HomePage() {
   return (
     <>
+      <Navigation />
       {/* Hero Section */}
       <div style={{
         background: `var(--gradient-hero), url('/images/hero/bg-hero.jpg') center/cover`,
