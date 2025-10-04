@@ -1,11 +1,11 @@
 import '../styles/globals.css';
 import { Footer } from '../components/footer';
-import { Header } from '../components/header';
+import Navigation from '../components/Navigation';
 
 export const metadata = {
     title: {
-        template: '%s | Netlify',
-        default: 'Netlify Starter'
+        template: '%s | Rum River Wedding Barn',
+        default: 'Rum River Wedding Barn - Minnesota Premier Wedding Venue'
     }
 };
 
@@ -16,13 +16,9 @@ export default function RootLayout({ children }) {
                 <link rel="icon" href="/favicon.svg" sizes="any" />
             </head>
             <body className="antialiased" style={{ color: 'var(--fg)', background: 'var(--bg)' }}>
-                <div className="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-                    <div className="flex flex-col w-full max-w-5xl mx-auto grow">
-                        <Header />
-                        <main className="grow">{children}</main>
-                        <Footer />
-                    </div>
-                </div>
+                <Navigation />
+                <main>{children}</main>
+                <Footer />
             </body>
         </html>
     );
