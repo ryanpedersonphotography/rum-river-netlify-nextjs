@@ -542,3 +542,70 @@ Never use hardcoded values in layout components:
 - ✅ `padding: var(--space-6)`
 
 All spacing, sizing, and colors must reference the token system.
+
+---
+
+## Accessibility & Component States
+
+### Universal State Requirements
+All interactive primitives (Button, Link, Input, interactive Card) implement:
+1. **Focus-visible states** - 3px solid `var(--focus-ring)` with 2px offset
+2. **Hover states** - Visual feedback for mouse/touch users
+3. **Active states** - Pressed/clicked feedback
+4. **Disabled states** - Cursor and opacity changes, removed from tab order
+
+### Button States
+- **Default**: Hover lifts button (-1px translateY), active resets
+- **Disabled**: `cursor: not-allowed`, `opacity: 0.5`, cannot be activated
+- **Loading**: Shows spinner, `aria-busy="true"`, disabled interaction
+- **Focus**: 3px outline with `--focus-ring` color
+
+**ARIA Attributes:**
+- `aria-disabled="true"` when disabled (for anchors)
+- `aria-busy="true"` when loading
+- `tabIndex={-1}` when disabled (for anchors)
+- `disabled` attribute for `<button>` elements
+
+### Input States
+- **Default**: Subtle border with `--input-border`
+- **Hover**: Border color changes to `--brand`
+- **Focus**: 3px outline with `--input-focus-ring`, border matches
+- **Disabled**: `opacity: 0.5`, `background: var(--muted)`, `cursor: not-allowed`
+
+### Link States
+- **Default**: Color from tone variant
+- **Hover**: `opacity: 0.8`, optional underline based on prop
+- **Focus-visible**: 3px outline with border-radius
+- **Active**: `opacity: 0.6` for press feedback
+
+### Card Interactive States
+- **Default**: Standard elevation shadow
+- **Hover** (if `interactive`): Lifts -2px, increases shadow
+- **Focus-visible** (if `interactive`): 3px outline
+- **Polymorphic**: Can render as button, anchor, or div
+
+**When to use:**
+- Set `interactive` prop when card is clickable
+- Use `as="button"` for actions, `as="a"` for navigation
+
+### Keyboard Navigation
+All primitives support standard keyboard interaction:
+- **Tab**: Move focus forward
+- **Shift+Tab**: Move focus backward
+- **Enter**: Activate buttons, links, interactive cards
+- **Space**: Activate buttons (native browser behavior)
+
+### Testing Accessibility
+Visit `/accessibility-demo` to test:
+- Keyboard navigation flow
+- Focus-visible indicators
+- Screen reader announcements (ARIA attributes)
+- State transitions
+- Nested primitive behavior
+
+### Dark Theme Compatibility
+All primitives use role-based tokens, ensuring automatic theme support:
+- Colors adapt via `data-theme="dark"` on root element
+- Focus rings remain visible in both themes
+- Hover/active states maintain contrast ratios
+- No hardcoded colors - everything uses CSS custom properties

@@ -26,6 +26,7 @@ export default function Button({
   size = 'md',
   block = false,
   disabled = false,
+  loading = false,
   debug = false,
   className,
   style,
@@ -77,17 +78,19 @@ export default function Button({
     variant === 'link' && 'btn-link',
     size === 'sm' && 'btn-sm',
     size === 'lg' && 'btn-lg',
+    loading && 'btn--loading',
     block && 'w-full',
     className
   );
 
   // a11y: anchors can be aria-disabled; buttons use disabled attr
   const isAnchor = Tag === 'a';
+  const isDisabled = disabled || loading;
   const a11yProps =
-    isAnchor && disabled
-      ? { 'aria-disabled': true, tabIndex: -1, onClick: (e) => e.preventDefault() }
-      : {};
-  const buttonProps = Tag === 'button' ? { type: 'button', disabled } : {};
+    isAnchor && isDisabled
+      ? { 'aria-disabled': true, 'aria-busy': loading, tabIndex: -1, onClick: (e) => e.preventDefault() }
+      : loading ? { 'aria-busy': true } : {};
+  const buttonProps = Tag === 'button' ? { type: 'button', disabled: isDisabled } : {};
 
   // Debug data
   const tokenVars = ['--brand','--on-brand','--brand-alt','--on-brand-alt','--accent','--on-accent','--muted','--on-muted','--surface','--on-surface','--border','--space-2','--space-3','--space-4','--space-5','--space-6','--space-7','--r-full'];

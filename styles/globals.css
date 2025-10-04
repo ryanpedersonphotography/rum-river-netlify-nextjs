@@ -237,8 +237,45 @@ body {
         text-align: center;
     }
 
-    .btn:hover:not(:disabled) { opacity: 0.9; }
-    .btn:disabled { cursor: default; opacity: 0.5; }
+    .btn:hover:not(:disabled) {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .btn:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    /* Loading state */
+    .btn--loading {
+      position: relative;
+      color: transparent !important;
+      pointer-events: none;
+    }
+    .btn--loading::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      margin-left: -8px;
+      margin-top: -8px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: btn-spin 0.6s linear infinite;
+    }
+    @keyframes btn-spin {
+      to { transform: rotate(360deg); }
+    }
 
     .btn-sm {
         --btn-py: var(--space-2);
@@ -284,15 +321,21 @@ body {
         opacity: 0.7;
     }
 
-    .input:focus {
-        outline: 2px solid var(--input-focus-ring);
+    .input:focus,
+    .input:focus-visible {
+        outline: 3px solid var(--input-focus-ring);
         outline-offset: 2px;
         border-color: var(--input-focus-ring);
+    }
+
+    .input:hover:not(:disabled):not(:focus) {
+        border-color: var(--brand);
     }
 
     .input:disabled {
         opacity: 0.5;
         cursor: not-allowed;
+        background: var(--muted);
     }
 
     .input-sm {
@@ -599,6 +642,16 @@ body {
 
     .link:hover {
       opacity: 0.8;
+    }
+
+    .link:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+      border-radius: var(--r-sm);
+    }
+
+    .link:active {
+      opacity: 0.6;
     }
 
     /* Tone variants */
