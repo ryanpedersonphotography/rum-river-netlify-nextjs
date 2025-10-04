@@ -110,14 +110,16 @@ export default function HomePage() {
         }}
       >
         <Container size="lg">
-          <div style={{ textAlign: 'center' }}>
-            <SectionHeader
-              align="center"
-              accent="Your Perfect Venue"
-              title="Why Choose Rum River Barn"
-              description="Discover what makes our venue the perfect setting for your unforgettable celebration"
-            />
-          </div>
+          <Container size="lg">
+            <div style={{ textAlign: 'center' }}>
+              <SectionHeader
+                align="center"
+                accent="Your Perfect Venue"
+                title="Why Choose Rum River Barn"
+                description="Discover what makes our venue the perfect setting for your unforgettable celebration"
+              />
+            </div>
+          </Container>
 
           <div style={{ marginTop: 'var(--space-12)' }}>
             {/* Block 01 */}
