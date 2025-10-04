@@ -66,6 +66,41 @@
   --error: #B91C1C;     /* dark red - WCAG AA: 7.1:1 on cream */
   --warning: #92400E;   /* dark amber - WCAG AA: 8.2:1 on cream */
 
+  /* ============================================
+     GRADIENTS (Reusable Background Patterns)
+     Use with: background: var(--gradient-hero)
+     ============================================ */
+
+  /* Hero Gradient (walnut → sage, 135deg diagonal) */
+  --gradient-hero: linear-gradient(135deg,
+    rgba(107, 78, 61, 0.9) 0%,     /* warm-walnut with 90% opacity */
+    rgba(122, 139, 127, 0.8) 100%  /* sage-green with 80% opacity */
+  );
+
+  /* Footer Gradient (dark text → sage, vertical) */
+  --gradient-footer: linear-gradient(180deg,
+    var(--swatch-text-dark) 0%,    /* #2C2416 */
+    var(--swatch-sage-green) 100%  /* #7A8B7F */
+  );
+
+  /* Warm Gradient (cream → blush, subtle) */
+  --gradient-warm: linear-gradient(180deg,
+    var(--swatch-cream-pearl) 0%,  /* #FFFCF8 */
+    var(--swatch-blush-pink) 100%  /* #F4E4E1 */
+  );
+
+  /* Dark Overlay (for text readability over images) */
+  --gradient-overlay: linear-gradient(180deg,
+    rgba(44, 36, 22, 0.7) 0%,      /* text-dark with 70% opacity */
+    rgba(44, 36, 22, 0.5) 100%     /* text-dark with 50% opacity */
+  );
+
+  /* Alternating Blocks Gradient (deep tones) */
+  --gradient-blocks: linear-gradient(135deg,
+    rgba(74, 52, 38, 0.95) 0%,     /* deep-brown #4A3426 */
+    rgba(58, 74, 60, 0.95) 100%    /* deep-forest #3A4A3C */
+  );
+
   /* Typography */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Montserrat', sans-serif;

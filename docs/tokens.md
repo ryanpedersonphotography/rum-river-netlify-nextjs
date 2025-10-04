@@ -66,6 +66,48 @@ Every `--on-{role}` pairing is tested for WCAG AA compliance (4.5:1 minimum).
 
 ---
 
+## Gradients (Background Patterns)
+
+Reusable gradient tokens for consistent visual treatments across sections.
+
+| Token | Usage | Colors |
+|-------|-------|--------|
+| `--gradient-hero` | Hero sections with image overlays | Walnut → Sage (135deg diagonal) |
+| `--gradient-footer` | Footer backgrounds | Text Dark → Sage (vertical) |
+| `--gradient-warm` | Subtle section transitions | Cream Pearl → Blush Pink (vertical) |
+| `--gradient-overlay` | Text readability over images | Dark semi-transparent overlay |
+| `--gradient-blocks` | Alternating content blocks | Deep Brown → Deep Forest (135deg) |
+
+### Usage Examples
+
+**Hero with background image:**
+```jsx
+<div style={{
+  background: `var(--gradient-hero), url('/images/hero.jpg') center/cover`,
+  minHeight: '100vh'
+}}>
+  <Heading style={{color: 'var(--on-brand)'}}>Hero Title</Heading>
+</div>
+```
+
+**Subtle section gradient:**
+```jsx
+<Section style={{background: 'var(--gradient-warm)'}}>
+  <Container>Content with warm gradient background</Container>
+</Section>
+```
+
+**Image with text overlay:**
+```jsx
+<div style={{
+  background: `var(--gradient-overlay), url('/images/venue.jpg') center/cover`
+}}>
+  <Text style={{color: 'white'}}>Readable text over image</Text>
+</div>
+```
+
+---
+
 ## Spacing
 
 - `--space-1` … `--space-12` (4px grid)
