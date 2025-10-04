@@ -312,11 +312,14 @@ Reusable gradient tokens for consistent visual treatments across sections.
 
 **Section size drives ALL header spacing automatically:**
 
-- **sm sections**: `--title-gap: var(--space-3)`, `--title-mb: var(--space-6)`, `--section-gap: var(--space-6)`
-- **md sections**: `--title-gap: var(--space-3)`, `--title-mb: var(--space-8)`, `--section-gap: var(--space-8)`
-- **lg sections**: `--title-gap: var(--space-4)`, `--title-mb: var(--space-10)`, `--section-gap: var(--space-10)`
+- **sm sections**: `--title-gap: var(--space-3)` (12px), `--title-mb: var(--space-6)` (24px), `--section-gap: var(--space-6)`
+- **md sections**: `--title-gap: var(--space-4)` (16px), `--title-mb: var(--space-8)` (32px), `--section-gap: var(--space-8)`
+- **lg sections**: `--title-gap: var(--space-5)` (20px), `--title-mb: var(--space-12)` (48px), `--section-gap: var(--space-10)`
+- **xl sections**: `--title-gap: var(--space-6)` (24px), `--title-mb: var(--space-16)` (64px), `--section-gap: var(--space-12)`
 
 **Usage Rule**: Never add manual margins around SectionHeader. The parent Section size controls all spacing via these tokens.
+
+**Readability**: SectionHeader has `max-width: 68ch` for comfortable reading. Centered headers auto-center with proper margins.
 
 ### Section Role Variants
 - `section--surface` — background = `--surface`, text = `--on-surface` (default)
