@@ -111,6 +111,7 @@ export default function HomePage() {
       >
         <Container size="lg">
           <SectionHeader
+            align="center"
             accent="Your Perfect Venue"
             title="Why Choose Rum River Barn"
             description="Discover what makes our venue the perfect setting for your unforgettable celebration"
