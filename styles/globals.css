@@ -348,6 +348,19 @@ body {
       to { transform: rotate(360deg); }
     }
 
+    /* Hero scroll indicator bounce animation */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
     .btn-sm {
         --btn-py: var(--space-2);
         --btn-px: var(--space-5);
