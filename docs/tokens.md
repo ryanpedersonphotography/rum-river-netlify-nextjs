@@ -288,30 +288,42 @@ Typography primitives use existing role and type tokens—no additional tokens n
 
 ---
 
-## Section (Layout Wrapper)
+## Section Primitive (Layout Wrapper)
 
 ### Purpose
-Consistent vertical rhythm + centered content. Wrap page chunks:
-`<Section><Card>…</Card></Section>`.
+Full-bleed horizontal band with consistent vertical rhythm and a centered content container.
 
-### Tokens
-- Spacing:
-  - `--section-py-sm` (default `--space-8`)
-  - `--section-py-md` (default `--space-10`)
-  - `--section-py-lg` (default `--space-12`)
-- Container:
-  - `--container` (max width)
-  - Side padding uses `--space-5`
-- Tone → role tokens:
-  - `surface` → `--surface` / `--on-surface`
-  - `brand`   → `--brand` / `--on-brand`
-  - `muted`   → `--muted` / `--on-muted`
-  - `accent`  → `--accent` / `--on-accent`
-- Align:
-  - `left | center` (text-align only)
+### Props / Modifiers
+- **tone**: `neutral` | `brand` | `muted` | `accent`
+- **variant**: `default` | `muted` | `solid`
+- **size**: `sm` | `md` | `lg` (vertical padding scale)
+- **align**: `left` | `center` (text alignment inside)
+- **noContainer**: optional (use full-bleed content)
 
-### Rules
-1. Default vertical padding = **md** (mobile can collapse to **sm** if desired).
-2. Content is centered to `--container` with horizontal padding `--space-5`.
-3. Tone controls background/text; neutral/default is `surface`.
-4. Use **lg** padding only for hero/CTA sections.
+### Token Contract
+**Vertical padding vars (defaults):**
+- `--section-py-sm`: `var(--space-8)`
+- `--section-py-md`: `var(--space-12)`
+- `--section-py-lg`: `var(--space-16)`
+
+**Container:**
+- `--container`: `1120px`
+- Side gutters: `--space-5` (fallback to your scale)
+
+**Role mapping (computed per tone × variant):**
+- `--sec-bg` / `--sec-fg` (background / text for the section band)
+
+### Variant Matrix (tone × variant → roles)
+- **variant=default** → transparent, inherit page colors
+- **variant=muted** → `--sec-bg: var(--muted)`, `--sec-fg: var(--on-muted)`
+- **variant=solid** →
+  - `tone=neutral` → `--sec-bg: var(--surface)`, `--sec-fg: var(--on-surface)`
+  - `tone=brand`   → `--sec-bg: var(--brand)`,   `--sec-fg: var(--on-brand)`
+  - `tone=muted`   → `--sec-bg: var(--muted)`,   `--sec-fg: var(--on-muted)`
+  - `tone=accent`  → `--sec-bg: var(--accent)`,  `--sec-fg: var(--on-accent)`
+
+### Usage Rules
+1. Never put Tailwind `py-*`/`p-*` on `.section`; use size modifiers only.
+2. Content lives in `.section__container` (centers to `--container` with side gutters).
+3. Use align modifiers for typography alignment (don't inline-style text-align).
+4. Section sets only band visuals and vertical rhythm; put cards/forms inside.

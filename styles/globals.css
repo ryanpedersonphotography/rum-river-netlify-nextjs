@@ -90,8 +90,8 @@
 
   /* Section tokens */
   --section-py-sm: var(--space-8);
-  --section-py-md: var(--space-10);
-  --section-py-lg: var(--space-12);
+  --section-py-md: var(--space-12);
+  --section-py-lg: var(--space-16);
 
   /* Motion */
   --motion-scale: 1;
@@ -459,41 +459,71 @@ body {
         }
     }
 
-    /* ===== Section (layout wrapper) ===== */
+    /* ===========================
+       Section primitive
+       =========================== */
 
+    /* Base: full-bleed band using computed vars */
     .section {
-      /* size (defaults to md unless overridden by a size class) */
-      padding-block: var(--section-py, var(--section-py-md));
+      /* computed per variant/tone */
+      --sec-bg: transparent;
+      --sec-fg: var(--fg);
+      --sec-py: var(--section-py-md); /* default size */
 
-      /* tone (defaults to surface) */
-      background: var(--section-bg, var(--surface));
-      color: var(--section-fg, var(--on-surface));
+      background: var(--sec-bg);
+      color: var(--sec-fg);
+
+      /* vertical rhythm */
+      padding-top: var(--sec-py);
+      padding-bottom: var(--sec-py);
     }
 
-    .section .section__inner {
+    /* Content container */
+    .section__container {
       max-width: var(--container);
       margin-inline: auto;
-      padding-inline: var(--space-5);
-      text-align: var(--section-align, left);
+      padding-inline: var(--space-5); /* gutters */
     }
 
-    /* size variants */
-    .section--sm { --section-py: var(--section-py-sm); }
-    .section--md { --section-py: var(--section-py-md); }
-    .section--lg { --section-py: var(--section-py-lg); }
+    /* Size modifiers (set the variable, not padding directly) */
+    .section--size-sm { --sec-py: var(--section-py-sm); }
+    .section--size-md { --sec-py: var(--section-py-md); }
+    .section--size-lg { --sec-py: var(--section-py-lg); }
 
-    /* tone variants map to role tokens */
-    .section--brand  { --section-bg: var(--brand);  --section-fg: var(--on-brand); }
-    .section--muted  { --section-bg: var(--muted);  --section-fg: var(--on-muted); }
-    .section--accent { --section-bg: var(--accent); --section-fg: var(--on-accent); }
-    /* surface is default; class optional, but you can add this for explicitness: */
-    .section--surface { --section-bg: var(--surface); --section-fg: var(--on-surface); }
+    /* Align modifiers */
+    .section--align-left   { text-align: left; }
+    .section--align-center { text-align: center; }
 
-    /* alignment */
-    .section--center { --section-align: center; }
+    /* Variant = default: transparent (already base) */
+    .section--variant-default {}
 
-    /* optional: media tweak (reduce vertical rhythm on small screens) */
-    @media (max-width: 640px) {
-      .section { padding-block: var(--section-py-sm); }
+    /* Variant = muted (tone independent) */
+    .section--variant-muted {
+      --sec-bg: var(--muted);
+      --sec-fg: var(--on-muted);
+    }
+
+    /* Variant = solid: tone-mapped roles */
+    .section--variant-solid.section--tone-neutral {
+      --sec-bg: var(--surface);
+      --sec-fg: var(--on-surface);
+    }
+    .section--variant-solid.section--tone-brand {
+      --sec-bg: var(--brand);
+      --sec-fg: var(--on-brand);
+    }
+    .section--variant-solid.section--tone-muted {
+      --sec-bg: var(--muted);
+      --sec-fg: var(--on-muted);
+    }
+    .section--variant-solid.section--tone-accent {
+      --sec-bg: var(--accent);
+      --sec-fg: var(--on-accent);
+    }
+
+    /* Optional: noContainer (let children manage their own width) */
+    .section--noContainer .section__container {
+      max-width: none;
+      padding-inline: 0;
     }
 }
