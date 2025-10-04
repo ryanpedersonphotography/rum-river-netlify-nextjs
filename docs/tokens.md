@@ -267,6 +267,32 @@ Reusable gradient tokens for consistent visual treatments across sections.
 --transition-elegant: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 ```
 
+### Blur Effects
+```css
+--blur-sm: 8px;
+--blur-md: 20px;
+--blur-lg: 40px;
+```
+
+### Opacity Levels
+```css
+--opacity-muted: 0.8;
+--opacity-soft: 0.95;
+--opacity-ghost: 0.98;
+```
+
+### Scroll & Animation
+```css
+--scroll-threshold: 100px;        /* When navigation background appears */
+--nav-dropdown-offset: 10px;      /* Dropdown slide-in distance */
+```
+
+### Navigation Backgrounds
+```css
+--nav-bg-transparent: transparent;
+--nav-bg-scrolled: rgba(255, 252, 248, 0.98); /* cream pearl with 98% opacity */
+```
+
 ### Layout
 ```css
 --container: 1120px;

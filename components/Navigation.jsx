@@ -1,18 +1,13 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      const header = document.getElementById('navigation');
-      if (header) {
-        if (window.scrollY > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
+      setScrolled(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,9 +15,24 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header id="navigation" className="nav-header">
-      <div className="nav-wrapper">
-        <div className="nav-content">
+    <header
+      className={scrolled ? 'nav-header scrolled' : 'nav-header'}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 900,
+        background: scrolled ? 'var(--nav-bg-scrolled)' : 'var(--nav-bg-transparent)',
+        backdropFilter: scrolled ? `blur(var(--blur-md))` : 'none',
+        padding: scrolled ? 'var(--space-4) 0' : 'var(--space-8) 0',
+        boxShadow: scrolled ? 'var(--shadow-md)' : 'none',
+        transition: 'var(--transition-base)',
+        textAlign: 'center'
+      }}
+    >
+      {/* Pattern 1: Full-width centered - no wrapper constraint */}
+      <div className="nav-content" style={{ padding: 'var(--space-4) 0' }}>
           {/* Logo */}
           <Link href="/" className="nav-logo">
             <div className="nav-logo-circle">RR</div>
@@ -62,7 +72,6 @@ export default function Navigation() {
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </nav>
-        </div>
       </div>
     </header>
   );

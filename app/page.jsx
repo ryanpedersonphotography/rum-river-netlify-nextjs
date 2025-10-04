@@ -8,8 +8,8 @@ import Button from 'components/primitives/Button';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
-      <div style={{
+      {/* Hero Section - TEMPORARILY HIDDEN FOR NAV DEVELOPMENT */}
+      {/* <div style={{
         background: `var(--gradient-hero), url('/images/hero/bg-hero.jpg') center/cover`,
         minHeight: '100vh',
         display: 'flex',
@@ -19,7 +19,6 @@ export default function HomePage() {
       }}>
         <Container size="lg" padding="lg">
           <Stack direction="vertical" gap="xl" style={{ maxWidth: '700px' }}>
-            {/* Script Accent */}
             <Text
               as="p"
               size="xl"
@@ -33,7 +32,6 @@ export default function HomePage() {
               Where Dreams Begin
             </Text>
 
-            {/* Main Headline */}
             <Heading
               level={1}
               size="hero"
@@ -46,7 +44,6 @@ export default function HomePage() {
               Rum River Wedding Barn
             </Heading>
 
-            {/* Lead Text */}
             <Text
               size="xl"
               style={{
@@ -59,7 +56,6 @@ export default function HomePage() {
               Minnesota&apos;s premier rustic wedding venue where elegant celebrations meet natural beauty
             </Text>
 
-            {/* CTA Button */}
             <div>
               <Button
                 as="a"
@@ -81,7 +77,6 @@ export default function HomePage() {
           </Stack>
         </Container>
 
-        {/* Scroll Indicator */}
         <div style={{
           position: 'absolute',
           bottom: '2rem',
@@ -98,9 +93,16 @@ export default function HomePage() {
             ↓
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* Add sections below hero here */}
+      {/* Temporary content to see navigation */}
+      <div style={{ paddingTop: '200px', minHeight: '200vh', background: 'var(--bg)' }}>
+        <Container size="lg" padding="lg">
+          <Heading level={1}>Navigation Test Page</Heading>
+          <Text>Scroll down to see the navigation transform from transparent to solid background.</Text>
+          <Text>Hero section is temporarily hidden for nav development.</Text>
+        </Container>
+      </div>
     </>
   );
 }
