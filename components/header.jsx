@@ -10,6 +10,7 @@ const navItems = [
     { linkText: 'Spacing Demo', href: '/spacing-demo' },
     { linkText: 'Section Demo', href: '/section-demo' },
     { linkText: 'Layout Demo', href: '/layout-demo' },
+    { linkText: 'Layout Patterns', href: '/layout-patterns' },
     { linkText: 'Button Demo', href: '/button-demo' },
     { linkText: 'Input Demo', href: '/input-demo' },
     { linkText: 'Typography Demo', href: '/typography-demo' },
