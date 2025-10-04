@@ -24,7 +24,7 @@ export default function TypographyDemo() {
           {debug ? '🔧 Debug ON' : '🔧 Debug OFF'}
         </button>
       </div>
-      <Text debug={debug} size="lg" align="center" tone="on-surface" debug={debug}>
+      <Text debug={debug} size="lg" align="center" tone="on-surface">
         Token-driven typography, clean and consistent.
       </Text>
 
@@ -34,7 +34,7 @@ export default function TypographyDemo() {
           <Heading level={1} size="hero" debug={debug}>Hero Heading (Responsive)</Heading>
           <Heading level={1} debug={debug}>H1 - Main Page Title</Heading>
           <Heading level={2} debug={debug}>H2 - Section Heading</Heading>
-          <Heading level={3} debug={debug} debug={debug}>H3 - Subsection Heading</Heading>
+          <Heading level={3} debug={debug}>H3 - Subsection Heading</Heading>
           <Heading level={4} debug={debug}>H4 - Minor Heading</Heading>
           <Heading level={5} debug={debug}>H5 - Small Heading</Heading>
           <Heading level={6} debug={debug}>H6 - Smallest Heading</Heading>
