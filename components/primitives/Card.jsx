@@ -1,5 +1,6 @@
 'use client';
 import React, { useMemo, useRef } from 'react';
+import clsx from 'clsx';
 import useResolvedTokens from 'components/dev/useResolvedTokens';
 import DebugPanel from 'components/dev/DebugPanel';
 
@@ -48,20 +49,20 @@ export default function Card({
 }) {
   const ref = useRef(null);
 
-  const classes = useMemo(() => [
+  const classes = clsx(
     'card',
-    `card--${tone}`,
-    `card--e${elevation}`,
-    `card--r-${radius}`,
-    `card--p-${padding}`,
+    `card--${tone ?? 'neutral'}`,
+    `card--e${elevation ?? 1}`,
+    `card--r-${radius ?? 'md'}`,
+    `card--p-${padding ?? 'md'}`,   // 👈 always emit a padding class
     align !== 'left' && `ta-${align}`,
     interactive && 'card--interactive',
     className
-  ].filter(Boolean).join(' '), [tone, elevation, radius, padding, align, interactive, className]);
+  );
 
   const tokenVars = useMemo(() => {
-    const toneVars = MAP.tone[tone] ?? MAP.tone.neutral;
-    return [...toneVars, MAP.padding[padding], MAP.radius[radius], MAP.shadow[elevation]];
+    const toneVars = MAP.tone[tone ?? 'neutral'] ?? MAP.tone.neutral;
+    return [...toneVars, MAP.padding[padding ?? 'md'], MAP.radius[radius ?? 'md'], MAP.shadow[elevation ?? 1]];
   }, [tone, padding, radius, elevation]);
 
   const cssProps = ['background-color','color','border-color','box-shadow','border-radius','padding-top'];

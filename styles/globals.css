@@ -351,12 +351,16 @@ body {
         color: var(--on-surface);
     }
 
-    /* Base: shape only */
+    /* --- Card base: shape + a single padding var --- */
     .card {
+      /* shape */
       border-radius: var(--r-md);
       box-shadow: var(--shadow-sm);
-      padding: var(--space-6);
       transition: var(--transition-fast);
+
+      /* padding controlled by a single var */
+      --card-padding: var(--space-6); /* default md */
+      padding: var(--card-padding);
     }
 
     /* Tones own color/contrast (explicit neutral) */
@@ -376,10 +380,10 @@ body {
     .card--r-md { border-radius: var(--r-md); }
     .card--r-lg { border-radius: var(--r-lg); }
 
-    /* padding scale */
-    .card--p-sm { padding: var(--space-4); }
-    .card--p-md { padding: var(--space-6); }
-    .card--p-lg { padding: var(--space-8); }
+    /* --- Size modifiers only switch the variable --- */
+    .card--p-sm { --card-padding: var(--space-4); }
+    .card--p-md { --card-padding: var(--space-6); } /* default */
+    .card--p-lg { --card-padding: var(--space-8); }
 
     /* interactive affordance */
     .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
