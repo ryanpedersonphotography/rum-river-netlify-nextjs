@@ -351,39 +351,37 @@ body {
         color: var(--on-surface);
     }
 
-    /* --- Card base: shape + a single padding var --- */
+    /* Base: shape + padding var */
     .card {
-      /* shape */
       border-radius: var(--r-md);
       box-shadow: var(--shadow-sm);
       transition: var(--transition-fast);
 
-      /* padding controlled by a single var */
       --card-padding: var(--space-6); /* default md */
       padding: var(--card-padding);
     }
 
-    /* Tones own color/contrast (explicit neutral) */
-    .card--neutral { background: var(--surface);  color: var(--on-surface);  border: 1px solid var(--border); }
-    .card--brand   { background: var(--brand);    color: var(--on-brand);    border: 1px solid transparent; }
-    .card--muted   { background: var(--muted);    color: var(--on-muted);    border: 1px solid transparent; }
-    .card--accent  { background: var(--accent);   color: var(--on-accent);   border: 1px solid transparent; }
+    /* Padding sizes */
+    .card--p-sm { --card-padding: var(--space-4); } /* 16px */
+    .card--p-md { --card-padding: var(--space-6); } /* 24px (default) */
+    .card--p-lg { --card-padding: var(--space-8); } /* 32px */
 
-    /* elevation */
-    .card--e0 { box-shadow: none; }
-    .card--e1 { box-shadow: var(--shadow-sm); }
-    .card--e2 { box-shadow: var(--shadow-md); }
-    .card--e3 { box-shadow: var(--shadow-lg); }
+    /* Tones */
+    .card--neutral { background: var(--surface); color: var(--on-surface); border: 1px solid var(--border); }
+    .card--brand   { background: var(--brand);   color: var(--on-brand);   border: 1px solid transparent; }
+    .card--muted   { background: var(--muted);   color: var(--on-muted);   }
+    .card--accent  { background: var(--accent);  color: var(--on-accent);  }
 
-    /* radius */
+    /* Radius */
     .card--r-sm { border-radius: var(--r-sm); }
     .card--r-md { border-radius: var(--r-md); }
     .card--r-lg { border-radius: var(--r-lg); }
 
-    /* --- Size modifiers only switch the variable --- */
-    .card--p-sm { --card-padding: var(--space-4); }
-    .card--p-md { --card-padding: var(--space-6); } /* default */
-    .card--p-lg { --card-padding: var(--space-8); }
+    /* Elevation */
+    .card--e0 { box-shadow: var(--shadow-none, none); }
+    .card--e1 { box-shadow: var(--shadow-sm); }
+    .card--e2 { box-shadow: var(--shadow-md); }
+    .card--e3 { box-shadow: var(--shadow-lg); }
 
     /* interactive affordance */
     .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
