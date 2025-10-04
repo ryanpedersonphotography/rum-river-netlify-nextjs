@@ -5,7 +5,8 @@ export default function ComponentsDemoLayout({ children }) {
         <div style={{
             maxWidth: 'var(--container)',
             margin: '0 auto',
-            padding: 'var(--space-8)'
+            padding: 'var(--space-8)',
+            paddingTop: 'calc(120px + var(--space-8))' /* Account for fixed header */
         }}>
             {/* Demo Navigation - links to other component demos */}
             <div style={{

@@ -6,6 +6,7 @@ import githubLogo from 'public/images/github-mark-white.svg';
 const navItems = [
     { linkText: 'Wedding Site Home', href: '/' },
     { linkText: 'Style Audit', href: '/components-demo/style-audit' },
+    { linkText: 'Cookbook', href: '/components-demo/cookbook' },
     { linkText: 'Accessibility', href: '/components-demo/accessibility-demo' },
     { linkText: 'Spacing Demo', href: '/components-demo/spacing-demo' },
     { linkText: 'Section Demo', href: '/components-demo/section-demo' },

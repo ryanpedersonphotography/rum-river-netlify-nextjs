@@ -38,25 +38,99 @@ This project implements a **documentation-first, token-driven design system** wi
 ## Design System Implementation Status
 
 ### ✅ Completed Components
-1. **Button System** (`/components/primitives/Button.jsx`)
-   - 5 tones × 3 variants × 3 sizes
-   - Polymorphic (can render as button, anchor, or any element)
-   - Full accessibility support with proper disabled states
 
-2. **Input System** (`/components/primitives/Input.jsx`)
+#### Primitives (Basic Building Blocks)
+1. **Button** ([Button.jsx](components/primitives/Button.jsx))
+   - 5 tones × 3 variants (solid, outline, link) × 3 sizes
+   - Polymorphic `as` prop (button, anchor, any element)
+   - Full accessibility with disabled states
+   - Demo: [/components-demo/button-demo](http://localhost:3005/components-demo/button-demo)
+
+2. **Typography** ([Heading.jsx](components/primitives/Heading.jsx), [Text.jsx](components/primitives/Text.jsx))
+   - **Heading**: Semantic levels (h1-h6) with visual size flexibility
+   - **Text**: Complete size scale, weights, alignment options
+   - Role-based color theming with `tone` prop
+   - Demo: [/components-demo/typography-demo](http://localhost:3005/components-demo/typography-demo)
+
+3. **Input** ([Input.jsx](components/primitives/Input.jsx))
    - All HTML input types supported
    - 3 size variants with token-driven spacing
    - Focus states using design system focus ring
+   - Demo: [/components-demo/input-demo](http://localhost:3005/components-demo/input-demo)
 
-3. **Typography System** (`/components/primitives/Heading.jsx`, `/Text.jsx`)
-   - Semantic heading levels with visual size flexibility
-   - Role-based color theming
-   - Complete weight and alignment options
-
-4. **Card/Surface System** (`/components/primitives/Card.jsx`)
+4. **Card** ([Card.jsx](components/primitives/Card.jsx))
    - 4 tone variants with proper contrast
    - 4 elevation levels using shadow tokens
    - Interactive affordances for clickable cards
+   - Demo: [/components-demo/card-demo](http://localhost:3005/components-demo/card-demo)
+
+5. **Link** ([Link.jsx](components/primitives/Link.jsx))
+   - Styled anchor component with design system integration
+   - Tone variants for different contexts
+
+#### Layout Components
+6. **Section** ([Section.jsx](components/layout/Section.jsx))
+   - Page section wrapper with tone variants (surface, brand, muted, accent)
+   - Size options (sm, md, lg, xl, full)
+   - Built-in Container support with `noContainer` override
+   - Background pattern support
+   - Demo: [/components-demo/section-demo](http://localhost:3005/components-demo/section-demo)
+
+7. **Container** ([Container.jsx](components/primitives/Container.jsx))
+   - Max-width wrapper with 3 size variants (sm, md, lg)
+   - Polymorphic `as` prop for semantic HTML
+   - Debug mode with visual boundaries
+   - Responsive padding with token-driven spacing
+
+8. **Stack** ([Stack.jsx](components/primitives/Stack.jsx))
+   - Flexbox layout for vertical/horizontal stacking
+   - Gap tokens (xs through 2xl)
+   - Polymorphic `as` prop (div, ul, nav, etc.)
+   - Alignment and justification options
+
+9. **Grid** ([Grid.jsx](components/primitives/Grid.jsx))
+   - CSS Grid layout with column presets (2, 3, 4 columns)
+   - Responsive gap tokens
+   - Polymorphic `as` prop for semantic HTML
+
+10. **Spacer** ([Spacer.jsx](components/primitives/Spacer.jsx))
+    - Declarative whitespace without wrapper divs
+    - Vertical/horizontal spacing
+    - Size variants (xs through 2xl)
+    - Demo: [/components-demo/spacing-demo](http://localhost:3005/components-demo/spacing-demo)
+
+#### Content Patterns
+11. **SectionHeader** ([SectionHeader.jsx](components/primitives/SectionHeader.jsx))
+    - Standardized section title pattern
+    - Script accent + main heading + description
+    - Alignment options (left, center)
+    - Locked rhythm system with `--title-gap` and `--title-mb`
+
+12. **MediaBlock** ([MediaBlock.jsx](components/primitives/MediaBlock.jsx))
+    - Content + image layout pattern
+    - Two layouts: image-right, image-left
+    - Optional numbered blocks (e.g., "01", "02")
+    - Tone variants for text color context
+    - Slots: `<MediaBlock.Content>` and `<MediaBlock.Media>`
+
+#### Form Components
+13. **Form** ([Form.jsx](components/forms/Form.jsx))
+    - Netlify Forms integration
+    - Grid layout (1 or 2 columns)
+    - Tone variants with optional card styling
+    - Demo: [/components-demo/form-demo](http://localhost:3005/components-demo/form-demo)
+
+14. **Form Controls** ([controls.jsx](components/forms/controls.jsx))
+    - **Field**: Label + input wrapper with error states
+    - **Select**: Styled select dropdown
+    - **Textarea**: Multi-line text input
+    - Full/half width variants
+
+15. **ScheduleTourForm** ([ScheduleTourForm.jsx](components/forms/ScheduleTourForm.jsx))
+    - Complete venue tour booking form
+    - 2-column grid layout with responsive fields
+    - Netlify Forms integration
+    - Token-driven styling throughout
 
 ### 🎨 Design Token Categories
 - **Colors**: Role-based system with light/dark theme support
@@ -65,13 +139,18 @@ This project implements a **documentation-first, token-driven design system** wi
 - **Radii**: 4 radius options for different use cases
 - **Shadows**: 3-level elevation system
 - **Transitions**: 4 timing presets for animations
+- **Gradients**: Hero and block gradient patterns
 
 ### 📱 Demo Pages
-- `/style-audit` - Live token visualization with theme toggle
-- `/button-demo` - All button variants and combinations
-- `/input-demo` - Form controls and input types
-- `/typography-demo` - Complete typography showcase
-- `/card-demo` - Surface components and layouts
+- [/components-demo/style-audit](http://localhost:3005/components-demo/style-audit) - Live token visualization with theme toggle
+- [/components-demo/button-demo](http://localhost:3005/components-demo/button-demo) - All button variants and combinations
+- [/components-demo/input-demo](http://localhost:3005/components-demo/input-demo) - Form controls and input types
+- [/components-demo/form-demo](http://localhost:3005/components-demo/form-demo) - Complete form examples
+- [/components-demo/typography-demo](http://localhost:3005/components-demo/typography-demo) - Typography system showcase
+- [/components-demo/card-demo](http://localhost:3005/components-demo/card-demo) - Surface components and layouts
+- [/components-demo/section-demo](http://localhost:3005/components-demo/section-demo) - Section layout patterns
+- [/components-demo/spacing-demo](http://localhost:3005/components-demo/spacing-demo) - Spacer component examples
+- [/components-demo/debug-demo](http://localhost:3005/components-demo/debug-demo) - Debug mode visualization
 
 ## Development Commands
 

@@ -1,8 +1,9 @@
 'use client';
 import Section from 'components/layout/Section';
 import Container from 'components/primitives/Container';
-import Heading from 'components/primitives/Heading';
-import Text from 'components/primitives/Text';
+import Grid from 'components/primitives/Grid';
+import Spacer from 'components/primitives/Spacer';
+import SectionHeader from 'components/primitives/SectionHeader';
 import Button from 'components/primitives/Button';
 import Input from 'components/primitives/Input';
 import Form from 'components/forms/Form';
@@ -42,32 +43,21 @@ export default function ScheduleTourForm({
       noContainer
       style={{ background: 'var(--gradient-blocks)' }}
     >
-      <Container size="md" center>
-        {showHeader && (
-          <div className="section__header">
-            <Text
-              size="xl"
-              noMargin
-              style={{
-                fontFamily: 'var(--font-script)',
-                color: 'var(--accent)'
-              }}
-            >
-              {subtitle}
-            </Text>
-            <Heading level={2} noMargin align="center">
-              {title}
-            </Heading>
-            <Text
-              size="lg"
+      {showHeader && (
+        <>
+          <Grid columns={1} justify="center">
+            <SectionHeader
               align="center"
-              style={{ opacity: 'var(--opacity-soft)' }}
-            >
-              {description}
-            </Text>
-          </div>
-        )}
+              accent={subtitle}
+              title={title}
+              description={description}
+            />
+          </Grid>
+          <Spacer size="2xl" />
+        </>
+      )}
 
+      <Container size="md" center>
         <div className="form-wrap">
             <Form
               name={formName}

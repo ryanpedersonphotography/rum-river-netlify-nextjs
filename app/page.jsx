@@ -1,6 +1,8 @@
 'use client';
 import Container from 'components/primitives/Container';
 import Stack from 'components/primitives/Stack';
+import Grid from 'components/primitives/Grid';
+import Spacer from 'components/primitives/Spacer';
 import Heading from 'components/primitives/Heading';
 import Text from 'components/primitives/Text';
 import Button from 'components/primitives/Button';
@@ -110,15 +112,19 @@ export default function HomePage() {
           background: 'var(--gradient-blocks)'
         }}
       >
-        <Container size="lg">
+        <Grid columns={1} justify="center">
           <SectionHeader
             align="center"
             accent="Your Perfect Venue"
             title="Why Choose Rum River Barn"
             description="Discover what makes our venue the perfect setting for your unforgettable celebration"
           />
+        </Grid>
 
-          <div style={{ marginTop: 'var(--space-12)' }}>
+        <Spacer size="2xl" />
+
+        <Container size="lg">
+          <div>
             {/* Block 01 */}
             <MediaBlock layout="image-right" gap="xl" tone="brand" number="01">
               <MediaBlock.Content>
