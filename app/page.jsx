@@ -4,6 +4,7 @@ import { ContextAlert } from 'components/context-alert';
 import { Markdown } from 'components/markdown';
 import { RandomQuote } from 'components/random-quote';
 import { getNetlifyContext } from 'utils';
+import Button from 'components/primitives/Button';
 
 const contextExplainer = `
 The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
@@ -30,9 +31,9 @@ export default function Page() {
                 <ContextAlert className="mb-6" />
                 <h1 className="mb-4">Netlify Platform Starter - Next.js</h1>
                 <p className="mb-6 text-lg">Get started with Next.js and Netlify in seconds.</p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
+                <Button as="a" href="https://docs.netlify.com/frameworks/next-js/overview/" size="lg" className="sm:min-w-64">
                     Read the Docs
-                </Link>
+                </Button>
             </section>
             {!!ctx && (
                 <section className="flex flex-col gap-4">

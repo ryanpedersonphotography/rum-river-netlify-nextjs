@@ -5,6 +5,7 @@ import DebugPanel from 'components/dev/DebugPanel';
 
 const TONE_VARS = {
   neutral: ['--surface','--on-surface','--border'],
+  surface: ['--surface','--on-surface','--border'],
   brand:   ['--brand','--on-brand'],
   muted:   ['--muted','--on-muted'],
   accent:  ['--accent','--on-accent'],

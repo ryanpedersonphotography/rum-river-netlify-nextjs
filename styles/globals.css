@@ -221,7 +221,7 @@ body {
         border-radius: var(--btn-radius);
         background: var(--btn-bg);
         color: var(--btn-fg);
-        padding: var(--btn-py) var(--btn-px);
+        padding: var(--btn-py) var(--btn-px) !important;
         box-shadow: var(--btn-shadow);
         border: none;
         cursor: pointer;
@@ -263,7 +263,7 @@ body {
         color: var(--input-fg);
         border: 1px solid var(--input-border);
         border-radius: var(--input-radius);
-        padding: var(--input-padding-y) var(--input-padding-x);
+        padding: var(--input-padding-y) var(--input-padding-x) !important;
         font-size: var(--input-font-size);
         font-family: var(--font-body);
         width: 100%;
@@ -303,14 +303,14 @@ body {
         font-family: var(--font-display);
         line-height: 1.15;
         letter-spacing: -0.01em;
-        margin: 0 0 var(--space-4);
+        margin: 0 0 var(--space-4) !important;
         color: inherit; /* let Card tone control text color */
     }
 
     .typo-text {
         font-family: var(--font-body);
         line-height: 1.6;
-        margin: 0 0 var(--space-3);
+        margin: 0 0 var(--space-3) !important;
         color: inherit; /* let Card tone control text color */
     }
 
@@ -362,9 +362,18 @@ body {
     }
 
     /* Padding sizes */
-    .card--p-sm { --card-padding: var(--space-4); } /* 16px */
-    .card--p-md { --card-padding: var(--space-6); } /* 24px (default) */
-    .card--p-lg { --card-padding: var(--space-8); } /* 32px */
+    .card--p-sm {
+      --card-padding: var(--space-4);
+      padding: var(--card-padding) !important; /* 16px */
+    }
+    .card--p-md {
+      --card-padding: var(--space-6);
+      padding: var(--card-padding) !important; /* 24px (default) */
+    }
+    .card--p-lg {
+      --card-padding: var(--space-8);
+      padding: var(--card-padding) !important; /* 32px */
+    }
 
     /* Tones */
     .card--neutral { background: var(--surface); color: var(--on-surface); border: 1px solid var(--border); }
@@ -474,21 +483,33 @@ body {
       color: var(--sec-fg);
 
       /* vertical rhythm */
-      padding-top: var(--sec-py);
-      padding-bottom: var(--sec-py);
+      padding-top: var(--sec-py) !important;
+      padding-bottom: var(--sec-py) !important;
     }
 
     /* Content container */
     .section__container {
       max-width: var(--container);
       margin-inline: auto;
-      padding-inline: var(--space-5); /* gutters */
+      padding-inline: var(--space-5) !important; /* gutters */
     }
 
     /* Size modifiers (set the variable, not padding directly) */
-    .section--size-sm { --sec-py: var(--section-py-sm); }
-    .section--size-md { --sec-py: var(--section-py-md); }
-    .section--size-lg { --sec-py: var(--section-py-lg); }
+    .section--size-sm {
+      --sec-py: var(--section-py-sm);
+      padding-top: var(--sec-py) !important;
+      padding-bottom: var(--sec-py) !important;
+    }
+    .section--size-md {
+      --sec-py: var(--section-py-md);
+      padding-top: var(--sec-py) !important;
+      padding-bottom: var(--sec-py) !important;
+    }
+    .section--size-lg {
+      --sec-py: var(--section-py-lg);
+      padding-top: var(--sec-py) !important;
+      padding-bottom: var(--sec-py) !important;
+    }
 
     /* Align modifiers */
     .section--align-left   { text-align: left; }
@@ -508,6 +529,10 @@ body {
       --sec-bg: var(--surface);
       --sec-fg: var(--on-surface);
     }
+    .section--variant-solid.section--tone-surface {
+      --sec-bg: var(--surface);
+      --sec-fg: var(--on-surface);
+    }
     .section--variant-solid.section--tone-brand {
       --sec-bg: var(--brand);
       --sec-fg: var(--on-brand);
@@ -517,6 +542,28 @@ body {
       --sec-fg: var(--on-muted);
     }
     .section--variant-solid.section--tone-accent {
+      --sec-bg: var(--accent);
+      --sec-fg: var(--on-accent);
+    }
+
+    /* Default variant with tone (when variant="default") */
+    .section--variant-default.section--tone-surface {
+      --sec-bg: var(--surface);
+      --sec-fg: var(--on-surface);
+    }
+    .section--variant-default.section--tone-neutral {
+      --sec-bg: var(--surface);
+      --sec-fg: var(--on-surface);
+    }
+    .section--variant-default.section--tone-brand {
+      --sec-bg: var(--brand);
+      --sec-fg: var(--on-brand);
+    }
+    .section--variant-default.section--tone-muted {
+      --sec-bg: var(--muted);
+      --sec-fg: var(--on-muted);
+    }
+    .section--variant-default.section--tone-accent {
       --sec-bg: var(--accent);
       --sec-fg: var(--on-accent);
     }
