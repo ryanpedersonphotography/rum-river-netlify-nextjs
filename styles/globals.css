@@ -202,6 +202,9 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container: var(--container-lg); /* default */
+
+  /* Media dimensions */
+  --media-h-lg: 500px;
 }
 
 /* Dark Theme */
@@ -703,12 +706,15 @@ body {
     /* SectionHeader layout — no ad-hoc margins anywhere else */
     .section__header {
       display: grid;
-      gap: var(--title-gap) !important;              /* spacing between accent/title/description */
-      margin: 0 0 var(--title-mb) 0 !important;      /* spacing below the header block */
+      gap: var(--title-gap);              /* spacing between accent/title/description */
+      margin: 0 0 var(--title-mb) 0;      /* spacing below the header block */
+      max-width: 68ch;                    /* readable width constraint */
+      width: 100%;
     }
     .section--align-left .section__header   { text-align: left; }
     .section--align-center .section__header {
       text-align: center;
+      margin-inline: auto;
       justify-items: center;                         /* center grid items */
     }
     .section--align-right .section__header  {
@@ -730,13 +736,13 @@ body {
 
     /* Add extra space between heading and description */
     .section__header h2 + .typo-text {
-      margin-top: var(--space-4) !important;
+      margin-top: var(--space-4);
     }
     .section--size-lg .section__header h2 + .typo-text {
-      margin-top: var(--space-6) !important;
+      margin-top: var(--space-6);
     }
     .section--size-xl .section__header h2 + .typo-text {
-      margin-top: var(--space-8) !important;
+      margin-top: var(--space-8);
     }
 
     /* Variant = default: transparent (already base) */
@@ -1141,12 +1147,12 @@ body {
       display: grid;
       align-items: center;
       --block-gap: var(--space-8); /* default lg */
-      gap: var(--block-gap) !important;
+      gap: var(--block-gap);
       width: 100%;
     }
 
     .media-block + .media-block {
-      margin-top: var(--space-24) !important;
+      margin-top: var(--space-24);
     }
 
     /* Layout variants */
@@ -1169,22 +1175,18 @@ body {
     /* Gap sizes */
     .media-block--gap-sm {
       --block-gap: var(--space-4);
-      gap: var(--block-gap) !important;
     }
 
     .media-block--gap-md {
       --block-gap: var(--space-6);
-      gap: var(--block-gap) !important;
     }
 
     .media-block--gap-lg {
       --block-gap: var(--space-8);
-      gap: var(--block-gap) !important;
     }
 
     .media-block--gap-xl {
       --block-gap: var(--space-20);
-      gap: var(--block-gap) !important;
     }
 
     /* Tone variants for text color context */
@@ -1220,7 +1222,7 @@ body {
     .media-block .media img {
       display: block;
       width: 100%;
-      height: 500px;
+      height: var(--media-h-lg);
       object-fit: cover;
       background: var(--surface);
     }
@@ -1248,8 +1250,8 @@ body {
         grid-template-columns: 1fr;
       }
 
-      .media-block .media img {
-        height: 350px;
+      :root {
+        --media-h-lg: 350px;
       }
     }
 }
