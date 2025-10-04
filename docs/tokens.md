@@ -72,9 +72,10 @@ Reusable gradient tokens for consistent visual treatments across sections.
 
 | Token | Usage | Colors |
 |-------|-------|--------|
-| `--gradient-hero` | Hero sections with image overlays | Walnut → Sage (135deg diagonal) |
+| `--gradient-hero` | Hero sections with image overlays | Walnut → Deep Forest (135deg) |
+| `--gradient-cta` | CTA/Contact sections | Deep Brown → Walnut (135deg) |
 | `--gradient-footer` | Footer backgrounds | Text Dark → Sage (vertical) |
-| `--gradient-warm` | Subtle section transitions | Cream Pearl → Blush Pink (vertical) |
+| `--gradient-warm` | VR tour, subtle transitions | Cream Pearl → Blush Pink (vertical) |
 | `--gradient-overlay` | Text readability over images | Dark semi-transparent overlay |
 | `--gradient-blocks` | Alternating content blocks | Deep Brown → Deep Forest (135deg) |
 
