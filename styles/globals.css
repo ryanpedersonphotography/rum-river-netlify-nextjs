@@ -705,14 +705,10 @@ body {
       display: grid;
       gap: var(--title-gap) !important;              /* spacing between accent/title/description */
       margin: 0 0 var(--title-mb) 0 !important;      /* spacing below the header block */
-      max-width: 68ch;                               /* readable width constraint */
-      width: 100%;
     }
     .section--align-left .section__header   { text-align: left; }
     .section--align-center .section__header {
       text-align: center;
-      margin-left: auto;
-      margin-right: auto;
       justify-items: center;                         /* center grid items */
     }
     .section--align-right .section__header  {
