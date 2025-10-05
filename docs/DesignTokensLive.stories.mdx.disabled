@@ -1,0 +1,195 @@
+import { Meta } from '@storybook/blocks';
+import { TokenSwatch, SpacingToken, TypeScale, RadiusTokens, ShadowTokens } from './TokenHelpers';
+
+<Meta title="Docs/Style Audit" />
+
+# Design System Style Audit
+
+Live token viewer and theme system documentation. Use the **theme toggle** in the toolbar to test light/dark modes.
+
+---
+
+## Color Tokens
+
+### Role-Based Colors
+
+These color tokens adapt to the current theme (light/dark mode).
+
+<div style={{ display: 'grid', gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
+  <TokenSwatch name="--brand" />
+  <TokenSwatch name="--brand-alt" />
+  <TokenSwatch name="--accent" />
+  <TokenSwatch name="--muted" />
+  <TokenSwatch name="--surface" />
+  <TokenSwatch name="--bg" />
+  <TokenSwatch name="--fg" />
+  <TokenSwatch name="--border" />
+</div>
+
+### Usage
+
+```css
+/* ✅ Good - use role tokens */
+.my-component {
+  background: var(--surface);
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+/* ❌ Bad - never hardcode hex values */
+.my-component {
+  background: #FFFFFF;
+  color: #000000;
+}
+```
+
+---
+
+## Spacing Scale
+
+All spacing uses a 4px grid system. Use these tokens for padding, margin, and gap.
+
+<div style={{ display: 'grid', gap: 'var(--space-1)', marginTop: 'var(--space-4)', background: 'var(--surface)', padding: 'var(--space-4)', borderRadius: 'var(--r-md)' }}>
+  <SpacingToken name="--space-1" />
+  <SpacingToken name="--space-2" />
+  <SpacingToken name="--space-3" />
+  <SpacingToken name="--space-4" />
+  <SpacingToken name="--space-5" />
+  <SpacingToken name="--space-6" />
+  <SpacingToken name="--space-8" />
+  <SpacingToken name="--space-10" />
+  <SpacingToken name="--space-12" />
+  <SpacingToken name="--space-16" />
+  <SpacingToken name="--space-20" />
+  <SpacingToken name="--space-24" />
+</div>
+
+### Usage
+
+```css
+/* ✅ Good - use spacing scale tokens */
+.container {
+  padding: var(--space-6);
+  gap: var(--space-4);
+}
+
+/* ❌ Bad - no ad-hoc values */
+.container {
+  padding: 23px;
+  gap: 17px;
+}
+```
+
+---
+
+## Typography
+
+### Font Families
+
+- **Display**: `var(--font-display)` - Headings and emphasis
+- **Body**: `var(--font-body)` - Body text and UI
+- **Script**: `var(--font-script)` - Decorative accents
+
+### Type Scale
+
+<div style={{ marginTop: 'var(--space-4)' }}>
+  <TypeScale />
+</div>
+
+### Usage
+
+```css
+/* Headings */
+h1 { font-size: var(--text-hero); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+
+/* Body text */
+p { font-size: var(--text-md); }
+small { font-size: var(--text-sm); }
+```
+
+---
+
+## Border Radius
+
+<div style={{ marginTop: 'var(--space-4)' }}>
+  <RadiusTokens />
+</div>
+
+### Usage
+
+```css
+.card { border-radius: var(--r-lg); }
+.button { border-radius: var(--r-md); }
+.badge { border-radius: var(--r-full); }
+```
+
+---
+
+## Shadows (Elevation)
+
+<div style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-6)' }}>
+  <ShadowTokens />
+</div>
+
+### Usage
+
+```css
+.card-subtle { box-shadow: var(--shadow-sm); }
+.card-raised { box-shadow: var(--shadow-md); }
+.modal { box-shadow: var(--shadow-lg); }
+```
+
+---
+
+## Design System Rules
+
+### ✅ Always Use Tokens
+
+- **Colors**: Role tokens (`--brand`, `--surface`) not raw hex
+- **Spacing**: Scale tokens (`--space-6`) not ad-hoc px values
+- **Typography**: Size tokens (`--text-lg`) not hardcoded sizes
+- **Radii**: Preset tokens (`--r-md`) not custom values
+
+### 🚫 Never Do This
+
+```css
+/* ❌ Hardcoded values */
+.component {
+  color: #9D6B7B;
+  padding: 24px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+```
+
+### ✅ Always Do This
+
+```css
+/* ✅ Token-driven */
+.component {
+  color: var(--brand);
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--text-md);
+  border-radius: var(--r-md);
+}
+```
+
+---
+
+## Testing Themes
+
+Use the **theme toggle** (sun/moon icons) in the Storybook toolbar to test components in both light and dark modes.
+
+All role tokens automatically adapt:
+- `--bg` switches from light to dark background
+- `--fg` switches from dark to light foreground
+- `--surface` adjusts contrast appropriately
+- Brand colors maintain accessibility in both modes
+
+---
+
+## Full Token Reference
+
+See [tokens.md](/docs/tokens.md) for the complete design system specification.

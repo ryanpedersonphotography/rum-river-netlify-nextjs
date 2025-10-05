@@ -159,6 +159,7 @@
 
 /* dark theme */
 :root[data-theme="dark"] {
+  /* core roles */
   --bg: #0F1419;
   --fg: #E7EDF3;
   --surface: #12171D;
@@ -172,8 +173,37 @@
   --on-accent: #0F1419;
   --muted: #1A1F27;
   --on-muted: #D6DCE3;
+  --sage: #8B9D90;
+  --on-sage: #0F1419;
+  --text-strong: #FFFFFF;
+
+  /* borders & focus */
   --border: #2B3038;
   --focus-ring: rgba(212,165,116,0.35);
+
+  /* utility colors (slightly adjusted for dark) */
+  --success: #3DA55D;
+  --error: #DC2626;
+  --warning: #D97706;
+
+  /* shadows (reduced intensity for dark) */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 20px rgba(0,0,0,0.5);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+
+  /* gradients */
+  --gradient-hero: linear-gradient(135deg, rgba(15,20,25,0.95) 0%, rgba(26,31,39,0.9) 100%);
+  --gradient-cta: linear-gradient(135deg, #1A1F27 0%, #2B3038 100%);
+  --gradient-warm: linear-gradient(180deg, #12171D 0%, #1A1F27 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(15,20,25,0.8) 0%, rgba(15,20,25,0.6) 100%);
+  --gradient-blocks: linear-gradient(135deg, #1A1F27 0%, #12171D 100%);
+
+  /* navigation */
+  --nav-bg-scrolled: rgba(15,20,25,0.98);
+
+  /* input/form tokens */
+  --input-bg: #1A1F27;
+  --input-placeholder: #6B7280;
 }
 
 /* tailwind v4 theme bridge → tokens */

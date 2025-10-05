@@ -1,55 +1,43 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import useResolvedTokens from 'components/dev/useResolvedTokens';
-import DebugPanel from 'components/dev/DebugPanel';
 
 /**
- * Input (token-driven)
+ * Input - Text input control (token-driven)
  * Props:
- *  - type: 'text' | 'email' | 'password' | 'number' | etc.
- *  - size: 'sm' | 'md' | 'lg'
+ *  - id: string (auto-generated from name if not provided)
+ *  - name: string (required for forms)
+ *  - type: 'text' | 'email' | 'password' | 'tel' | 'date' | 'number' | etc.
+ *  - required: boolean
  *  - disabled: boolean
- *  - debug: boolean (show applied classes and computed tokens)
- *  - className, style, ...rest
+ *  - placeholder: string
+ *  - aria-invalid: boolean (error state styling)
+ *  - className, ...rest
  *
- * Uses input tokens from globals.css:
- *   --input-bg, --input-fg, --input-border, --input-placeholder,
- *   --input-focus-ring, --input-radius, --input-padding-y/x, --input-font-size
+ * Uses tokens: --control-pad-y/x, --control-radius, --control-size, --border, --focus-ring
  */
 export default function Input({
+  id,
+  name,
   type = 'text',
-  size = 'md',
-  disabled = false,
-  debug = false,
+  required,
+  disabled,
+  placeholder,
+  'aria-invalid': invalid,
   className,
-  style,
   ...rest
 }) {
-  const ref = useRef(null);
-  
-  const classes = clsx(
-    'input',
-    size === 'sm' && 'input-sm',
-    size === 'lg' && 'input-lg',
-    className
-  );
-
-  const tokenVars = ['--input-bg','--input-fg','--input-border','--input-placeholder','--input-focus-ring','--input-radius','--input-padding-y','--input-padding-x','--input-font-size'];
-  const cssProps  = ['background-color','color','border-color','padding-top','padding-left','border-radius','outline-color'];
-  const data = useResolvedTokens({ tokenVars, cssProps, scope: ref.current, enabled: debug });
-
   return (
-    <div>
-      {debug && <DebugPanel classes={classes} data={data} />}
-      <input
-        ref={ref}
-        type={type}
-        className={classes}
-        style={style}
-        disabled={disabled}
-        {...rest}
-      />
-    </div>
+    <input
+      id={id || name}
+      name={name}
+      type={type}
+      required={required}
+      disabled={disabled}
+      placeholder={placeholder}
+      aria-invalid={invalid}
+      className={clsx('form-control', className)}
+      {...rest}
+    />
   );
 }

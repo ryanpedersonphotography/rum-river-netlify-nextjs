@@ -40,6 +40,7 @@ export default function Button({
     brandAlt: 'var(--brand-alt)',
     accent:   'var(--accent)',
     muted:    'var(--muted)',
+    sage:     'var(--sage)',
     neutral:  'var(--surface)',      // neutral solid = surface
   }[tone] || 'var(--brand)';
 
@@ -48,6 +49,7 @@ export default function Button({
     brandAlt: 'var(--on-brand-alt)',
     accent:   'var(--on-accent)',
     muted:    'var(--on-muted)',
+    sage:     'var(--on-sage)',
     neutral:  'var(--on-surface)',
   }[tone] || 'var(--on-brand)';
 
@@ -56,6 +58,7 @@ export default function Button({
     brandAlt: 'var(--brand-alt)',
     accent:   'var(--accent)',
     muted:    'var(--muted)',
+    sage:     'var(--sage)',
     neutral:  'var(--border)',       // neutral outline/link use hairline
   }[tone] || 'var(--brand)';
 

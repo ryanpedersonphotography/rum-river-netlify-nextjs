@@ -1,0 +1,30 @@
+/* ============================================================
+   STORYBOOK PREVIEW STYLES
+   Critical: CSS import order must match globals.css exactly
+   ============================================================ */
+
+/* 1) Tailwind v4 (preflight normalization first) */
+@import "tailwindcss";
+
+/* 2) Design Tokens - Single Source of Truth */
+@import "../styles/tokens.css";
+
+/* 3) Base Layer - Reset + HTML element defaults */
+@import "../styles/base.css";
+
+/* 4) Component Layer - All primitives */
+@import "../styles/components/section.css";
+@import "../styles/components/container.css";
+@import "../styles/components/stack.css";
+@import "../styles/components/grid.css";
+@import "../styles/components/spacer.css";
+@import "../styles/components/typography.css";
+@import "../styles/components/card.css";
+@import "../styles/components/link.css";
+@import "../styles/components/button.css";
+@import "../styles/components/form.css";
+@import "../styles/components/nav.css";
+@import "../styles/components/media-block.css";
+
+/* 5) Utility Layer (last) */
+@import "../styles/utilities.css";

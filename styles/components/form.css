@@ -40,9 +40,11 @@
 
   .control { position: relative; }
 
-  /* Base form control styles (shared by select, textarea, and potentially input) */
-  .form-control {
+  /* Base form control styles (shared by select, textarea, and input) */
+  /* Use :where() to lower specificity so token overrides work easily */
+  :where(.form-control) {
     width: 100%;
+    min-height: 2.75rem; /* ~44px for touch targets */
     padding: var(--control-pad-y) var(--control-pad-x) !important;
     border-radius: var(--control-radius);
     border: 1.5px solid color-mix(in oklab, var(--border) 55%, transparent);
@@ -54,22 +56,44 @@
     transition: var(--transition-fast);
     box-shadow: 0 0 0 0 transparent;
   }
-  .form-control::placeholder { color: color-mix(in oklab, var(--fg) 50%, transparent); }
+
+  .form-control::placeholder {
+    /* Slightly stronger in dark for better contrast */
+    color: color-mix(in oklab, var(--fg) 55%, transparent);
+  }
+
   .form-control:focus,
   .form-control:focus-visible {
     outline: none;
     border-color: var(--brand);
-    box-shadow: 0 0 0 3px var(--focus-ring);
+    /* Theme-aware focus ring with better visibility */
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 25%, transparent);
   }
-  .form-control:hover:not(:disabled):not(:focus) { border-color: var(--brand); }
+
+  .form-control:hover:not(:disabled):not(:focus) {
+    /* Softer hover state */
+    border-color: color-mix(in oklab, var(--brand) 70%, var(--border));
+  }
+
   .form-control:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: not-allowed;
-    background: var(--muted);
+    /* Slightly lift disabled bg in dark mode */
+    background: color-mix(in oklab, var(--muted) 70%, var(--surface));
   }
+
   .form-control[aria-invalid="true"] {
-    border-color: color-mix(in oklab, var(--error) 70%, transparent);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--error) 30%, transparent);
+    border-color: color-mix(in oklab, var(--error) 85%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--error) 35%, transparent);
+  }
+
+  /* Autofill styles for Chrome/WebKit - keep text legible in both themes */
+  input.form-control:-webkit-autofill,
+  input.form-control:-webkit-autofill:hover,
+  input.form-control:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--surface) inset;
+    -webkit-text-fill-color: var(--fg);
+    transition: background-color 9999s ease-out;
   }
 
   /* Select-specific styles */
