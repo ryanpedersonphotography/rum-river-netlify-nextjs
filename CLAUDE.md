@@ -21,12 +21,12 @@ This project implements a **documentation-first, token-driven design system** wi
 - Role-based color tokens (`--brand`, `--surface`, `--accent`) not raw colors
 - Semantic spacing scale based on 4px grid
 
-#### 3. Component Development Workflow
+#### 3. Component Development Workflow (Storybook-First)
 1. **Document first**: Add component specification to `docs/tokens.md`
-2. **Implement CSS**: Add token-driven styles to `styles/globals.css`
+2. **Implement CSS**: Add token-driven styles to component CSS files
 3. **Build React component**: Create primitive that consumes CSS tokens
-4. **Demo page**: Build comprehensive showcase of all variants
-5. **Add to navigation**: Make accessible for testing
+4. **Create Storybook story**: Build comprehensive showcase of all variants
+5. **Test in both themes**: Verify light/dark mode using Storybook theme toggle
 
 #### 4. Design System Rules
 - **Always use role tokens** (`var(--brand)`, `var(--surface)`) never raw hex
@@ -40,29 +40,30 @@ This project implements a **documentation-first, token-driven design system** wi
 ### ✅ Completed Components
 
 #### Primitives (Basic Building Blocks)
-1. **Button** ([Button.jsx](components/primitives/Button.jsx))
-   - 5 tones × 3 variants (solid, outline, link) × 3 sizes
+1. **Button** ([Button.jsx](components/primitives/Button.jsx), [Stories](components/primitives/Button.stories.jsx))
+   - 6 tones × 3 variants (solid, outline, link) × 3 sizes
    - Polymorphic `as` prop (button, anchor, any element)
    - Full accessibility with disabled states
-   - Demo: [/components-demo/button-demo](http://localhost:3005/components-demo/button-demo)
+   - Storybook: Primitives / Button
 
-2. **Typography** ([Heading.jsx](components/primitives/Heading.jsx), [Text.jsx](components/primitives/Text.jsx))
+2. **Typography** ([Heading.jsx](components/primitives/Heading.jsx), [Text.jsx](components/primitives/Text.jsx), [Stories](components/primitives/Typography.stories.jsx))
    - **Heading**: Semantic levels (h1-h6) with visual size flexibility
    - **Text**: Complete size scale, weights, alignment options
    - Role-based color theming with `tone` prop
-   - Demo: [/components-demo/typography-demo](http://localhost:3005/components-demo/typography-demo)
+   - Storybook: Primitives / Typography
 
-3. **Input** ([Input.jsx](components/primitives/Input.jsx))
+3. **Input** ([Input.jsx](components/primitives/Input.jsx), [Stories](components/primitives/Input.stories.jsx))
    - All HTML input types supported
-   - 3 size variants with token-driven spacing
-   - Focus states using design system focus ring
-   - Demo: [/components-demo/input-demo](http://localhost:3005/components-demo/input-demo)
+   - Token-driven with :where() for low specificity
+   - WebKit autofill support, WCAG touch targets (44px)
+   - Dark mode stress test story included
+   - Storybook: Primitives / Input
 
-4. **Card** ([Card.jsx](components/primitives/Card.jsx))
+4. **Card** ([Card.jsx](components/primitives/Card.jsx), [Stories](components/primitives/Card.stories.jsx))
    - 4 tone variants with proper contrast
    - 4 elevation levels using shadow tokens
    - Interactive affordances for clickable cards
-   - Demo: [/components-demo/card-demo](http://localhost:3005/components-demo/card-demo)
+   - Storybook: Primitives / Card
 
 5. **Link** ([Link.jsx](components/primitives/Link.jsx))
    - Styled anchor component with design system integration
@@ -141,16 +142,22 @@ This project implements a **documentation-first, token-driven design system** wi
 - **Transitions**: 4 timing presets for animations
 - **Gradients**: Hero and block gradient patterns
 
-### 📱 Demo Pages
-- [/components-demo/style-audit](http://localhost:3005/components-demo/style-audit) - Live token visualization with theme toggle
-- [/components-demo/button-demo](http://localhost:3005/components-demo/button-demo) - All button variants and combinations
-- [/components-demo/input-demo](http://localhost:3005/components-demo/input-demo) - Form controls and input types
-- [/components-demo/form-demo](http://localhost:3005/components-demo/form-demo) - Complete form examples
-- [/components-demo/typography-demo](http://localhost:3005/components-demo/typography-demo) - Typography system showcase
-- [/components-demo/card-demo](http://localhost:3005/components-demo/card-demo) - Surface components and layouts
-- [/components-demo/section-demo](http://localhost:3005/components-demo/section-demo) - Section layout patterns
-- [/components-demo/spacing-demo](http://localhost:3005/components-demo/spacing-demo) - Spacer component examples
-- [/components-demo/debug-demo](http://localhost:3005/components-demo/debug-demo) - Debug mode visualization
+### 📚 Storybook Documentation
+
+**Primary URL:** http://localhost:6006
+
+All component development and testing now happens in Storybook with:
+- **19 Component Stories** - All primitives, forms, sections, and layouts
+- **4 Documentation Stories** - Token Probe, Dark Mode Audit, Design Tokens, Design System Overview
+- **Dark Mode Toggle** - Test all components in light and dark themes
+- **A11y Testing** - Built-in accessibility panel with axe-core
+- **Token Enforcement** - Stylelint ensures no hardcoded values
+
+**Key Storybook Features:**
+- Live token inspector showing computed CSS custom property values
+- Dark mode stress tests for forms and inputs
+- Full page composition examples
+- Interactive prop controls for all components
 
 ## Development Commands
 
@@ -158,6 +165,10 @@ This project implements a **documentation-first, token-driven design system** wi
 ```bash
 # Install dependencies
 npm install
+
+# Start Storybook (primary component development environment)
+npm run storybook
+# Opens at http://localhost:6006
 
 # Start development server (requires Netlify CLI for full features)
 netlify dev
@@ -171,23 +182,32 @@ npm run dev
 # Build the application
 npm run build
 
+# Build Storybook for deployment
+npm run build-storybook
+
 # Start production server locally
 npm run start
 
 # Linting
-npm run lint
+npm run lint        # ESLint for JavaScript/React
+npm run lint:css    # Stylelint for CSS (enforces token usage)
+npm run lint:all    # Both linters
 ```
 
-### Design System Development
+### Storybook Development (Primary Workflow)
 ```bash
-# Always run style audit to test token changes
-open http://localhost:8888/style-audit
+# Start Storybook
+npm run storybook
 
-# Test components across all demo pages
-open http://localhost:8888/button-demo
-open http://localhost:8888/input-demo
-open http://localhost:8888/typography-demo
-open http://localhost:8888/card-demo
+# Navigate to component stories:
+# - Primitives: Button, Typography, Input, Card, Grid, Stack, etc.
+# - Forms: Form, Controls
+# - Sections: HomeHero, ScheduleTourForm
+# - Layout: Header, Footer, Section
+# - Docs: Token Probe, Dark Mode Audit, Design Tokens
+
+# Toggle dark mode with toolbar (sun/moon icon)
+# Test all components in both light and dark themes
 ```
 
 ## File Structure & Organization
