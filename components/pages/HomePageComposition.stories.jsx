@@ -225,6 +225,7 @@ export const Minimal = () => (
 
 // Dark mode preview - toggle toolbar to light to compare
 export const DarkPreview = {
+  render: Default,
   parameters: {
     globals: { theme: "dark" },
   },
