@@ -302,6 +302,42 @@ Reusable gradient tokens for consistent visual treatments across sections.
 --container-xl: 1280px;
 ```
 
+### Viewport Sizing (Hero Sections & Full-Height Layouts)
+```css
+--vh-50: 50vh;   /* half viewport height */
+--vh-60: 60vh;   /* 60% viewport (common hero size) */
+--vh-75: 75vh;   /* three-quarters viewport */
+--vh-100: 100vh; /* full viewport height */
+--vw-100: 100vw; /* full viewport width */
+```
+
+**Usage:** For hero sections, splash screens, and full-screen layouts that need to adapt to viewport size.
+
+```jsx
+// ✅ Token-driven viewport sizing
+<Section style={{ minHeight: 'var(--vh-60)' }}>
+  <HeroContent />
+</Section>
+```
+
+### Icon Sizing (Consistent SVG Dimensions)
+```css
+--size-icon-xs: 16px; /* small inline icons */
+--size-icon-sm: 20px; /* form field icons */
+--size-icon-md: 24px; /* default UI icons */
+--size-icon-lg: 32px; /* feature/section icons */
+--size-icon-xl: 48px; /* large decorative icons */
+```
+
+**Usage:** Ensures consistent icon sizing across the application.
+
+```jsx
+// ✅ Token-driven icon sizing
+<svg width="var(--size-icon-md)" height="var(--size-icon-md)">
+  {/* icon paths */}
+</svg>
+```
+
 ## Section Tokens
 
 - `--section-py-sm` — small section vertical padding (mobile / compact)

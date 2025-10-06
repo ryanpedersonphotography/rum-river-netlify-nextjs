@@ -26,8 +26,8 @@ export default function ThankYouPage() {
           <Stack direction="vertical" gap="lg" align="center">
             {/* Success Icon */}
             <div style={{
-              width: '80px',
-              height: '80px',
+              width: 'var(--size-icon-xl)',
+              height: 'var(--size-icon-xl)',
               borderRadius: 'var(--r-full)',
               background: 'var(--accent)',
               display: 'flex',

@@ -185,7 +185,7 @@ export default function IsolatedLayoutDemo() {
             <Heading level={1} size="hero" debug={debug} style={{ color: 'var(--on-brand)' }}>
               Pattern: Full-Viewport Hero
             </Heading>
-            <Text size="xl" align="center" debug={debug} style={{ color: 'var(--on-brand)', maxWidth: '600px' }}>
+            <Text size="xl" align="center" debug={debug} style={{ color: 'var(--on-brand)', maxWidth: 'var(--container-sm)' }}>
               No Section component - custom full-viewport height with gradient background.
             </Text>
             <Stack direction="horizontal" gap="md">

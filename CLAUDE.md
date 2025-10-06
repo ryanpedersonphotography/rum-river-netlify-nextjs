@@ -274,6 +274,115 @@ npm run storybook
 - **Typography**: Semantic sizes (`--text-xs` through `--text-hero`)
 - **Component tokens**: Scoped (`--btn-bg`, `--input-border`)
 
+## 🔒 Design System Enforcement
+
+### Automated Token Enforcement (Tier 1-3 Strategy)
+
+This project enforces token usage through **3 layers of protection**:
+
+#### **Tier 1: Pre-commit Hooks** (Husky + lint-staged)
+Blocks commits with token violations before they enter the codebase.
+
+```bash
+# Runs automatically on git commit:
+- Stylelint: Checks CSS for hardcoded colors/spacing
+- ESLint: Checks JSX inline styles for hardcoded values
+```
+
+**Configuration:**
+- [.husky/pre-commit](.husky/pre-commit) - Git hook runner
+- [package.json](package.json) - lint-staged configuration
+
+#### **Tier 2: Linting Rules**
+
+**ESLint Custom Rule** ([eslint-local-rules.js](eslint-local-rules.js)):
+- Detects hardcoded colors in `style={{ color: '#fff' }}`
+- Detects hardcoded spacing in `style={{ padding: '24px' }}`
+- Enforces `var(--*)` token usage in inline styles
+- **Errors** in components/, **warnings** in *.stories.jsx
+
+**Stylelint Configuration** ([stylelint.config.cjs](stylelint.config.cjs)):
+- Requires `var(--space-*)` for padding/margin/gap
+- Requires `var(--*)` for colors (allows `color-mix()`)
+- Requires `var(--r-*)` for border-radius
+- Requires `var(--text-*)` for font-size
+- Allows component tokens (`--btn-*`, `--control-*`, etc.)
+
+#### **Tier 3: CI Enforcement** (GitHub Actions)
+
+**Workflow** ([.github/workflows/design-system-check.yml](.github/workflows/design-system-check.yml)):
+- Grep checks for hardcoded hex colors (excludes *.stories.jsx)
+- Grep checks for hardcoded spacing in CSS
+- Runs full lint:all suite
+- **Blocks PRs** if violations found
+
+### Testing Enforcement Locally
+
+```bash
+# Test individual linters
+npm run lint:css    # Stylelint (CSS token enforcement)
+npm run lint:js     # ESLint (inline style enforcement)
+npm run lint:all    # Both linters
+
+# Test pre-commit hook
+git add .
+git commit -m "test"  # Will fail if violations exist
+```
+
+### What Gets Caught
+
+✅ **Blocked:**
+```jsx
+// ❌ Hardcoded color
+<div style={{ color: '#FF0000' }}>Red text</div>
+
+// ❌ Hardcoded spacing
+<div style={{ padding: '24px' }}>Content</div>
+```
+
+```css
+/* ❌ Hardcoded values in CSS */
+.my-class {
+  color: #FF0000;
+  padding: 24px;
+  border-radius: 8px;
+}
+```
+
+✅ **Allowed:**
+```jsx
+// ✅ Token-driven inline styles
+<div style={{ color: 'var(--brand)', padding: 'var(--space-6)' }}>
+  Content
+</div>
+```
+
+```css
+/* ✅ Token-driven CSS */
+.my-class {
+  color: var(--brand);
+  padding: var(--space-6);
+  border-radius: var(--r-md);
+}
+```
+
+### Rollout Status
+
+| Layer | Status | Coverage |
+|-------|--------|----------|
+| **Husky pre-commit** | ✅ Active | All commits |
+| **ESLint inline rule** | ✅ Active | components/, app/ |
+| **Stylelint CSS rule** | ✅ Active | styles/**/*.css |
+| **CI PR checks** | ✅ Active | All pull requests |
+
+**Known Violations** (to be fixed):
+- `app/isolated-demo/page.jsx` - minHeight values (3 instances)
+- `app/page.jsx` - minHeight value (1 instance)
+- `app/thank-you/page.jsx` - icon dimensions (3 instances)
+- `components/layout/Header.jsx` - logo height (1 instance)
+
+These are tracked and will be migrated to use viewport units or container tokens.
+
 ## Legacy Netlify Features (Preserved)
 
 ### Key Features Demonstrated

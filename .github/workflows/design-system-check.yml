@@ -1,0 +1,72 @@
+name: Design System Check
+
+on:
+  pull_request:
+    branches: [main, 'foundation/**', 'chore/**']
+  push:
+    branches: [main, chore/storybook-migration]
+
+jobs:
+  token-enforcement:
+    runs-on: ubuntu-latest
+    name: Enforce Design System Token Usage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Check for hardcoded colors in components
+        run: |
+          set -e
+          echo "🔍 Scanning for hardcoded hex colors (excluding Storybook stories)..."
+          if grep -R --include="*.{jsx,tsx}" -nE '#[0-9a-f]{3,8}\b' components/ app/ | grep -v 'stories.jsx'; then
+            echo ""
+            echo "❌ Found hardcoded hex colors in components/"
+            echo "   Use CSS tokens instead: var(--brand), var(--surface), var(--accent)"
+            echo "   See docs/tokens.md for available tokens"
+            exit 1
+          else
+            echo "✅ No hardcoded colors found"
+          fi
+
+      - name: Check for hardcoded spacing in CSS
+        run: |
+          set -e
+          echo "🔍 Scanning for hardcoded spacing values..."
+          if grep -R --include="*.css" -nE '^\s*(padding|margin|gap)\s*:\s*[0-9]' styles/components/ | grep -v 'var(--space-'; then
+            echo ""
+            echo "❌ Found hardcoded spacing values in CSS"
+            echo "   Use spacing tokens: var(--space-1) through var(--space-24)"
+            exit 1
+          else
+            echo "✅ No hardcoded spacing found"
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint (inline style enforcement)
+        run: |
+          echo "🔍 Running ESLint with custom token enforcement..."
+          npm run lint:js
+
+      - name: Run Stylelint (CSS token enforcement)
+        run: |
+          echo "🔍 Running Stylelint with design system rules..."
+          npm run lint:css
+
+      - name: Summary
+        if: success()
+        run: |
+          echo ""
+          echo "✅ All design system checks passed!"
+          echo "   - No hardcoded colors in components"
+          echo "   - No hardcoded spacing in CSS"
+          echo "   - All inline styles use tokens"
+          echo "   - All CSS follows token patterns"

@@ -54,7 +54,7 @@ export default function Header({
               <img
                 src={logoSrc}
                 alt={logoAlt}
-                style={{ height: '40px', width: 'auto' }}
+                style={{ height: 'var(--size-icon-lg)', width: 'auto' }}
               />
             ) : (
               <span

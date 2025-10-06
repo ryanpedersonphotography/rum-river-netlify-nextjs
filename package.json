@@ -7,10 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"styles/**/*.css\"",
+    "lint:all": "npm run lint:css && npm run lint:js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "lint:css": "stylelint 'styles/**/*.css'",
-    "lint:all": "npm run lint && npm run lint:css"
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{css,scss}": "npm run lint:css",
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
     "@netlify/blobs": "^8.2.0",
@@ -34,6 +40,8 @@
     "eslint": "8.57.1",
     "eslint-config-next": "15.5.4",
     "eslint-plugin-storybook": "^9.1.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "postcss": "^8.4.36",
     "storybook": "^9.1.10",
     "stylelint": "^16.25.0",
