@@ -25,6 +25,7 @@
 @import "../styles/components/form.css";
 @import "../styles/components/nav.css";
 @import "../styles/components/media-block.css";
+@import "../styles/components/spaces.css";
 
 /* 5) Utility Layer (last) */
 @import "../styles/utilities.css";

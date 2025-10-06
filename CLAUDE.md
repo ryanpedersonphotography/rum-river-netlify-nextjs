@@ -2,6 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ CRITICAL: Netlify Deployment Configuration
+
+**ALWAYS deploy to this Netlify site:**
+- **Site name:** `rum-river-nextjs`
+- **URL:** https://rum-river-nextjs.netlify.app
+- **Site ID:** bfae5319-6883-43ee-a382-2d7f063fbb9c
+
+**Before deploying, verify link:**
+```bash
+netlify status  # Should show "Current project: rum-river-nextjs"
+```
+
+**If linked to wrong site, fix with:**
+```bash
+netlify unlink
+netlify link --name rum-river-nextjs
+```
+
+**NEVER deploy to:**
+- ❌ rum-river-final
+- ❌ rumriverredesign
+- ❌ Any other rum-river variant
+
 ## Project Overview
 
 This is a Next.js 15 (App Router) application that serves as a **design system foundation** with a comprehensive token-driven architecture. Originally a Netlify Platform starter, it has been transformed into a complete design system implementation with documentation-first component development.

@@ -3,6 +3,7 @@ import HomeHero from 'components/sections/HomeHero';
 import Section from 'components/layout/Section';
 import Container from 'components/primitives/Container';
 import Grid from 'components/primitives/Grid';
+import Stack from 'components/primitives/Stack';
 import Spacer from 'components/primitives/Spacer';
 import SectionHeader from 'components/primitives/SectionHeader';
 import MediaBlock from 'components/primitives/MediaBlock';
@@ -98,17 +99,19 @@ export const Default = () => (
           {/* Block 01 */}
           <MediaBlock layout="image-right" gap="xl" tone="brand" number="01">
             <MediaBlock.Content>
-              <Heading level={2} noMargin>A Picturesque Location For Your Special Event</Heading>
-              <Text size="lg" weight="medium">Near Milaca, Saint Paul, St Cloud, and Brainerd MN</Text>
-              <Text>
-                When it comes to special occasions such as weddings, birthday parties, or other events,
-                it is important to have the perfect setting. You want to ensure that your event is at a
-                location that people will remember.
-              </Text>
-              <Text>
-                Here at Rum River Barn, we understand the importance of your special occasion. We are
-                different from other special event venues because we allow you to pretty much run the show.
-              </Text>
+              <Stack gap="lg">
+                <Heading level={2} noMargin>A Picturesque Location For Your Special Event</Heading>
+                <Text size="lg" weight="medium" noMargin>Near Milaca, Saint Paul, St Cloud, and Brainerd MN</Text>
+                <Text noMargin>
+                  When it comes to special occasions such as weddings, birthday parties, or other events,
+                  it is important to have the perfect setting. You want to ensure that your event is at a
+                  location that people will remember.
+                </Text>
+                <Text noMargin>
+                  Here at Rum River Barn, we understand the importance of your special occasion. We are
+                  different from other special event venues because we allow you to pretty much run the show.
+                </Text>
+              </Stack>
             </MediaBlock.Content>
             <MediaBlock.Media>
               <div style={{
@@ -129,17 +132,19 @@ export const Default = () => (
           {/* Block 02 */}
           <MediaBlock layout="image-left" gap="xl" tone="brand" number="02">
             <MediaBlock.Content>
-              <Heading level={2} noMargin>Rum River Barn & Vineyard</Heading>
-              <Text size="lg" weight="medium">Milaca, St. Cloud, Saint Paul, and Brainerd MN</Text>
-              <Text>
-                Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding
-                venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured
-                old oak forests, and white pines next to a whispering brook.
-              </Text>
-              <Text>
-                Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests
-                and developed for the past 100 years.
-              </Text>
+              <Stack gap="lg">
+                <Heading level={2} noMargin>Rum River Barn & Vineyard</Heading>
+                <Text size="lg" weight="medium" noMargin>Milaca, St. Cloud, Saint Paul, and Brainerd MN</Text>
+                <Text noMargin>
+                  Nestled within 400 acres of pure country and rustic charm, this is the perfect barn wedding
+                  venue in Minnesota. On a peaceful hillside overlooking grape vineyards, mile-long manicured
+                  old oak forests, and white pines next to a whispering brook.
+                </Text>
+                <Text noMargin>
+                  Enjoy the serenity, peacefulness, and amazing beauty which has been carved out of the forests
+                  and developed for the past 100 years.
+                </Text>
+              </Stack>
             </MediaBlock.Content>
             <MediaBlock.Media>
               <div style={{
